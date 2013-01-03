@@ -4,23 +4,51 @@
 % formatting suggestions. A command reference is available at
 % http://www.cs.sandia.gov/~rolf/SANDreport
 %
-\documentclass[pdf,12pt,report,strict]{SANDreport}
+\documentclass[12pt]{SANDreport}
 
 
 % ---------------------------------------------------------------------------- %
 % Set the title, author, and date
 %
-    \title{a}
-    \author{b}          % Use First, Middle, Initial
-    \date{}             % Leave this here but empty
+\title{Data Co-Processing for Extreme Scale Analysis Level II ASC Milestone (\#\#\#\#)}
+\author{
+  David Rogers \\
+  Scalable Analysis and Visualization \\
+  Sandia National Laboratories \\
+  P.O. Box 5800 MS 1326 \\
+  Albuquerque, NM 87185-1326 \\
+  dhroger@sandia.gov
+  \and
+  Kenneth Moreland \\
+  Scalable Analysis and Visualization \\
+  Sandia National Laboratories \\
+  P.O. Box 5800 MS 1326 \\
+  Albuquerque, NM 87185-1326 \\
+  kmorel@sandia.gov
+  \and
+  Ron Oldfield \\
+  Scalable System Software \\
+  Sandia National Laboratories \\
+  P.O. Box 5800 MS 1319 \\
+  Albuquerque, NM 87185-1319 \\
+  raoldfi@sandia.gov
+  \and
+  Nathan Fabian \\
+  Scalable Analysis and Visualization \\
+  Sandia National Laboratories \\
+  P.O. Box 5800 MS 1323 \\
+  Albuquerque, NM 87185-1323 \\
+  ndfabian@sandia.gov
+}
+\date{}             % Leave this here but empty
 
 
 % ---------------------------------------------------------------------------- %
 % These are mandatory
 %
 \SANDnum{SAND2013-XXXX} % e.g. \SANDnum{SAND2006-0420}
-\SANDprintDate{March, 2013} % Month, year
-\SANDauthor{c}           % One line, separated by commas
+\SANDprintDate{March 2013} % Month, year
+\SANDauthor{David Rogers, Kenneth Moreland, Ron Oldfield, and Nathan Fabian}
 
 
 % ---------------------------------------------------------------------------- %
@@ -44,143 +72,143 @@
     %\SANDmarkCoverTitle{}
 
 
+\usepackage{cite}
+\usepackage{graphicx}
+
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{color}
+\definecolor{yellow}{rgb}{1,1,0}
+\definecolor{black}{rgb}{0,0,0}
+\definecolor{ltcyan}{rgb}{.75,1,1}
+\definecolor{red}{rgb}{1,0,0}
+\definecolor{gray}{rgb}{.6,.6,.6}
+\definecolor{darkred}{rgb}{0.5,0,0}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+
+% This is a command I use to make notes to myself or other authors in the
+% document.  The text is noticeable in the document and easy to search for
+% in the tex file.  It is also easy to turn them all off by simply
+% replacing the command with one that does nothing.
+\newcommand{\fix}[1]{{\color{red}\textsc{[#1]}}}
+%\newcommand{\fix}[1]{}
+
+% Hyphenation of words that do not follow standard English rules.
+\hyphenation{Para-View}
+
 % ---------------------------------------------------------------------------- %
 % Start the document
 %
 \begin{document}
-    \maketitle
 
-    % ------------------------------------------------------------------------ %
-    % An Abstract is required for SAND reports
-    %
-    \begin{abstract}
-    \end{abstract}
+\sloppy
 
+\maketitle
 
-    % ------------------------------------------------------------------------ %
-    % An Acknowledgment section is optional but important
-    %
-    \clearpage
-    \chapter*{Acknowledgment}
+% ------------------------------------------------------------------------ %
+% An Abstract is required for SAND reports
+%
+\input{Abstract}
 
 
-    % ------------------------------------------------------------------------ %
-    % The table of contents and list of figures and tables
-    %
-    \cleardoublepage            % TOC needs to start on an odd page
-    \tableofcontents
-    \listoffigures
-    \listoftables
+%% % ------------------------------------------------------------------------ %
+%% % An Acknowledgment section is optional but important
+%% %
+%% \clearpage
+%% \section*{Acknowledgment}
 
 
-    % ---------------------------------------------------------------------- %
-    % An optional preface or Foreword
-    \clearpage
-    \chapter*{Preface}
-    \addcontentsline{toc}{chapter}{Preface}
+% ------------------------------------------------------------------------ %
+% The table of contents and list of figures and tables
+%
+\cleardoublepage            % TOC needs to start on an odd page
+\tableofcontents
+\listoffigures
+\listoftables
 
 
-    % ---------------------------------------------------------------------- %
-    % An optional executive summary
-    \clearpage
-    \chapter*{Summary}
-    \addcontentsline{toc}{chapter}{Summary}
+%% % ---------------------------------------------------------------------- %
+%% % An optional preface or Foreword
+%% \clearpage
+%% \section*{Preface}
+%% \addcontentsline{toc}{section}{Preface}
 
 
-    % ---------------------------------------------------------------------- %
-    % An optional glossary. We don't want it to be numbered
-    \clearpage
-    \chapter*{Nomenclature}
-    \addcontentsline{toc}{chapter}{Nomenclature}
-    \begin{description}
-        \item[Term 1]
-            Description
-        \item[Term 2]
-            Description
-        \item[Term 3]
-            Description
-    \end{description}
+% ---------------------------------------------------------------------- %
+% An optional executive summary
+\clearpage
+\input{ExecutiveSummary}
 
 
-    % ---------------------------------------------------------------------- %
-    % This is where the body of the report begins; usually with an Introduction
-    %
-    \SANDmain           % Start the main part of the report
-
-    \chapter{Introduction}\label{Intro}
-
-        \begin{table}[ht]
-            \centering
-            \caption[Short Title]{Full caption}
-            \bigskip
-
-            \begin{tabular}{|l|c|l|c|}
-            \end{tabular}
-            \label{tab:1}
-        \end{table}
-
-        %% \begin{figure}[ht]
-        %%     \centering
-        %%     \subfigure[Short title]{
-        %%         \label{fig:sub:1}
-        %%         \includegraphics[keepaspectratio=true, width= in]{filename}
-        %%     }
-        %%     \subfigure[Short title]{
-        %%         \label{fig:sub:2}
-        %%         \includegraphics[keepaspectratio=true, width= in]{filename}
-        %%     }
-        %%     \caption{Full caption.}
-        %%     \label{fig:1}
-        %% \end{figure}
+%% % ---------------------------------------------------------------------- %
+%% % An optional glossary. We don't want it to be numbered
+%% \clearpage
+%% \section*{Nomenclature}
+%% \addcontentsline{toc}{section}{Nomenclature}
+%% \begin{description}
+%% \item[Term 1]
+%%   Description
+%% \item[Term 2]
+%%   Description
+%% \item[Term 3]
+%%   Description
+%% \end{description}
 
 
+% ---------------------------------------------------------------------- %
+% This is where the body of the report begins; usually with an Introduction
+%
+\SANDmain           % Start the main part of the report
 
-    % ---------------------------------------------------------------------- %
-    % References
-    %
-    \clearpage
-    % If hyperref is included, then \phantomsection is already defined.
-    % If not, we need to define it.
-    \providecommand*{\phantomsection}{}
-    \phantomsection
-    \addcontentsline{toc}{chapter}{References}
-    \bibliographystyle{plain}
-    \bibliography{}
+\input{Background}
 
+\input{OfficialMilestone}
 
-    % ---------------------------------------------------------------------- %
-    %
-    \appendix
-    \chapter{}
+\input{Catalyst}
 
-    % \printindex
+\input{Nessie}
 
-    \begin{SANDdistribution}[NM]% or [CA]
-        % \SANDdistCRADA        % If this report is about CRADA work
-        % \SANDdistPatent       % If this report has a Patent Caution or Patent Interest
-        % \SANDdistLDRD % If this report is about LDRD work
+\input{UseCase}
 
-        % External Address Format: {num copies}{Address}
-        \SANDdistExternal{}{}
-        \bigskip
+\input{Results}
 
-        % The following MUST BE between the external and internal distributions!
-        % \SANDdistClassified % If this report is classified
-
-        % Internal Address Format: {num copies}{Mail stop}{Name}{Org}
-        \SANDdistInternal{}{}{}{}
-
-        % Mail Channel Address Format: {num copies}{Mail Channel}{Name}{Org}
-        \SANDdistInternalM{}{}{}{}
-    \end{SANDdistribution}
+\input{Conclusion}
 
 
-    % The second printing
-    %\begin{SANDreDistribution}
-    %    \SANDdistExternal{}{}
-    %    \bigskip
-    %    \SANDdistInternal{}{}{}{}
-    %    \SANDdistInternalM{}{}{}{}
-    %\end{SANDreDistribution}
+% ---------------------------------------------------------------------- %
+% References
+%
+\clearpage
+% If hyperref is included, then \phantomsection is already defined.
+% If not, we need to define it.
+\providecommand*{\phantomsection}{}
+\phantomsection
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{plain}
+\bibliography{MilestoneFY13}
+
+
+% ---------------------------------------------------------------------- %
+%
+\appendix
+
+\section{Signed Letter from Committee}
+
+\section{Executive Summary Slides}
+
+\section{Raw Data}
+
+% \printindex
+
+\input{Distribution}
+
+
+% The second printing
+%\begin{SANDreDistribution}
+%    \SANDdistExternal{}{}
+%    \bigskip
+%    \SANDdistInternal{}{}{}{}
+%    \SANDdistInternalM{}{}{}{}
+%\end{SANDreDistribution}
 
 \end{document}

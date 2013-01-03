@@ -5,6 +5,16 @@ project(MilestoneFY13 NONE)
 include(UseLATEX.cmake)
 
 set(tex_sources
+  Abstract.tex
+  ExecutiveSummary.tex
+  Background.tex
+  OfficialMilestone.tex
+  Catalyst.tex
+  Nessie.tex
+  UseCase.tex
+  Results.tex
+  Conclusion.tex
+  Distribution.tex
   )
 
 set(images
@@ -14,5 +24,7 @@ set(images
 add_latex_document(MilestoneFY13.tex
   INPUTS ${tex_sources}
   IMAGES ${images}
+  BIBFILES MilestoneFY13.bib
   IMAGE_DIRS SANDimages
+  DEFAULT_PDF
   )
