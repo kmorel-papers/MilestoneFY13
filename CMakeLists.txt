@@ -15,6 +15,7 @@ set(tex_sources
   Results.tex
   Conclusion.tex
   Distribution.tex
+  NewChallenges.tex
   )
 
 set(images
@@ -25,6 +26,6 @@ add_latex_document(MilestoneFY13.tex
   INPUTS ${tex_sources}
   IMAGES ${images}
   BIBFILES MilestoneFY13.bib
-  IMAGE_DIRS SANDimages
+  IMAGE_DIRS SANDimages figures
   DEFAULT_PDF
   )
