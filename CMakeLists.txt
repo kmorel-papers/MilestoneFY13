@@ -18,13 +18,8 @@ set(tex_sources
   NewChallenges.tex
   )
 
-set(images
-  # images/TimingPlot.png
-  )
-
 add_latex_document(MilestoneFY13.tex
   INPUTS ${tex_sources}
-  IMAGES ${images}
   BIBFILES MilestoneFY13.bib
   IMAGE_DIRS SANDimages figures
   DEFAULT_PDF
