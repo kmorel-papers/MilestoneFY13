@@ -45,7 +45,36 @@ at the conclusion of the scientific simulation.
 
 \subsection{Current Post-Processing Pipelines}
 
-\fix{Ken and/or Dave.}
+The current prevalent practice of computational-based scientific analysis
+is a progression of relatively independent steps.  First is a problem
+setup, which involves setting up initial and boundary conditions,
+determining materials and their properties, and creating a mesh or
+establishing a meshing proceedure.  Based on this problem setup, a
+simulation is next run.  During the progression of the simulation, results
+files are periodically recorded to disk storage.  This results data are
+typically the geometry of physical entities being simulated (often but not
+always a mesh of finite elements) with field values of physical properties
+given for the topological units of the geometry.  Because of limitations
+with disk storage bandwidth and capacity, results data seldom capture all
+computed interations but rather capture data at some periodicity specified
+by the analyst.  At some time later, a \vda job reads this data back from
+disk and presents an interactive analysis session with a user.
+
+This ``off-line'' post-processing \vda offers many advantages that make it
+the easiest way to perform visualization.  First, because the simulation
+and visualization are run in completely different jobs and nominally at
+different times, the \vda requires no additional resource overhead on the
+simulation (other than the requisite storage of results to disk).  Second,
+it makes the interface between simulation and visualization simple.  The
+visualization needs only to understand the format used when the simulation
+writes the data to disk.  Third, it makes scheduling and performing the
+visualization, particularly when done by a human, much easier.  The
+visualization job can be scheduled completely independently of the
+simulation and at a time most convenient to the user.  Fourth, the results
+data are placed in persistent storage, so any analysis not performed
+immediately can be done at a later time if they are later deemed necessary.
+Thus, when it is feasible, off-line post-processing is a convienient and
+effective mechanism for \vda.
 
 \subsection{Extreme-scale Analysis: New Challenges}
 \label{sec:NewChallenges}
