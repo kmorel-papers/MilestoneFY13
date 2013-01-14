@@ -4,23 +4,22 @@
 \subsection{Introduction}
 
 High Performance Computing (HPC) initiatives over the past decade have 
-fostered the development of extremely successful scalable analysis tools -
-such as ParaView, VisIt, and Ensight - that make it possible to visualize 
+fostered the development of extremely successful scalable analysis tools ---
+such as ParaView, VisIt, and Ensight --- that make it possible to visualize 
 and explore very large datasets.  This success provides a foundation for 
 the analysis we will do at Exascale, but the core disruptions caused by
-the push to Exasacle - disrutptions that will be experienced by the entire
-software stack, as well as the science codes - will force us to fundamentally
-change how we do VDA in the years ahead.
+the push to Exasacle --- disrutptions that will be experienced by the entire
+software stack, as well as the science codes --- will force us to fundamentally
+change how we do \vda in the years ahead.
 
-Current visualization
-and data analysis is largely done as a post-processing step, in which
-interactive visualization tools read in data saved to disk, and an
-analyst sitting at a desk interacts with that data in real time.  This
-method uses the disk as a communication mechanism between the
-science code and the VDA application, so the code and
-interactive analysis are functionally decoupled.  There are some 
-efforts aimed at changing this workflow, but it remains the standard way
-that people interact with their data.
+Current visualization and data analysis is largely done as an off-line
+post-processing step, in which interactive visualization tools read in data
+saved to disk, and an analyst sitting at a desk interacts with that data in
+real time.  This method uses the disk as a communication mechanism between
+the science code and the \vda application, so the code and interactive
+analysis are functionally decoupled.  There are some efforts aimed at
+changing this workflow, but it remains the standard way that people
+interact with their data.
 
 At extreme scale, current workflows will be completely broken due to 
 the mismatch
@@ -28,7 +27,7 @@ between the rate at which we can create large data, and the rate at
 which that data can be moved to persistent storage.  In fact, this
 data movement will be so costly in terms of energy that it will be
 cost prohibitive to move results from memory to persistent storage.
-Because of this, extreme scale computing will have integrated VDA as a
+Because of this, extreme scale computing will have integrated \vda as a
 method of determining what data are of interest and therefore worth
 committing to persistent storage.
 
@@ -36,8 +35,8 @@ This data can be visualized interactively, analyzed,
 sent to a data-centric computation, or written to persistent
 storage.  Depending upon the needs of the end-user analysis, one or
 more of these data collaboration steps may be requested.  The design
-of the computation system - from compute architecture through system
-software and persistent storage model - will be determined by the
+of the computation system --- from compute architecture through system
+software and persistent storage model --- will be determined by the
 needs of the analysis being performed at the end of the compute
 cycle.  This sytem level co-design must take into account the
 constraints of the compute resources (power, time, and cost), as
@@ -46,11 +45,22 @@ at the conclusion of the scientific simulation.
 
 \subsection{Current Post-Processing Pipelines}
 
+\fix{Ken and/or Dave.}
+
 \subsection{Extreme-scale Analysis: New Challenges}
+\label{sec:NewChallenges}
+
+\fix{Ken wants to revisit this.}
 
 \input{NewChallenges.tex}
 
 \subsection{Motivation}
+
+\fix{``Motivation'' is probably already covered in
+  Section~\ref{sec:NewChallenges} that Dave just added.  Perhaps rather
+  than Motivation this should be a brief summary of our approach to the
+  solution, to be expanded on in Sections \ref{sec:Catalyst},
+  \ref{sec:Nessie}, and \ref{sec:UseCase}.}
 
 \fix{Some motivating discussion can be found in this workshop
   report:~\cite{ScientificDiscoveryExascale2011}.}

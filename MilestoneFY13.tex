@@ -74,6 +74,7 @@
 
 \usepackage{cite}
 \usepackage{graphicx}
+\usepackage{xspace}
 
 \usepackage[hidelinks]{hyperref}
 
@@ -86,6 +87,22 @@
 \definecolor{darkred}{rgb}{0.5,0,0}
 \definecolor{darkgreen}{rgb}{0,0.5,0}
 
+% Cite commands I use to abstract away the different ways to reference an
+% entry in the bibliography (superscripts, numbers, dates, or author
+% abbreviations).  \scite is a short cite that is used immediately after
+% when the authors are mentioned.  \lcite is a full citation that is used
+% anywhere.  Both should be used right next to the text being cited without
+% any spacing.
+\newcommand*{\lcite}[1]{~\cite{#1}}
+\newcommand*{\scite}[1]{~\cite{#1}}
+
+% Convenience commands to save time typing and to ensure that we have
+% consistent use and typography.
+\newcommand{\vda}{visualization and data analysis\xspace}
+\newcommand{\insitu}{{\it in situ}\xspace}
+\newcommand{\intransit}{{\it in transit}\xspace}
+\newcommand{\etal}{et al.}
+
 % This is a command I use to make notes to myself or other authors in the
 % document.  The text is noticeable in the document and easy to search for
 % in the tex file.  It is also easy to turn them all off by simply
@@ -95,6 +112,17 @@
 
 % Hyphenation of words that do not follow standard English rules.
 \hyphenation{Para-View}
+
+% Avoid putting figures on their own page.
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.95}
+
+% Make sure this is big enough so that only big figures end up on their own
+% page but small enough so that if a figure does have to be on its own
+% page, it won't push everything to the bottom because it's not big enough
+% to have its own page.
+\renewcommand{\floatpagefraction}{.75}
 
 % ---------------------------------------------------------------------------- %
 % Start the document
