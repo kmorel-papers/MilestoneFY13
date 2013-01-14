@@ -2,12 +2,121 @@
 %% http://bibdesk.sourceforge.net/
 
 
-%% Created for kmorel at 2013-01-03 16:48:10 -0700 
+%% Created for kmorel at 2013-01-14 14:50:14 -0700 
 
 
 %% Saved with string encoding Unicode (UTF-8) 
 
 
+
+@inproceedings{Moreland2012:Ultravis,
+	Author = {Kenneth Moreland},
+	Booktitle = {Proceedings of the Ultrascale Visualization Workshop},
+	Date-Added = {2013-01-14 14:48:07 -0700},
+	Date-Modified = {2013-01-14 14:50:14 -0700},
+	Month = {November},
+	Title = {{Oh, \$\#*@! Exascale!} {The} Effect of Emerging Architectures on Scientific Discovery},
+	Year = {2012}}
+
+@article{Childs2007,
+	Annote = {A report in the era approaching petascale arguing that the current (for the time) approach of building special purpose visualization clusters is not sustainable.  A cost analysis of next generation visualization clusters showed them to be prohibitively expensive.  The paper proposes a move from "Pure Parallelism" (loading the entire data set into a dedicated parallel visualization cluster) to a combination of techniques including "Pure Parallelism," "In Situ," "Multiresolution," and "Out-of-core."},
+	Author = {Hank Childs},
+	Date-Added = {2013-01-14 14:46:52 -0700},
+	Date-Modified = {2013-01-14 14:46:52 -0700},
+	Doi = {10.1088/1742-6596/78/1/012012},
+	Journal = {Journal of Physics: Conference Series},
+	Note = {{DOI}~10.1088/1742-6596/78/1/012012},
+	Number = {012012},
+	Title = {Architectural Challenges and Solutions for Petascale Postprocessing},
+	Volume = {78},
+	Year = {2007},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1088/1742-6596/78/1/012012}}
+
+@misc{VisualizationKnowledgeDiscovery2007,
+	Annote = {A workshop report on upcoming visualization needs for petascale computing.},
+	Author = {Chris Johnson and Rob Ross and others},
+	Date-Added = {2013-01-14 14:46:28 -0700},
+	Date-Modified = {2013-01-14 14:46:28 -0700},
+	Howpublished = {Report from the DOE/ASCR Workshop on Visual Analysis and Data Exploration at Extreme Scale},
+	Month = {October},
+	Title = {Visualization and Knowledge Discovery},
+	Year = {2007}}
+
+@book{Tufte2001,
+	Annote = {The bible of visual display.  A very colorful and pretty bible.},
+	Author = {Edward R. Tufte},
+	Date-Added = {2013-01-14 14:39:16 -0700},
+	Date-Modified = {2013-01-14 14:39:16 -0700},
+	Edition = {second},
+	Note = {{ISBN}~0-9613921-4-2},
+	Publisher = {Graphics Press},
+	Title = {The Visual Display of Quantitative Information},
+	Year = {2001}}
+
+@techreport{ExascaleArchitecturesReport,
+	Adsurl = {http://science.energy.gov/~/media/ascr/pdf/program-documents/docs/Arch_tech_grand_challenges_report.pdf},
+	Annote = {Another workshop report for predicting exascale computers and the necessary changes for it.},
+	Author = {Rick Stevens and Andrew White and others},
+	Date-Added = {2013-01-14 14:27:21 -0700},
+	Date-Modified = {2013-01-14 14:27:21 -0700},
+	Institution = {ASCR Scientific Grand Challenges Workshop Series},
+	Month = {December},
+	Title = {Architectures and Technology for Extreme Scale Computing},
+	Year = {2009}}
+
+@inproceedings{Sewell2012,
+	Author = {Christopher Sewell and Jeremy Meredith and Kenneth Moreland and Tom Peterka and Dave DeMarle and Li-ta Lo and James Ahrens and Robert Maynard and Berk Geveci},
+	Booktitle = {Proceedings of the Ultrascale Visualization Workshop},
+	Date-Added = {2013-01-14 11:23:31 -0700},
+	Date-Modified = {2013-01-14 11:23:31 -0700},
+	Month = {November},
+	Title = {The {SDAV} Software Frameworks for Visualization and Analysis on Next-Generation Multi-Core and Many-Core Architectures},
+	Year = {2012}}
+
+@inproceedings{EAVL,
+	Abstract = {The coming generation of supercomputing architectures will require fundamental changes in programming models to effectively make use of the expected million to billion way concurrency and thousand-fold reduction in per-core memory. Most current parallel analysis and visualization tools achieve scalability by partitioning the data, either spatially or temporally, and running serial computational kernels on each data partition, using message passing as needed. These techniques lack the necessary level of data parallelism to execute effectively on the underlying hardware. This paper introduces a framework that enables the expression of analysis and visualization algorithms with memory-efficient execution in a hybrid distributed and data parallel manner on both multi-core and many-core processors. We demonstrate results on scientific data using CPUs and GPUs in scalable heterogeneous systems.},
+	Annote = {Provides an overview of EAVL, mult-core, many-core, GPU, exascale thinking system.  EAVL defines operations with the use of functors.  Current operations look limited to basic mapping operations that can look at topological connections.  The really unique thing about EAVL is its data model that can adapt to many topological features and can handle things like edge and face data.  It also seems like it can map pretty easily to these features.},
+	Author = {Jeremy S. Meredith and Robert Sisneros and David Pugmire and Sean Ahern},
+	Booktitle = {Proceedings of the 5th Annual Workshop on General Purpose Processing with Graphics Processing Units (GPGPU-5)},
+	Date-Added = {2013-01-14 11:23:15 -0700},
+	Date-Modified = {2013-01-14 11:23:15 -0700},
+	Doi = {10.1145/2159430.2159432},
+	Month = {March},
+	Note = {{DOI}~10.1145/2159430.2159432},
+	Pages = {11--19},
+	Title = {A Distributed Data-Parallel Framework for Analysis and Visualization Algorithm Development},
+	Year = {2012},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1145/2159430.2159432}}
+
+@inproceedings{Moreland2011:LDAV,
+	Annote = {Description of the Dax toolkit, a framework for building algorithms for GPU computers and, later, exascale computers.},
+	Author = {Kenneth Moreland and Utkarsh Ayachit and Berk Geveci and Kwan-Liu Ma},
+	Booktitle = {Proceedings of the IEEE Symposium on Large-Scale Data Analysis and Visualization},
+	Date-Added = {2013-01-14 11:22:53 -0700},
+	Date-Modified = {2013-01-14 11:22:53 -0700},
+	Doi = {10.1109/LDAV.2011.6092323},
+	Month = {October},
+	Note = {{DOI}~10.1109/LDAV.2011.6092323},
+	Pages = {97--104},
+	Title = {Dax Toolkit: A Proposed Framework for Data Analysis and Visualization at Extreme Scale},
+	Year = {2011},
+	Bdsk-Url-1 = {http://dx.doi.org/10.1109/LDAV.2011.6092323}}
+
+@techreport{PISTON,
+	Abstract = {Due to the wide variety of current and next-generation supercomputing architectures, the development of highperformance parallel visualization and analysis operators frequently requires re-writing the underlying algorithms for many different platforms. In order to facilitate portability, we have devised a framework for creating such operators that employs the data-parallel programming model. By writing the operators using only data-parallel primitives (such as scans, transforms, stream compactions, etc.), the same code may be compiled to multiple targets using architecture-specific backend implementations of these primitives. Specifically, we make use of and extend NVIDIA's Thrust library, which provides CUDA and OpenMP backends. Using this framework, we have implemented isosurface, cut surface, and threshold operators, and have achieved good parallel performance on two different architectures (multi-core CPUs and NVIDIA GPUs) using the exact same operator code. We have applied these operators to several large, real scientific data sets, and have open-source released a beta version of our code base.},
+	Annote = {A library providing portable implementations of visualization algorithms on multi- and many-core processors.  Uses Thrust to implement algorithms and portability.  Compares marching cubes isosurface generation to existing implementations by NVIDIA and VTK.
+
+I believe this was presented at EGPGV 2012 and when it becomes available in the proceedings this reference should be updated.
+},
+	Author = {Li-Ta Lo and Chris Sewell and James Ahrens},
+	Date-Added = {2013-01-14 11:22:10 -0700},
+	Date-Modified = {2013-01-14 11:22:10 -0700},
+	Institution = {Los Alamos National Laboratory},
+	Number = {LA-UR-12-10227},
+	Title = {{PISTON}: A Portable Cross-Platform Framework for Data-Parallel Visualization Operators},
+	Url = {http://viz.lanl.gov/projects/PISTON.html},
+	Year = {2012},
+	Bdsk-Url-1 = {http://viz.lanl.gov/projects/PISTON.html}}
 
 @inproceedings{Moreland2008:UltraVis,
 	Annote = {Describes extracting fragment surfaces from CTH data, which is an AMR-based Eulerian volume-fragment shock-physics code.},
@@ -25,11 +134,11 @@
 	Annote = {Milestone report for work in building algorithms that, for example, find craters in CTH data.},
 	Author = {Lisa Ice and Nathan Fabian and Kenneth D. Moreland and Janine C. Bennett and David C. Thompson and David B. Karelitz and W. Alan Scott},
 	Date-Added = {2013-01-03 16:47:30 -0700},
-	Date-Modified = {2013-01-03 16:47:30 -0700},
+	Date-Modified = {2013-01-14 11:11:05 -0700},
 	Institution = {Sandia National Laboratories},
 	Month = {September},
 	Number = {2009-6032},
-	Title = {Scalable Analysis Tools for Sensitivity Analysis and UQ (3160) Results},
+	Title = {Scalable Analysis Tools for Sensitivity Analysis and {UQ} (3160) Results},
 	Url = {http://www.sandia.gov/~kmorel/documents/MilestoneUQ2009.pdf},
 	Year = {2009},
 	Bdsk-Url-1 = {http://www.sandia.gov/~kmorel/documents/MilestoneUQ2009.pdf}}
@@ -38,11 +147,11 @@
 	Annote = {A technical report for a project that ran ParaView on up to 8K cores.},
 	Author = {Kenneth Moreland and Nathan Fabian and Pat Marion and Berk Geveci},
 	Date-Added = {2013-01-03 16:41:53 -0700},
-	Date-Modified = {2013-01-03 16:41:53 -0700},
+	Date-Modified = {2013-01-14 11:09:46 -0700},
 	Institution = {Sandia National Laboratories},
 	Month = {September},
 	Number = {SAND 2010-6118},
-	Title = {Visualization on Supercomputing Platform Level {II} {ASC} Milestone {(3537-1B)} Results from Sandia},
+	Title = {Visualization on Supercomputing Platform Level {II} {ASC} Milestone {(3537-1B)} Results from {Sandia}},
 	Year = {2010}}
 
 @misc{ScientificDiscoveryExascale2011,
