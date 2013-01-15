@@ -15,7 +15,6 @@ set(tex_sources
   Results.tex
   Conclusion.tex
   Distribution.tex
-  NewChallenges.tex
   )
 
 add_latex_document(MilestoneFY13.tex
