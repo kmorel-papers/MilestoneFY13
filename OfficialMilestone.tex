@@ -1,9 +1,9 @@
 \section{Official Milestone}
 \label{sec:OfficialMilestone}
 
-\fix{Wrap this in a description?  Perhaps also add what is ``meant'' by
-  this milestone?  Tie it in to the rest of the document to outline how
-  this success criteria is demonstrated?}
+The following is the ASC milestone our work implements.
+
+\begin{quotation}
 
 ASC calculations produce complex datasets that are increasingly difficult to explore and understand using traditional post-processing workflows.  To advance understanding of underlying physics, uncertainties, and results of ASC codes, SNL must gather as much relevant data as possible from large simulations.  This drives SNL to couple data analysis and visualization capability with a running simulation, so that high fidelity data can be extracted and written to disk.  This Milestone evaluates two approaches for providing such a coupling:
 
@@ -20,3 +20,21 @@ SNL will engineer, test and evaluate customer-driven operations on large-scale d
 
 A program review will be conducted, and its results documented.  A report will be submitted as a record of milestone completion.
 
+\end{quotation}
+
+The approaches described in the milestone correspond to the workflows in
+Figure~\ref{fig:Workflows:InSitu} and Figure~\ref{fig:Workflows:InTransit},
+respectively.  As previously described, we implement these two approaches
+using Catalyst and Nessie.
+
+Our ``customer-driven operations'' are encapsulated in the use case given
+in Section~\ref{sec:UseCase}, which is designed in conjunction with end
+users \fix{Can I give a name here?  Perhaps Jason Wilke?} to represent a
+typical shock physics analysis.
+
+The results of our instrumentation on the coupled simulation and \vda are
+given in Section~\ref{sec:Results}.  These results come from experimental
+runs on the Cielo supercomputer\lcite{Doerfler2011} ranging up to over 64
+thousand cores.  Our measurements record the cost of coupling \vda to a
+running simulation in terms of added execution time and memory overhead,
+which satisfies the deliverables of the milestone.
