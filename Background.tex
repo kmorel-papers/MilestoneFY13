@@ -156,7 +156,8 @@ in post-processing.
       }
   \caption[Visualization and data analysis workflows.]{Traditional and
     emerging workflow diagrams showing the flow of information from
-    simulation to persistent storage.}
+    simulation to persistent storage.  In all cases data will later be
+    retrieved from storage and further analyzed.}
   \label{fig:Workflows}
 \end{figure}
 
@@ -164,11 +165,11 @@ Figure~\ref{fig:Workflows} shows simplified diagrams showing the flow of
 information from simulation to persistent storage in a typical modeling and
 simulation workflow.  Typical \vda occurs as an offline post-processing
 step, after the simulation has written results directly to persistent
-storage (Figure~\ref{fig:Workflows:Offline}.  Often, these results are in a
-code-specific format, and are formatted as ``restart'' files --- optimized
-for reading back into an instance of the science code, and not optimized
-for post processing analysis by \vda tools.  Extreme computation size and
-extreme architectures force data flows like those in Figures
+storage (Figure~\ref{fig:Workflows:Offline}).  Often, these results are in
+a code-specific format, and are formatted as ``restart'' files ---
+optimized for reading back into an instance of the science code, and not
+optimized for post processing analysis by \vda tools.  Extreme computation
+size and extreme architectures force data flows like those in Figures
 \ref{fig:Workflows:InSitu} and \ref{fig:Workflows:InTransit} in which \vda
 is performed on the simulation results before they are written to
 persistent storage.  In Figure~\ref{fig:Workflows:InSitu}, data is handed
@@ -183,17 +184,29 @@ scale analysis, so that the codes, system designers, and science customers
 can design a computation and analysis workflow suited to the specific needs
 of the science, analysis and decision support being supported.
 
-\subsection{Motivation}
+\subsection{Contributions}
 
-\fix{``Motivation'' is probably already covered in
-  Section~\ref{sec:NewChallenges} that Dave just added.  Perhaps rather
-  than Motivation this should be a brief summary of our approach to the
-  solution, to be expanded on in Sections \ref{sec:Catalyst},
-  \ref{sec:Nessie}, and \ref{sec:UseCase}.}
+To facilitate the transition to these new workflows, our group is
+developing supporting technologies to help implement the tighter coupling
+between simulation and \vda.  To this end we are contributing to two key
+enabling projects: Catalyst and Nessie.
 
-\fix{Some motivating discussion can be found in this workshop
-  report:~\cite{ScientificDiscoveryExascale2011}.}
+Catalyst is an \insitu library that provides a simplified interface to \vda
+through direct function calls.  The primary intention is to provide a \vda
+service to simulation codes as demonstrated in the workflow of
+Figure~\ref{fig:Workflows:InSitu}.  Catalyst is described in more detail in
+Section~\ref{sec:Catalyst}.
 
-\subsubsection{Catalyst}
+Nessie is an I/O service that provides remote-procedure call abstractions
+and one-sided data-message passing.  Nessie makes communication between
+parallel jobs more simple and efficient, and we use it to facilitate the
+transfer of simulation data from simulation to \vda service in the
+\intransit workflow of Figure~\ref{fig:Workflows:InTransit}.  Nessie is
+described in more detail in Section~\ref{sec:Nessie}.
 
-\subsubsection{Nessie}
+With these tools we can implement the multiple workflows of
+Figure~\ref{fig:Workflows} and compare their relative performance.  For
+this comparison, we implement a use case, described in
+Section~\ref{sec:UseCase}, which is representative of some real-world
+problems being addressed by our users at Sandia National Laboratories.  The
+results of these comparisons are given in Section~\ref{sec:Results}.
