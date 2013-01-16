@@ -130,9 +130,18 @@ present in the working memory of a simulation and before being transferred
 to disk storage, features predominately in plans for near and far term
 \vda\lcite{ScientificDiscoveryExascale2011,VisualizationKnowledgeDiscovery2007,Childs2007,Moreland2012:Ultravis}.
 An important consequence is the system wide implications resulting from the
-solution to this problem, which include domain and technique specific
+solution to this problem, which include scientific domain specific
 analysis techniques, \insitu framework development, and complexity impacts
 in post-processing.
+
+\fix{Dave originally had text arguing that another reason that data could
+  not be saved to disk was the power cost.  However, I think the power cost
+  is reflected in the bandwidth and capacity of the system.  Unless there
+  is a further limitation of the system due to power, such as the peak
+  bandwidth cannot be maintained due to power restrictions and will quickly
+  be throttled back, or that there will be a measured cost added to
+  projects to save more data, then I don't see the point of adding the
+  extra detail.  I don't recall ever seeing any such predictions.}
 
 \begin{figure}
   \centering
@@ -168,21 +177,23 @@ step, after the simulation has written results directly to persistent
 storage (Figure~\ref{fig:Workflows:Offline}).  Often, these results are in
 a code-specific format, and are formatted as ``restart'' files ---
 optimized for reading back into an instance of the science code, and not
-optimized for post processing analysis by \vda tools.  Extreme computation
-size and extreme architectures force data flows like those in Figures
-\ref{fig:Workflows:InSitu} and \ref{fig:Workflows:InTransit} in which \vda
-is performed on the simulation results before they are written to
-persistent storage.  In Figure~\ref{fig:Workflows:InSitu}, data is handed
-directly to a \vda library coupled with the running code.  In
+optimized for post processing analysis by \vda tools.
+
+Extreme computation size and extreme architectures force data flows like
+those in Figures \ref{fig:Workflows:InSitu} and
+\ref{fig:Workflows:InTransit} in which \vda is performed on the simulation
+results before they are written to persistent storage.  In
+Figure~\ref{fig:Workflows:InSitu}, data are handed directly to a \vda
+library coupled with the running code, enabling analysis, visualization and
+data reduction under the control of the science code --- at the cost of
+sharing runtime resources with the \vda execution.  In
 Figure~\ref{fig:Workflows:InTransit}, data are transferred to a \vda
-process separate from the running code, enabling analysis, visualization
-and data reduction under the control of the science code --- at the cost of
-sharing runtime resources with the \vda execution.  This decouples the data
+process separate from the running code.  This decouples the data
 computation and \vda processes, which affords many advantages but at the
 cost of system complexity.  Both approaches must be provided for extreme
 scale analysis, so that the codes, system designers, and science customers
 can design a computation and analysis workflow suited to the specific needs
-of the science, analysis and decision support being supported.
+of the science, analysis, and decision process being supported.
 
 \subsection{Contributions}
 
