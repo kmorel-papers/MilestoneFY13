@@ -12,14 +12,14 @@ the push to Exasacle --- disruptions that will be experienced by the entire
 software stack, as well as the science codes --- will force us to fundamentally
 change how we do \vda in the years ahead.
 
-Current visualization and data analysis is largely done as an offline
-post-processing step, in which interactive visualization tools read in data
-saved to disk, and an analyst sitting at a desk interacts with that data in
-real time.  This method uses the disk as a communication mechanism between
-the science code and the \vda application, so the code and interactive
-analysis are functionally decoupled.  There are some efforts aimed at
-changing this workflow, but it remains the standard way that people
-interact with their data.
+Current visualization and data analysis is largely done as an
+\keyterm{offline post-processing} step, in which interactive visualization
+tools read in data saved to disk, and an analyst sitting at a desk
+interacts with that data in real time.  This method uses the disk as a
+communication mechanism between the science code and the \vda application,
+so the code and interactive analysis are functionally decoupled.  There are
+some efforts aimed at changing this workflow, but it remains the standard
+way that people interact with their data.
 
 At extreme scale, current workflows will be completely broken due to 
 the mismatch
@@ -125,14 +125,15 @@ rate at which data can be computed.  So, only an extremely small fraction
 of data can ever hope to be captured on disk.
 
 Because there is such a disparity between computation rate and storage
-bandwidth, \insitu visualization, the visualization of data while still
-present in the working memory of a simulation and before being transferred
-to disk storage, features predominately in plans for near and far term
+bandwidth, \keyterm{\insitu visualization}, the visualization of data while
+still present in the working memory of a simulation and before being
+transferred to disk storage, features predominately in plans for near and
+far term
 \vda\lcite{ScientificDiscoveryExascale2011,VisualizationKnowledgeDiscovery2007,Childs2007,Moreland2012:Ultravis}.
 An important consequence is the system wide implications resulting from the
-solution to this problem, which include scientific domain specific
-analysis techniques, \insitu framework development, and complexity impacts
-in post-processing.
+solution to this problem, which include scientific domain specific analysis
+techniques, \insitu framework development, and complexity impacts in
+post-processing.
 
 \fix{Dave originally had text arguing that another reason that data could
   not be saved to disk was the power cost.  However, I think the power cost
@@ -183,17 +184,18 @@ Extreme computation size and extreme architectures force data flows like
 those in Figures \ref{fig:Workflows:InSitu} and
 \ref{fig:Workflows:InTransit} in which \vda is performed on the simulation
 results before they are written to persistent storage.  In
-Figure~\ref{fig:Workflows:InSitu}, data are handed directly to a \vda
-library coupled with the running code, enabling analysis, visualization and
-data reduction under the control of the science code --- at the cost of
-sharing runtime resources with the \vda execution.  In
-Figure~\ref{fig:Workflows:InTransit}, data are transferred to a \vda
-process separate from the running code.  This decouples the data
-computation and \vda processes, which affords many advantages but at the
-cost of system complexity.  Both approaches must be provided for extreme
-scale analysis, so that the codes, system designers, and science customers
-can design a computation and analysis workflow suited to the specific needs
-of the science, analysis, and decision process being supported.
+Figure~\ref{fig:Workflows:InSitu}, data are handed directly to an
+\keyterm{embedded \insitu} \vda library coupled with the running code,
+enabling analysis, visualization and data reduction under the control of
+the science code --- at the cost of sharing runtime resources with the \vda
+execution.  In Figure~\ref{fig:Workflows:InTransit}, data are transferred
+to an \keyterm{\intransit} \vda process separate from the running code.
+This decouples the data computation and \vda processes, which affords many
+advantages but at the cost of system complexity.  Both approaches must be
+provided for extreme scale analysis, so that the codes, system designers,
+and science customers can design a computation and analysis workflow suited
+to the specific needs of the science, analysis, and decision process being
+supported.
 
 \subsection{Contributions}
 
@@ -202,18 +204,18 @@ developing supporting technologies to help implement the tighter coupling
 between simulation and \vda.  To this end we are contributing to two key
 enabling projects: Catalyst and Nessie.
 
-Catalyst is an \insitu library that provides a simplified interface to \vda
-through direct function calls.  The primary intention is to provide a \vda
-service to simulation codes as demonstrated in the workflow of
-Figure~\ref{fig:Workflows:InSitu}.  Catalyst is described in more detail in
-Section~\ref{sec:Catalyst}.
+\keyterm{Catalyst} is an \insitu library that provides a simplified
+interface to \vda through direct function calls.  The primary intention is
+to provide a \vda service to simulation codes as demonstrated in the
+workflow of Figure~\ref{fig:Workflows:InSitu}.  Catalyst is described in
+more detail in Section~\ref{sec:Catalyst}.
 
-Nessie is an I/O service that provides remote-procedure call abstractions
-and one-sided data-message passing.  Nessie makes communication between
-parallel jobs more simple and efficient, and we use it to facilitate the
-transfer of simulation data from simulation to \vda service in the
-\intransit workflow of Figure~\ref{fig:Workflows:InTransit}.  Nessie is
-described in more detail in Section~\ref{sec:Nessie}.
+\keyterm{Nessie} is an I/O service that provides remote-procedure call
+abstractions and one-sided data-message passing.  Nessie makes
+communication between parallel jobs more simple and efficient, and we use
+it to facilitate the transfer of simulation data from simulation to \vda
+service in the \intransit workflow of Figure~\ref{fig:Workflows:InTransit}.
+Nessie is described in more detail in Section~\ref{sec:Nessie}.
 
 With these tools we can implement the multiple workflows of
 Figure~\ref{fig:Workflows} and compare their relative performance.  For
