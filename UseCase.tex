@@ -1,8 +1,6 @@
 \section{Use Case}
 \label{sec:UseCase}
 
-\fix{Nathan}
-
 For the purposes of this milestone, we explore the problem of
 characterizing fragments in an explosion simulation.  Simulation is a vital
 part in understanding shock physics.  Although experimentation will always
@@ -23,16 +21,18 @@ experiments.  In some cases, experimentation is simply not feasible.  Thus,
 simulation plays a major role in shock physics analysis.
 
 In this milestone, we use an example simulation of an exploding pipe shown
-in Figure~\ref{fig:ExplodingPipe}.  We developed this simulation in
-conjunction with \fix{analyst name(s)}. \fix{Would it be more accurate to
-  say the simulation was provided by?}  In addition to well representing
-the kinds of simulation and analysis done at Sandia National Laboratories,
-this simulation provides interesting results and many different levels of
-refinement, which allows us to scale the problem from less than 100 cores
-to well over 10,000 cores.
+in Figure~\ref{fig:ExplodingPipe}.  The example simulation problem was 
+provided by Jason Wilke.  In addition to well representing the kinds of
+simulation and analysis done at Sandia National Laboratories, this simulation
+provides interesting results and many different levels of refinement, which
+allows us to scale the problem from less than 100 cores to well over 10,000
+cores.
 
 \begin{figure}[htb]
   \centering
+  \includegraphics[height=3in]{figures/pipe_25.png}
+  \includegraphics[height=3in]{figures/pipe_75.png}
+  \includegraphics[height=3in]{figures/pipe_125.png}
   \framebox[\linewidth]{Images of exploding pipe, \`{a} la Figure 2 in
     Nathan's LDAV paper.}
   \caption{Simulation of an exploding pipe, which presents many
@@ -53,6 +53,9 @@ fragment in many shape metrics.
 
 \begin{figure}[htb]
   \centering
+  \includegraphics[trim=0cm 5.5cm 0cm 5.5cm,clip=true,width=.9\linewidth]{figures/Fragment-Sharp.pdf}
+  \includegraphics[trim=5.5cm 5.5cm 5.5cm 5.5cm,clip=true,width=.4\linewidth]{figures/Fragment-Rounded.pdf}
+  \includegraphics[trim=5.5cm 5.5cm 5.5cm 5.5cm,clip=true,width=.4\linewidth]{figures/Fragment-Ushaped.pdf}
   \framebox[\linewidth]{Example fragments, \`{a} la Figure 1 in Nathan's
     LDAV paper.}
   \caption{Examples of potential fragments that we would like to
