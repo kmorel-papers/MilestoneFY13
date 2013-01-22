@@ -21,12 +21,13 @@ so the code and interactive analysis are functionally decoupled.  There are
 some efforts aimed at changing this workflow, but it remains the standard
 way that people interact with their data.
 
-At extreme scale, current workflows will be completely broken due to 
+At extreme scale, this offline workflow will break down due to 
 the mismatch
 between the rate at which we can create large data, and the rate at
 which that data can be moved to persistent storage.  In fact, this
 data movement will be so costly in terms of energy that it will be
-cost prohibitive to move results from memory to persistent storage.
+cost prohibitive to move results from memory to persistent storage 
+\fix{citation needed}.
 Because of this, extreme scale computing will have integrated \vda as a
 method of determining what data are of interest and therefore worth
 committing to persistent storage.
@@ -47,7 +48,7 @@ at the conclusion of the scientific simulation.
 
 The current prevalent practice of computational-based scientific analysis
 is a progression of relatively independent steps.  First is a problem
-setup, which involves setting up initial and boundary conditions,
+setup, which involves defingin initial and boundary conditions,
 determining materials and their properties, and creating a mesh or
 establishing a meshing procedure.  Based on this problem setup, a
 simulation is next run.  During the progression of the simulation, results
