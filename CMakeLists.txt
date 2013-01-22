@@ -9,6 +9,7 @@ set(tex_sources
   ExecutiveSummary.tex
   Background.tex
   OfficialMilestone.tex
+  MilestoneScope.tex
   Catalyst.tex
   Nessie.tex
   UseCase.tex
