@@ -16,3 +16,20 @@
   \caption{Plot of the average percentage per node of in situ memory usage relative CTH.}
   \label{fig:MemoryTotal}
 \end{figure}
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=\linewidth]{figures/MaxNumberOfBlocks.pdf}
+  \caption{A plot of the "max number of blocks" parameter supplied to CTH for each run.}
+  \label{fig:MaxBlocks}
+\end{figure}
+
+In order to under the CTH memory sizes, it is important to note that CTH
+preallocates memory based on a value for "max number of blocks" provided
+through the input deck.  Because of this, CTH memory usage is highly impacted
+by the user specification.  In this case we ran the results with what we
+believe are reasonable values for "max number of blocks" given the size of the
+problem.  Figure~\ref{fig:MaxBlocks} shows the corresponding max blocks for
+each run.
+
+
