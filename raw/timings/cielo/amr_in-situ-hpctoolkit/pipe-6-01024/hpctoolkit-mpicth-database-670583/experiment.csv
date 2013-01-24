@@ -1,0 +1,44 @@
+Function  , sum  , mean  , min  , max  
+MPI_Allgather , 6.96745E7 , 68041.50390625 , 10773.0 , 179167.0
+MPI_Barrier , 4.232277989E11 , 1.14807888156467E7 , 11920.0 , 1.35994E8
+MPI_Barrier , 1.182928431E11 , 1.1552035458984375E7 , 11694.0 , 5.31371E7
+MPI_Bcast , 4.658572E8 , 227469.3359375 , 31287.0 , 421953.0
+MPI_Bcast , 1.84161E9 , 1798447.265625 , 11186.0 , 7963480.0
+MPI_Bcast , 7.9083E7 , 77229.4921875 , 11131.0 , 183396.0
+MPI_Finalize , 3.84005E8 , 375004.8828125 , 9755.0 , 718364.0
+MPI_Isend , 2.80095E8 , 273530.2734375 , 11984.0 , 750488.0
+MPI_Recv , 7.18517577E10 , 2263475.2299647178 , 11217.0 , 1.01882E8
+MPI_Reduce_scatter , 5.66526E7 , 55324.8046875 , 11313.0 , 143420.0
+MPI_Send , 3.865234176E11 , 9933270.394736841 , 10766.0 , 1.00389E8
+MPI_Type_commit , 1.4374427E9 , 82573.68451286765 , 10527.0 , 490039.0
+MPI_Type_commit , 2.147966E8 , 52440.576171875 , 11916.0 , 239159.0
+amrini_ , 2.31061E11 , 2.256455078125E8 , 2.25602E8 , 2.25671E8
+cth , 4.12502E12 , 4.02833984375E9 , 4.02697E9 , 4.03026E9
+pvspy_fil , 3.90643E10 , 3.814873046875E7 , 3.62153E7 , 3.98288E7
+pvspy_fin , 5.10761E7 , 49879.00390625 , 32396.0 , 71822.0
+pvspy_stb , 5.53039E8 , 540077.1484375 , 46977.0 , 2792920.0
+pvspy_viz , 2.17657E11 , 2.125556640625E8 , 2.10895E8 , 2.19276E8
+pvspy_vizcheck , 2.20019E8 , 214862.3046875 , 71605.0 , 442121.0
+vtkAMRDualGridHelper::AddBlock(int, vtkImageData *) , 6.28412E9 , 6136835.9375 , 335423.0 , 2.7564E7
+vtkAMRDualGridHelper::AssignBlockSharedRegions(vtkAMRDualGridHelperBlock *, int, int, int, int) , 3.71027E10 , 3.623310546875E7 , 1.75109E7 , 6.96703E7
+vtkAMRDualGridHelper::AssignSharedRegions(void) , 7.30032E10 , 7.12921875E7 , 7.0953E7 , 7.15922E7
+vtkAMRDualGridHelper::ClaimBlockSharedRegion(vtkAMRDualGridHelperBlock *, int, int, int, int, int, int) , 3.51739E10 , 3.434951171875E7 , 1.66375E7 , 6.55184E7
+vtkAMRDualGridHelper::DegenerateRegionMessageSize(vtkIdTypeArray *, vtkIdTypeArray *) , 1.77855E8 , 173686.5234375 , 35941.0 , 407456.0
+vtkAMRDualGridHelper::FinishDegenerateRegionsCommMPIAsynchronous(bool, vtkAMRDualGridHelperCommRequestList &, vtkAMRDualGridHelperCommRequestList &) , 1.82077E9 , 1778095.703125 , 11985.0 , 8969460.0
+vtkAMRDualGridHelper::GetBlock(int, int) , 5.76436E7 , 56292.578125 , 11393.0 , 179100.0
+vtkAMRDualGridHelper::GetBlock(int, int, int, int) , 4.53092E7 , 44247.265625 , 11459.0 , 512823.0
+vtkAMRDualGridHelper::Initialize(vtkHierarchicalBoxDataSet *, char const *) , 1.95922E11 , 1.91330078125E8 , 1.85822E8 , 2.01162E8
+vtkAMRDualGridHelper::ProcessRegionRemoteCopyQueueMPIAsynchronous(bool) , 1.10094E10 , 1.07513671875E7 , 1.04594E7 , 1.10535E7
+vtkAMRDualGridHelper::ShareBlocksWithNeighbors(vtkIntArray *) , 9.29234E10 , 9.07455078125E7 , 6.9318E7 , 9.66835E7
+vtkAMRDualGridHelper::ShareBlocksWithNeighborsAsynchronous(vtkIntArray *) , 9.29228E10 , 4.53724609375E7 , 2.65989E7 , 5.38719E7
+vtkAMRDualGridHelper::UnmarshalBlocksFromOne(vtkIntArray *, int) , 2.561668E10 , 1.250814453125E7 , 1127030.0 , 3.70573E7
+vtkAMRDualGridHelper::__dt(void) , 3.07403E9 , 3001982.421875 , 1123030.0 , 5931060.0
+vtkAMRDualGridHelperAddBackGhostValues(vtkDataArray *, int *, int *, int *, int *) , 5.02251E9 , 4904794.921875 , 11945.0 , 2.59387E7
+vtkAMRDualGridHelperBlock::AddBackGhostLevels(int *) , 5.23341E9 , 5110751.953125 , 11118.0 , 2.70624E7
+vtkAMRDualGridHelperCommRequestList::WaitAll(void) , 1.43443E9 , 1400810.546875 , 11919.0 , 1.47186E7
+vtkAMRDualGridHelperCommRequestList::WaitAny(void) , 6.23964E8 , 304669.921875 , 11965.0 , 1063500.0
+vtkAMRDualGridHelperLevel::AddGridBlock(int, int, int, vtkImageData *) , 7.56319E8 , 738592.7734375 , 35942.0 , 5297280.0
+vtkAMRDualGridHelperLevel::__dt(void) , 3.06679E9 , 2994912.109375 , 1123030.0 , 5931060.0
+vtkCPProcessor::CoProcess(vtkCPDataDescription *) , 2.11631E11 , 2.066708984375E8 , 2.04953E8 , 2.13449E8
+vtkCPPythonScriptPipeline::CoProcess(vtkCPDataDescription *) , 2.11631E11 , 2.066708984375E8 , 2.04953E8 , 2.13449E8
+vtkCTHSource::FillInputData(vtkCPInputDataDescription *) , 6.00822E9 , 5867402.34375 , 4478830.0 , 6104390.0

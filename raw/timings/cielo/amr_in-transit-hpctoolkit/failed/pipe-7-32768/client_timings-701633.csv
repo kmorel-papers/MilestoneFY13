@@ -1,0 +1,19 @@
+%--------------------------------------------------- 
+% Timings: Mon Jan  7 20:13:21 2013
+%Client Output Timings
+% Column IDS:
+%     1: cycle
+%     2: ranks
+%     3: total_blocks
+%     4: allocated_blocks
+%     5: active_blocks
+%     6: cth
+%     7: viz
+%     8: viz_sync_md
+%     9: viz_sync_data
+%    10: viz_rpc
+%    11: viz_wait
+%--------------------------------------------------- 
+cycle,	 ranks,	 total_blocks,	 allocated_blocks,	 active_blocks,	 cth,	 viz,	 viz_sync_md,	 viz_sync_data,	 viz_rpc,	 viz_wait
+0.00000e+00,	3.27680e+04,	3.27680e+06,	1.49887e+06,	1.44658e+06,	0.00000e+00,	1.19034e+01,	2.87368e+00,	9.02480e+00,	2.69413e-03,	2.25401e-03
+1.00000e+01,	3.27680e+04,	3.27680e+06,	1.49887e+06,	1.44658e+06,	3.03785e+01,	9.90146e+01,	1.29832e-01,	8.87472e+00,	2.66886e-03,	9.00073e+01

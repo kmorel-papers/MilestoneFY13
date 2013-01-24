@@ -1,0 +1,11 @@
+%  amr_in-transit-hpctoolkit/failed/pipe-7-32768   amr_in-transit-hpctoolkit/failed/pipe-7-32768/extracted_timings-e701633.csv 
+%
+% Summary Statistics:
+% operation,  mean,  min,  max, std
+% -------------------------------------------------------------------
+% CTH_TIMINGS       ,  22.6780625 ,  21.975781 ,  23.380344 ,  0.99317602190372 
+% PVSPY_VIZ_TIMINGS ,  49.9023465 ,  3.4e-05 ,  99.804659 ,  70.5725271312804 
+% -------------------------------------------------------------------
+"cycle","cth","viz"
+10,23.380344,99.804659
+20,21.975781,3.4e-05

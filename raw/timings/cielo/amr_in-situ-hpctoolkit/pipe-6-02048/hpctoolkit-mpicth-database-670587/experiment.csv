@@ -1,0 +1,44 @@
+Function  , sum  , mean  , min  , max  
+MPI_Allgather , 4.85515E8 , 59266.9677734375 , 9036.0 , 178411.0
+MPI_Barrier , 6.757170768E11 , 8917296.727195946 , 10005.0 , 9.56805E7
+MPI_Barrier , 1.89837845E11 , 9269426.025390625 , 11676.0 , 3.83487E7
+MPI_Bcast , 1.193222E9 , 83232.56138392857 , 8053.0 , 385990.0
+MPI_Bcast , 2.068005E8 , 50488.4033203125 , 20178.0 , 143426.0
+MPI_Bcast , 1.12948E10 , 5515039.0625 , 11847.0 , 1.60172E7
+MPI_Finalize , 7.78654E8 , 380202.1484375 , 22622.0 , 723124.0
+MPI_Isend , 3.57016E8 , 174324.21875 , 11945.0 , 1168480.0
+MPI_Recv , 8.84452948E10 , 799744.0574363426 , 10029.0 , 4.82405E7
+MPI_Reduce_scatter , 3.361564E8 , 54712.955729166664 , 10808.0 , 202815.0
+MPI_Send , 4.871861539E11 , 5947096.605224609 , 10532.0 , 6.11618E7
+MPI_Type_commit , 2.6547329E9 , 43208.543294270836 , 8424.0 , 394212.0
+MPI_Type_commit , 3.165596E8 , 38642.529296875 , 10224.0 , 203294.0
+MPI_Type_struct , 7.23374E7 , 35320.99609375 , 11912.0 , 119417.0
+amrini_ , 3.15447E11 , 1.5402685546875E8 , 1.54E8 , 1.54053E8
+cth , 4.81185E12 , 2.3495361328125E9 , 2.3484E9 , 2.35142E9
+pvspy_fil , 1.48991E11 , 7.274951171875E7 , 6.89472E7 , 7.56623E7
+pvspy_fin , 9.97544E7 , 48708.203125 , 32696.0 , 79611.0
+pvspy_stb , 1.04221E9 , 508891.6015625 , 11539.0 , 3998080.0
+pvspy_viz , 3.17176E11 , 1.5487109375E8 , 1.54116E8 , 1.57611E8
+pvspy_vizcheck , 4.31756E8 , 210818.359375 , 47984.0 , 456876.0
+vtkAMRDualGridHelper::AddBlock(int, vtkImageData *) , 6.77911E9 , 3310112.3046875 , 154534.0 , 1.71564E7
+vtkAMRDualGridHelper::AssignBlockSharedRegions(vtkAMRDualGridHelperBlock *, int, int, int, int) , 4.34403E10 , 2.1211083984375E7 , 9603080.0 , 4.06867E7
+vtkAMRDualGridHelper::AssignSharedRegions(void) , 8.75969E10 , 4.2771923828125E7 , 4.24864E7 , 4.30615E7
+vtkAMRDualGridHelper::ClaimBlockSharedRegion(vtkAMRDualGridHelperBlock *, int, int, int, int, int, int) , 4.12257E10 , 2.0129736328125E7 , 9040670.0 , 3.86285E7
+vtkAMRDualGridHelper::DegenerateRegionMessageSize(vtkIdTypeArray *, vtkIdTypeArray *) , 1.57872E8 , 77085.9375 , 11965.0 , 215651.0
+vtkAMRDualGridHelper::FinishDegenerateRegionsCommMPIAsynchronous(bool, vtkAMRDualGridHelperCommRequestList &, vtkAMRDualGridHelperCommRequestList &) , 1.82643E9 , 891811.5234375 , 11978.0 , 5411820.0
+vtkAMRDualGridHelper::GetBlock(int, int) , 6.15092E7 , 30033.7890625 , 10908.0 , 130707.0
+vtkAMRDualGridHelper::Initialize(vtkHierarchicalBoxDataSet *, char const *) , 2.94772E11 , 1.43931640625E8 , 1.40957E8 , 1.47931E8
+vtkAMRDualGridHelper::ProcessRegionRemoteCopyQueueMPIAsynchronous(bool) , 1.27494E10 , 6225292.96875 , 5889830.0 , 6554270.0
+vtkAMRDualGridHelper::ShareBlocksWithNeighbors(vtkIntArray *) , 1.71991E11 , 8.397998046875E7 , 7.00666E7 , 8.73025E7
+vtkAMRDualGridHelper::ShareBlocksWithNeighborsAsynchronous(vtkIntArray *) , 1.719899E11 , 4.19897216796875E7 , 2.53061E7 , 4.49915E7
+vtkAMRDualGridHelper::UnmarshalBlocksFromOne(vtkIntArray *, int) , 4.39026E10 , 1.0718408203125E7 , 767232.0 , 3.96961E7
+vtkAMRDualGridHelper::__dt(void) , 2.92836E9 , 1429863.28125 , 489859.0 , 3461900.0
+vtkAMRDualGridHelperAddBackGhostValues(vtkDataArray *, int *, int *, int *, int *) , 5.02393E9 , 2453090.8203125 , 11927.0 , 1.62967E7
+vtkAMRDualGridHelperBlock::AddBackGhostLevels(int *) , 5.23288E9 , 2555117.1875 , 10155.0 , 1.6977E7
+vtkAMRDualGridHelperCommRequestList::WaitAll(void) , 2.98035E9 , 1455249.0234375 , 23951.0 , 1.3613E7
+vtkAMRDualGridHelperCommRequestList::WaitAny(void) , 1.17784E9 , 287558.59375 , 11957.0 , 1707650.0
+vtkAMRDualGridHelperLevel::AddGridBlock(int, int, int, vtkImageData *) , 1.24393E9 , 607387.6953125 , 11952.0 , 4584070.0
+vtkAMRDualGridHelperLevel::__dt(void) , 2.91956E9 , 1425566.40625 , 489859.0 , 3449960.0
+vtkCPProcessor::CoProcess(vtkCPDataDescription *) , 3.11142E11 , 1.519248046875E8 , 1.51144E8 , 1.54775E8
+vtkCPPythonScriptPipeline::CoProcess(vtkCPDataDescription *) , 3.11141E11 , 1.5192431640625E8 , 1.51144E8 , 1.54775E8
+vtkCTHSource::FillInputData(vtkCPInputDataDescription *) , 5.99973E9 , 2929555.6640625 , 1877360.0 , 3098010.0

@@ -1,0 +1,8 @@
+%
+% Pipe-5
+% Results from Cielo runs, 500 cycles
+% 
+ranks,  time,          init,          viz
+256 ,   6.31e12,      4.44e11,       2.49e11
+512 ,   3.72e12,      2.99e11,       1.93e11
+1024,   2.32e12,      2.25e11,       2.02e11

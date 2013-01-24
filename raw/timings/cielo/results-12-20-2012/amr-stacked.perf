@@ -1,0 +1,96 @@
+# clustered and stacked graph example 
+=stackcluster;Compute;Viz;Transfer;Wait
+
+title=CTH Timings
+
+# Misc settings
+font=Helvetica
+
+datascale=0.016667
+
+=sortbmarks
+=nogridy
+=noupperright
+legendx=right
+legendy=center
+
+# Y axis formatting
+# yformat=%g%%
+yformat=%g
+ylabel=Time (min)
+
+# X axis formatting
+xlabel=Client Ranks
+xticshift=0,0
+xlabelshift=0,0
+#xformat=%d
+rotateby=-90
+#=noxlabels
+
+
+=table
+multimulti=16 (4)
+in-situ      3986.2   95.8  0.0   0.0
+in-transit   4313.8   0.0   126   0.235
+#
+multimulti=32 (4)
+in-situ   2134.07692307692   59  0.0 0.0
+in-transit   2297.84  0.0  141.8   0.36
+#
+multimulti=64 (4)
+in-situ   1224   41.5384615384615  0.0 0.0
+in-transit   1308.98  0.0  153   1.02
+#
+multimulti=128 (4)
+in-situ   784.692307692308   30.6923076923077  0.0 0.0
+in-transit   747.92  0.0  186   0.08
+##
+multimulti=256 (5)
+in-situ   2160.38461538462   95.7692307692308  0.0 0.0
+in-transit   2160.9  0.0  390.5   8.6
+##
+multimulti=512 (5)
+in-situ   1241.53846153846   74.2307692307692  0.0 0.0
+in-transit   1198.53  0.0  610   2.47
+##
+multimulti=1K (5)
+in-situ   728.076923076923   77.6923076923077  0.0 0.0
+in-transit   675.5  0.0  624   0.5
+#########################
+#multimulti=
+#in-situ   0 0 0 0
+#in-transit  0 0 0 0
+##
+multimulti=1K (6)
+in-situ   3326.26923076923   414.230769230769  0.0 0.0
+in-transit   3564.07  0.0  454.7   1.23
+#
+multimulti=2K (6)
+in-situ   1868.84615384615   407.692307692308  0.0 0.0
+in-transit   1960.8  0.0  328   0.2
+#
+multimulti=4K (6)
+in-situ   1084.61538461538   437.307692307692  0.0 0.0
+in-transit   1124.93  0.0  528   0.07
+##
+multimulti=8K (6)
+in-situ   769.615384615385   474.230769230769  0.0 0.0
+in-transit   677.3  0.0  547   217.7
+# 
+## need data for in-situ
+multimulti=4K (7)
+in-situ   5395.55  3019  0   0
+in-transit   5395.55  0.0  822   6.45
+#
+# need data for in-transit
+multimulti=8K (7)
+in-situ   3473.07692307692   3019.23076923077  0.0 0.0
+in-transit   3470 0 380 1354
+#
+multimulti=16K (7)
+in-situ   2461.15384615385   3421.92307692308  0.0 0.0
+in-transit   2327  0.0  394   2317
+#
+multimulti=32K (7)
+in-situ   2243.84615384615   3546.15384615385  0.0 0.0
+in-transit   1325  0.0  379   3957

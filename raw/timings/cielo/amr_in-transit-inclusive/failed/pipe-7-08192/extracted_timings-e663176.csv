@@ -1,0 +1,10 @@
+%  amr_in-transit-inclusive/failed/pipe-7-08192   amr_in-transit-inclusive/failed/pipe-7-08192/extracted_timings-e663176.csv 
+%
+% Summary Statistics:
+% operation,  mean,  min,  max, std
+% -------------------------------------------------------------------
+% CTH_TIMINGS       ,  77.481512 ,  77.481512 ,  77.481512 ,  NA 
+% PVSPY_VIZ_TIMINGS ,  1.3e-05 ,  1.3e-05 ,  1.3e-05 ,  NA 
+% -------------------------------------------------------------------
+"cycle","cth","viz"
+10,77.481512,1.3e-05

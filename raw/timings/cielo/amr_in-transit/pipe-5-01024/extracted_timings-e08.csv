@@ -1,0 +1,10 @@
+%  ./pipe-5-01024   ./pipe-5-01024/extracted_timings-e08.csv 
+%
+% Summary Statistics:
+% operation,  mean,  min,  max, std
+% -------------------------------------------------------------------
+% CTH_TIMINGS       ,  NA ,  NA ,  NA ,  NA 
+% PVSPY_VIZ_TIMINGS ,  NA ,  NA ,  NA ,  NA 
+% -------------------------------------------------------------------
+"cycle","cth","viz"
+NA,NA,NA

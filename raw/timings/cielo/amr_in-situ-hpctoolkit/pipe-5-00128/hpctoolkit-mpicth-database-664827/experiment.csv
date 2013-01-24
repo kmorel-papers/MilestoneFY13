@@ -1,0 +1,43 @@
+Function  , sum  , mean  , min  , max  
+MPI_Barrier , 4.230973518E10 , 1.0662735680443548E7 , 11928.0 , 1.10051E8
+MPI_Barrier , 6.48080103E9 , 6328907.255859375 , 11970.0 , 3.08E7
+MPI_Bcast , 1.1784303E8 , 230162.16796875 , 22625.0 , 817489.0
+MPI_Bcast , 1.10701E7 , 86485.15625 , 10834.0 , 239793.0
+MPI_Bcast , 9.072031E7 , 54519.417067307695 , 33692.0 , 111935.0
+MPI_Finalize , 4.5556E7 , 355906.25 , 11958.0 , 707353.0
+MPI_Isend , 5.51701E7 , 215508.203125 , 11978.0 , 539874.0
+MPI_Recv , 6.79728508E9 , 1609205.7481060605 , 11506.0 , 1.23866E8
+MPI_Send , 4.504944203E10 , 9776354.607204862 , 11944.0 , 1.41849E8
+MPI_Type_commit , 2.204607E8 , 74884.74864130435 , 11884.0 , 418493.0
+MPI_Type_commit , 2.888947E7 , 56424.74609375 , 11939.0 , 167652.0
+amrini_ , 3.71773E10 , 2.9044765625E8 , 2.90425E8 , 2.90471E8
+cth , 5.41274E11 , 4.228703125E9 , 4.22708E9 , 4.23022E9
+pvspy_fil , 7.22948E8 , 5648031.25 , 5447180.0 , 6175970.0
+pvspy_fin , 5840250.0 , 45626.953125 , 32682.0 , 59447.0
+pvspy_stb , 3.99208E7 , 311881.25 , 108885.0 , 779321.0
+pvspy_viz , 1.52112E10 , 1.188375E8 , 1.18076E8 , 1.20971E8
+pvspy_vizcheck , 2.67072E7 , 208650.0 , 83614.0 , 405886.0
+vtkAMRDualGridHelper::AddBlock(int, vtkImageData *) , 1.63339E9 , 1.2760859375E7 , 321001.0 , 2.94979E7
+vtkAMRDualGridHelper::AssignBlockSharedRegions(vtkAMRDualGridHelperBlock *, int, int, int, int) , 2.29721E9 , 1.7946953125E7 , 8703040.0 , 2.81213E7
+vtkAMRDualGridHelper::AssignSharedRegions(void) , 3.62403E9 , 2.8312734375E7 , 2.81469E7 , 2.87545E7
+vtkAMRDualGridHelper::ClaimBlockSharedRegion(vtkAMRDualGridHelperBlock *, int, int, int, int, int, int) , 2.17383E9 , 1.6983046875E7 , 8225060.0 , 2.65794E7
+vtkAMRDualGridHelper::CopyDegenerateRegionMessageToBlock(vtkAMRDualGridHelperDegenerateRegion const &, void const *, bool) , 8908490.0 , 69597.578125 , 11970.0 , 1099970.0
+vtkAMRDualGridHelper::DegenerateRegionMessageSize(vtkIdTypeArray *, vtkIdTypeArray *) , 2.4017E7 , 187632.8125 , 47913.0 , 405352.0
+vtkAMRDualGridHelper::FinishDegenerateRegionsCommMPIAsynchronous(bool, vtkAMRDualGridHelperCommRequestList &, vtkAMRDualGridHelperCommRequestList &) , 4.3829E8 , 3424140.625 , 347547.0 , 8683100.0
+vtkAMRDualGridHelper::GetBlock(int, int, int, int) , 7682040.0 , 60015.9375 , 11934.0 , 238075.0
+vtkAMRDualGridHelper::Initialize(vtkHierarchicalBoxDataSet *, char const *) , 1.20021E10 , 9.376640625E7 , 9.05899E7 , 1.00171E8
+vtkAMRDualGridHelper::ProcessRegionRemoteCopyQueueMPIAsynchronous(bool) , 1.46766E9 , 1.146609375E7 , 1.13355E7 , 1.16055E7
+vtkAMRDualGridHelper::ShareBlocksWithNeighbors(vtkIntArray *) , 4.07529E9 , 3.1838203125E7 , 1.50556E7 , 4.44124E7
+vtkAMRDualGridHelper::ShareBlocksWithNeighborsAsynchronous(vtkIntArray *) , 4.07523E9 , 1.59188671875E7 , 4250560.0 , 3.33745E7
+vtkAMRDualGridHelper::UnmarshalBlocksFromOne(vtkIntArray *, int) , 4.83245E8 , 1887675.78125 , 514935.0 , 4104380.0
+vtkAMRDualGridHelper::__dt(void) , 2.72468E8 , 2128656.25 , 955377.0 , 3271620.0
+vtkAMRDualGridHelperAddBackGhostValues(vtkDataArray *, int *, int *, int *, int *) , 1.51357E9 , 1.1824765625E7 , 310469.0 , 2.80517E7
+vtkAMRDualGridHelperBlock::AddBackGhostLevels(int *) , 1.57399E9 , 1.2296796875E7 , 11927.0 , 2.90916E7
+vtkAMRDualGridHelperCommRequestList::WaitAll(void) , 1.04E8 , 812500.0 , 67287.0 , 2675540.0
+vtkAMRDualGridHelperCommRequestList::WaitAny(void) , 5.513136E7 , 841.23779296875 , 11923.0 , 1288940.0
+vtkAMRDualGridHelperCommRequestList::WaitAny(void) , 5.513136E7 , 841.23779296875 , 11923.0 , 1288940.0
+vtkAMRDualGridHelperLevel::AddGridBlock(int, int, int, vtkImageData *) , 1.80674E7 , 141151.5625 , 23842.0 , 454714.0
+vtkAMRDualGridHelperLevel::__dt(void) , 2.71607E8 , 2121929.6875 , 955377.0 , 3259670.0
+vtkCPProcessor::CoProcess(vtkCPDataDescription *) , 1.42935E10 , 1.1166796875E8 , 1.10839E8 , 1.13956E8
+vtkCPPythonScriptPipeline::CoProcess(vtkCPDataDescription *) , 1.42935E10 , 1.1166796875E8 , 1.10839E8 , 1.13956E8
+vtkCTHSource::FillInputData(vtkCPInputDataDescription *) , 9.15239E8 , 7150304.6875 , 4910410.0 , 7357220.0

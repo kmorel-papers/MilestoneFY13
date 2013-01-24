@@ -1,0 +1,45 @@
+Function  , sum  , mean  , min  , max  
+MPI_Allgather , 5.933712E8 , 57946.40625 , 9555.0 , 190438.0
+MPI_Barrier , 6.866758261E11 , 8823445.545076068 , 8283.0 , 9.6466E7
+MPI_Barrier , 1.93533927E11 , 9449898.779296875 , 11877.0 , 4.05718E7
+MPI_Bcast , 1.4054219E9 , 85780.14526367188 , 8109.0 , 1365240.0
+MPI_Bcast , 6.47837E9 , 3163266.6015625 , 11013.0 , 1.28554E7
+MPI_Bcast , 4.78177E8 , 116742.431640625 , 11975.0 , 1342070.0
+MPI_Finalize , 8.5741E8 , 418657.2265625 , 57883.0 , 765018.0
+MPI_Isend , 4.79934E8 , 234342.7734375 , 11938.0 , 1556210.0
+MPI_Recv , 8.91800477E10 , 821602.7389814269 , 9381.0 , 4.81508E7
+MPI_Reduce , 6.49679E7 , 31722.607421875 , 11401.0 , 210603.0
+MPI_Reduce_scatter , 3.611521E8 , 58781.266276041664 , 11014.0 , 215763.0
+MPI_Send , 4.924788518E11 , 6011704.733886719 , 10529.0 , 5.99537E7
+MPI_Type_commit , 2.6860227E9 , 43717.8173828125 , 10237.0 , 346739.0
+MPI_Type_commit , 3.178771E8 , 38803.35693359375 , 10210.0 , 191538.0
+MPI_Type_struct , 7.18884E7 , 35101.7578125 , 11915.0 , 131472.0
+amrini_ , 3.18808E11 , 1.5566796875E8 , 1.55641E8 , 1.5569E8
+cth , 4.84778E12 , 2.367080078125E9 , 2.36602E9 , 2.36897E9
+pvspy_fil , 1.51523E11 , 7.398583984375E7 , 6.78265E7 , 7.78233E7
+pvspy_fin , 1.00301E8 , 48975.09765625 , 32833.0 , 92075.0
+pvspy_stb , 1.21489E9 , 593208.0078125 , 10783.0 , 5563750.0
+pvspy_viz , 3.21504E11 , 1.56984375E8 , 1.56162E8 , 1.59624E8
+pvspy_vizcheck , 4.31229E8 , 210561.03515625 , 48039.0 , 444633.0
+vtkAMRDualGridHelper::AddBlock(int, vtkImageData *) , 6.78263E9 , 3311831.0546875 , 142419.0 , 1.71625E7
+vtkAMRDualGridHelper::AssignBlockSharedRegions(vtkAMRDualGridHelperBlock *, int, int, int, int) , 4.34341E10 , 2.1208056640625E7 , 9615240.0 , 4.06639E7
+vtkAMRDualGridHelper::AssignSharedRegions(void) , 8.75488E10 , 4.27484375E7 , 4.24497E7 , 4.30435E7
+vtkAMRDualGridHelper::ClaimBlockSharedRegion(vtkAMRDualGridHelperBlock *, int, int, int, int, int, int) , 4.12322E10 , 2.013291015625E7 , 9028930.0 , 3.87852E7
+vtkAMRDualGridHelper::DegenerateRegionMessageSize(vtkIdTypeArray *, vtkIdTypeArray *) , 1.55477E8 , 75916.50390625 , 11967.0 , 251595.0
+vtkAMRDualGridHelper::FinishDegenerateRegionsCommMPIAsynchronous(bool, vtkAMRDualGridHelperCommRequestList &, vtkAMRDualGridHelperCommRequestList &) , 1.82244E9 , 889863.28125 , 11975.0 , 5519430.0
+vtkAMRDualGridHelper::GetBlock(int, int) , 6.29701E7 , 30747.119140625 , 11116.0 , 131121.0
+vtkAMRDualGridHelper::Initialize(vtkHierarchicalBoxDataSet *, char const *) , 2.99092E11 , 1.46041015625E8 , 1.43194E8 , 1.499E8
+vtkAMRDualGridHelper::ProcessRegionRemoteCopyQueueMPIAsynchronous(bool) , 1.27558E10 , 6228417.96875 , 5898740.0 , 6533360.0
+vtkAMRDualGridHelper::ShareBlocksWithNeighbors(vtkIntArray *) , 1.76296E11 , 8.608203125E7 , 7.20585E7 , 8.93828E7
+vtkAMRDualGridHelper::ShareBlocksWithNeighborsAsynchronous(vtkIntArray *) , 1.762949E11 , 4.30407470703125E7 , 2.50756E7 , 4.74054E7
+vtkAMRDualGridHelper::UnmarshalBlocksFromOne(vtkIntArray *, int) , 4.39733E10 , 1.07356689453125E7 , 586380.0 , 4.08825E7
+vtkAMRDualGridHelper::__dt(void) , 2.93629E9 , 1433735.3515625 , 535722.0 , 3450080.0
+vtkAMRDualGridHelperAddBackGhostValues(vtkDataArray *, int *, int *, int *, int *) , 5.02024E9 , 2451289.0625 , 11929.0 , 1.62661E7
+vtkAMRDualGridHelperBlock::AddBackGhostLevels(int *) , 5.23144E9 , 2554414.0625 , 9018.0 , 1.69233E7
+vtkAMRDualGridHelperCommRequestList::WaitAll(void) , 3.40125E9 , 1660766.6015625 , 83415.0 , 1.46485E7
+vtkAMRDualGridHelperCommRequestList::WaitAny(void) , 1.172547E9 , 286266.357421875 , 11948.0 , 1637110.0
+vtkAMRDualGridHelperLevel::AddGridBlock(int, int, int, vtkImageData *) , 1.25213E9 , 611391.6015625 , 11931.0 , 4300320.0
+vtkAMRDualGridHelperLevel::__dt(void) , 2.92768E9 , 1429531.25 , 523775.0 , 3414280.0
+vtkCPProcessor::CoProcess(vtkCPDataDescription *) , 3.1547E11 , 1.540380859375E8 , 1.53234E8 , 1.56728E8
+vtkCPPythonScriptPipeline::CoProcess(vtkCPDataDescription *) , 3.1547E11 , 1.540380859375E8 , 1.53234E8 , 1.56728E8
+vtkCTHSource::FillInputData(vtkCPInputDataDescription *) , 5.99883E9 , 2929116.2109375 , 1881450.0 , 3090580.0

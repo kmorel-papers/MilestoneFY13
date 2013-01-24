@@ -1,0 +1,412 @@
+% BibTeX bibliography file
+
+@InProceedings{lofstead:2011:nessie-staging,
+  author = {Jay Lofstead and Ron Oldfield and Todd Kordenbrock and Charles
+  Reiss},
+  title = {Extending Scalability of Collective {I/O} Through {N}essie and
+  Staging},
+  booktitle = {Proceedings of the 6th Parallel Data Storage Workshop},
+  year = {2011},
+  month = {November},
+  address = {Seattle, WA},
+  keywords = {data staging, nessie, pario-bib}
+}
+
+@InProceedings{oldfield:lwfs-data-movement,
+  author = {Ron A. Oldfield and Patrick Widener and Arthur B. Maccabe and Lee
+  Ward and Todd Kordenbrock},
+  title = {Efficient Data-Movement for Lightweight {I/O}},
+  booktitle = {Proceedings of the 2006 International Workshop on High
+  Performance {I/O} Techniques and Deployment of Very Large Scale {I/O}
+  Systems},
+  year = {2006},
+  month = {September},
+  institution = {Sandia National Laboratories},
+  address = {Barcelona, Spain},
+  URL = {http://doi.ieeecomputersociety.org/10.1109/CLUSTR.2006.311897},
+  keywords = {lightweight storage, data movement, scalable-io, Portals, LWFS,
+  pario-bib},
+  abstract = {Efficient data movement is an important part of any
+  high-performance I/O system, but it is especially critical for the current
+  and next-generation of massively parallel processing (MPP) systems. In this
+  paper, we discuss how the scale, architecture, and organization of current
+  and proposed MPP systems impact the design of the data-movement scheme for
+  the I/O system. We also describe and analyze the approach used by the
+  Lightweight File Systems (LWFS) project, and we compare that approach to more
+  conventional data-movement protocols used by small and mid-range clusters.
+  Our results indicate that the data-movement strategy used by LWFS clearly
+  outperforms conventional data-movement protocols, particularly as data sizes
+  increase.}
+}
+
+@InProceedings{oldfield:2012:uGNI,
+  author = {Ron A. Oldfield and Todd Kordenbrock and Jay Lofstead},
+  title = {Developing Integrated Data Services for {C}ray Systems with a
+  {G}emini Interconnect},
+  booktitle = {Cray User Group Meeting},
+  year = {2012},
+  month = {April},
+  keywords = {Gemini, uGNI, nessie, data services, pario-bib}
+}
+
+@InProceedings{oldfield:lwfs,
+  author = {Ron A. Oldfield and Arthur B. Maccabe and Sarala Arunagiri and Todd
+  Kordenbrock and Rolf Riesen and Lee Ward and Patrick Widener},
+  title = {Lightweight {I/O} for Scientific Applications},
+  booktitle = {Proceedings of the IEEE International Conference on Cluster
+  Computing},
+  year = {2006},
+  month = {September},
+  institution = {Sandia National Laboratories},
+  address = {Barcelona, Spain},
+  URL = {http://doi.ieeecomputersociety.org/10.1109/CLUSTR.2006.311853},
+  keywords = {lightweight storage, checkpoint, scalable-io, LWFS, pario-bib},
+  abstract = {Today?s high-end massively parallel processing (MPP) machines
+  have thousands to tens of thousands of processors, with next-generation
+  systems planned to have in excess of one hundred thousand processors. For
+  systems of such scale, efficient I/O is a significant challenge that cannot
+  be solved using traditional approaches. In particular, general purpose
+  parallel file systems that limit applications to standard interfaces and
+  access policies do not scale and will likely be a performance bottleneck for
+  many scientific applications. In this paper, we investigate the use of a
+  ?lightweight? approach to I/O that requires the application or I/O-library
+  developer to extend a core set of critical I/O functionality with the minimum
+  set of features and services required by its target applications. We argue
+  that this approach allows the development of I/O libraries that are both
+  scalable and secure. We support our claims with preliminary results for a
+  lightweight checkpoint operation on a development cluster at Sandia.}
+}
+
+@Article{riesen:ccpe-lwk,
+  author = {Rolf Riesen and Ron Brightwell and Patrick Bridges and Trammell
+  Hudson and Arthur Maccabe and Patrick Widener and Kurt Ferreira},
+  title = {Designing and Implementing Lightweight Kernels for Capability
+  Computing},
+  journal = {Concurrency and Computation: Practice and Experience},
+  year = {2008},
+  month = {August},
+  volume = {21},
+  number = {6},
+  pages = {793--817},
+  keywords = {lightweight os, catamount, PUMA, cougar}
+}
+
+@TechReport{oldfield:ft-ldrd-tr,
+  author = {Ron A. Oldfield},
+  title = {Lightweight Storage and Overlay Networks for Fault Tolerance},
+  year = {2010},
+  month = {January},
+  number = {SAND2010-0040},
+  institution = {Sandia National Laboratories},
+  address = {Albuquerque, NM},
+  keywords = {checkpoint, overlay network, analytic modeling, pario-bib},
+  abstract = {The next generation of capability-class, massively parallel
+  processing (MPP) systems is ex- pected to have hundreds of thousands to
+  millions of processors, In such environments, it is critical to have
+  fault-tolerance mechanisms, including checkpoint/restart, that scale with the
+  size of appli- cations and the percentage of the system on which the
+  applications execute. For application-driven, periodic checkpoint operations,
+  the state-of-the-art does not provide a scalable solution. For ex- ample, on
+  today's massive-scale systems that execute applications which consume most of
+  the memory of the employed compute nodes, checkpoint operations generate I/O
+  that consumes nearly 80% of the total I/O usage. Motivated by this
+  observation, this project aims to improve I/O per- formance for
+  application-directed checkpoints through the use of lightweight storage
+  architectures and overlay networks. Lightweight storage provide direct access
+  to underlying storage devices. Overlay networks provide caching and
+  processing capabilities in the compute-node fabric. The combination has
+  potential to signifcantly reduce I/O overhead for large-scale applications.
+  This report describes our combined efforts to model and understand overheads
+  for application-directed checkpoints, as well as implementation and
+  performance analysis of a checkpoint service that uses available compute
+  nodes as a network cache for checkpoint operations.}
+}
+
+@TechReport{reiss:checkpoint-proxy,
+  author = {Charles Reiss and Gerald Lofstead and Ron Oldfield},
+  title = {Implementation and evaluation of a staging proxy for checkpoint
+  {I/O}},
+  year = {2008},
+  month = {August},
+  institution = {Sandia National Laboratories},
+  address = {Albuquerque, NM},
+  keywords = {proxy, checkpoint, pario-bib}
+}
+
+@InProceedings{oldfield:modeling_checkpoints,
+  author = {Ron A. Oldfield and Sarala Arunagiri and Patricia J. Teller and
+  Seetharami Seelam and Rolf Riesen and Maria Ruiz Varela and Philip C. Roth},
+  title = {Modeling the Impact of Checkpoints on Next-Generation Systems},
+  booktitle = {Proceedings of the 24th IEEE Conference on Mass Storage Systems
+  and Technologies},
+  year = {2007},
+  month = {September},
+  address = {San Diego, CA},
+  URL = {http://dx.doi.org/10.1109/MSST.2007.4367962},
+  keywords = {performance modeling, optimal checkpoint interval, I/O
+  performance, fault-tolerance, checkpointing, LWFS, pario-bib},
+  abstract = {The next generation of capability-class, massively parallel
+  processing (MPP) systems is expected to have hundreds of thousands of
+  processors. For application-driven, periodic checkpoint operations, the
+  state-of-the-art does not provide a solution that scales to next-generation
+  systems. We demonstrate this by using mathematical modeling to compute a
+  lower bound of the impact of these approaches on the performance of
+  applications executed on three massive-scale, in-production, DOE systems and
+  a theoretical petaflop system. We also adapt the model to investigate a
+  proposed optimization that makes use of ``lightweight'' storage architectures
+  and overlay networks to overcome the storage system bottleneck. Our results
+  indicate that (1) as we approach the scale of next-generation systems,
+  traditional checkpoint/restart approaches will increasingly impact
+  application performance, accounting for over 50\% of total application
+  execution time; (2) although our alternative approach improves performance,
+  it has limitations of its own; and (3) there is a critical need for new
+  approaches to checkpoint/restart that allow continuous computing with minimal
+  impact on the scalability of applications.}
+}
+
+@InProceedings{oldfield:sql-proxy,
+  author = {Ron A. Oldfield and Andrew Wilson and George Davidson and Craig
+  Ulmer},
+  title = {Access to External Resources Using Service-Node Proxies},
+  booktitle = {Proceedings of the Cray User Group Meeting},
+  year = {2009},
+  month = {May},
+  address = {Atlanta, GA},
+  keywords = {SQL, application-level service}
+}
+
+@InProceedings{oldfield:multilingual-siam,
+  author = {Ron A. Oldfield and Brett W. Bader and Peter Chew},
+  title = {Supporting Multilingual Document Clustering on the {C}ray {XT3}},
+  booktitle = {SIAM Conference on Parallel Processing and Scientific
+  Computing},
+  year = {2010},
+  month = {February}
+}
+
+@InProceedings{moreland:2011:in-transit,
+  author = {Kenneth Moreland and Ron Oldfield and Pat Marion and Sebastien
+  Joudain and Norbert Podhorszki and Venkatram Vishwanath and Nathan Fabian and
+  Ciprian Docan and Manish Parashar and Mark Hereld and Michael E. Papka and
+  Scott Klasky},
+  title = {Examples of In Transit Visualization},
+  booktitle = {Proceedings of the PDAC 2011 : 2nd International Workshop on
+  Petascale Data Analytics: Challenges and Opportunities},
+  year = {2011},
+  month = {November},
+  address = {Seattle, WA},
+  keywords = {in-transit visualization, pario-bib}
+}
+
+@InProceedings{lofstead:2013:data-staging,
+  author = {Jay Lofstead and Ron A. Oldfield and Todd H. Kordenbrock},
+  title = {Experiences Applying Data Staging Technology in Unconventional
+  Ways},
+  booktitle = {13th IEEE/ACM International Symposium on Cluster, Cloud and Grid
+  Computing (CCGrid)},
+  year = {2013},
+  month = {May},
+  publisher = {IEEE/ACM},
+  address = {Delft, The Netherlands},
+  keywords = {data staging, nessie, pario-app, pario-bib}
+}
+
+@Article{brightwell:2006:seastar,
+  author = {Ron Brightwell and Kevin Pedretti and Keith Underwood and Trammell
+  Hudson},
+  title = {{SeaStar} Interconnect: Balanced Bandwidth for Scalable
+  Performance},
+  journal = {IEEE Micro},
+  year = {2006},
+  volume = {26},
+  number = {3},
+  pages = {41--57},
+  keywords = {network interface, Cray, SeaStar},
+  abstract = {The Seastar, a new ASIC from Cray, is a full system-on-chip
+  design that integrates high-speed serial links, a 3D router, and traditional
+  network interface functionality, including an embedded processor in a single
+  chip. Cray Inc. designed the SeaStar specifically to support Sandia National
+  Laboratories' ASC Red Storm, a distributed-memory parallel computing platform
+  containing more than 11,000 network end-points. SeaStar presented designers
+  with several challenging goals that were commensurate with a high-performance
+  network for a system of that scale. The primary challenge was to provide a
+  well-balanced, highly scalable, highly reliable network. From the Red Storm
+  perspective, a balanced network is one that maximizes network performance
+  relative to the computational power of the network end-points. A main
+  challenge for SeaStar was to maximize the bytes-to-flops ratio of network
+  bandwidth - that is, to maximize the amount of network bandwidth relative to
+  each nodes floating-point capability.}
+}
+
+@InProceedings{brightwell:2002:portals3,
+  author = {Ron Brightwell and Rolf Riesen and Bill Lawry and Arther B.
+  Maccabe},
+  title = {Portals 3.0: protocol building blocks for low overhead
+  communication},
+  booktitle = {Proceedings of the International Parallel and Distributed
+  Processing Symposium},
+  year = {2002},
+  month = {April},
+  pages = {268},
+  publisher = {IEEE Computer Society Press},
+  address = {Fort Lauderdale, FL},
+  keywords = {network interface, portals, Cray XT3}
+}
+
+@InProceedings{alverson:2010:gemini,
+  author = {Alverson, R. and Roweth, D. and Kaplan, L.},
+  title = {The {G}emini System Interconnect},
+  booktitle = {Proceedings of the 18th Annual Symposium on High Performance
+  Interconnects (HOTI)},
+  year = {2010},
+  month = {August},
+  pages = {83--87},
+  publisher = {IEEE Computer Society Press},
+  address = {Mountain View, CA},
+  keywords = {cray, interconnection network, os bypass},
+  abstract = {The Gemini System Interconnect is a new network for Cray's
+  supercomputer systems. It provides improved network functionality, latency
+  and issue rate. Latency is reduced with OS bypass for sends and direct user
+  completion notification on receives. Atomic memory operations support the
+  construction of fast synchronization and reduction primitives.}
+}
+
+@Misc{infiniband:specification,
+  key = {IB-SPEC},
+  author = {InfiniBand Trade Association},
+  title = {Infini{B}and {A}rchitecture {S}pecification, {R}elease 1.2},
+  year = {2004},
+  month = {October}
+}
+
+@InCollection{kotz:bdiskdir,
+  author = {David Kotz},
+  title = {Disk-directed {I/O} for {MIMD} Multiprocessors},
+  booktitle = {High Performance Mass Storage and Parallel {I/O}: Technologies
+  and Applications},
+  chapter = {35},
+  editor = {Hai Jin and Toni Cortes and Rajkumar Buyya},
+  year = {2001},
+  pages = {513--535},
+  publisher = {IEEE Computer Society Press and John Wiley \& Sons},
+  copyright = {ACM},
+  address = {New York, NY},
+  category = {pario},
+  identical = {kotz:jdiskdir},
+  keywords = {parallel I/O, multiprocessor file system, file system caching,
+  dfk, pario-bib},
+  abstract = {Many scientific applications that run on today's multiprocessors,
+  such as weather forecasting and seismic analysis, are bottlenecked by their
+  file-I/O needs. Even if the multiprocessor is configured with sufficient I/O
+  hardware, the file-system software often fails to provide the available
+  bandwidth to the application. Although libraries and enhanced file-system
+  interfaces can make a significant improvement, we believe that fundamental
+  changes are needed in the file-server software. We propose a new technique,
+  disk-directed I/O, to allow the disk servers to determine the flow of data
+  for maximum performance. Our simulations show that tremendous performance
+  gains are possible both for simple reads and writes and for an out-of-core
+  application. Indeed, our disk-directed I/O technique provided consistent high
+  performance that was largely independent of data distribution, obtained up to
+  93\% of peak disk bandwidth, and was as much as 18 times faster than the
+  traditional technique.}
+}
+
+@InProceedings{seamons:panda,
+  author = {K. E. Seamons and Y. Chen and P. Jones and J. Jozwiak and M.
+  Winslett},
+  title = {Server-Directed Collective {I/O} in {Panda}},
+  booktitle = {Proceedings ofSupercomputing '95},
+  year = {1995},
+  month = {December},
+  pages = {57},
+  publisher = {IEEE Computer Society Press},
+  address = {San Diego, CA},
+  URL = {http://www.supercomp.org/sc95/proceedings/520_SEAM/SC95.HTM},
+  keywords = {collective I/O, parallel I/O, pario-bib},
+  abstract = {We present the architecture and implementation results for Panda
+  2.0, a library for input and output of multidimensional arrays on parallel
+  and sequential platforms. Panda achieves remarkable performance levels on the
+  IBM SP2, showing excellent scalability as data size increases and as the
+  number of nodes increases, and provides throughputs close to the full
+  capacity of the AIX file system on the SP2 we used. We argue that this good
+  performance can be traced to Panda's use of server-directed i/o (a
+  logical-level version of disk-directed i/o [Kotz94b]) to perform array i/o
+  using sequential disk reads and writes, a very high level interface for
+  collective i/o requests, and built-in facilities for arbitrary rearrangements
+  of arrays during i/o. Other advantages of Panda's approach are ease of use,
+  easy application portability, and a reliance on commodity system software.}
+}
+
+@InProceedings{abbasi:2010:datastager,
+  author = {Abbasi, Hasan and Wolf, Matthew and Eisenhauer, Greg and Klasky,
+  Scott and Schwan, Karsten and Zheng, Fang},
+  title = {DataStager: scalable data staging services for petascale
+  applications},
+  booktitle = {Proceedings of the 18th IEEE International Symposium on High
+  Performance Distributed Computing},
+  year = {2009},
+  pages = {39--48},
+  publisher = {ACM Press},
+  address = {Garching, Germany},
+  keywords = {datatap, gtc, i/o, staging, warp, xt3, xt4, pario-bib}
+}
+
+@TechReport{moreland:2010:coprocessing-milestone,
+  author = {Kenneth Moreland and Nathan Fabian and Pat Marion and Berk Geveci},
+  title = {Visualization on Supercomputing Platform Level {II} {ASC} Milestone
+  (3537-1B) Results from {Sandia}},
+  year = {2010},
+  month = {September},
+  number = {SAND2010-6118},
+  institution = {Sandia National Laboratories},
+  URL = {http://www.cs.unm.edu/~kmorel/documents/MilestoneFY10Sandia.pdf},
+  keywords = {paraview, coprocessing, visualization, visualization toolkit}
+}
+
+@InProceedings{docan:2010:dataspaces,
+  author = {Docan, Ciprian and Parashar, Manish and Klasky, Scott},
+  title = {DataSpaces: an interaction and coordination framework for coupled
+  simulation workflows},
+  booktitle = {Proceedings of the 19th IEEE International Symposium on High
+  Performance Distributed Computing},
+  year = {2010},
+  month = {June},
+  pages = {25--36},
+  address = {Chicago, IL},
+  keywords = {I/O, RDMA, code coupling, data redistribution, workflows,
+  pario-bib}
+}
+
+@InProceedings{vishwanath:2011:glean,
+  author = {Vishwanath, Venkatram and Hereld, Mark and Morozov, Vitali and
+  Papka, Michael E.},
+  title = {Topology-aware data movement and staging for {I/O} acceleration on
+  {Blue Gene/P} supercomputing systems},
+  booktitle = {Proceedings of 2011 International Conference for High
+  Performance Computing, Networking, Storage and Analysis},
+  year = {2011},
+  series = {SC '11},
+  pages = {19:1--19:11},
+  publisher = {ACM},
+  address = {New York, NY, USA},
+  URL = {http://doi.acm.org/10.1145/2063384.2063409}
+}
+
+@Article{oldfield:2012:trios-journal,
+  author = {Oldfield, Ron A. and Sjaardema, Gregory D. and Lofstead II, Gerald
+  F. and Kordenbrock, Todd},
+  title = {{Trilinos I/O Support (Trios)}},
+  journal = {Scientific Programming},
+  year = {2012},
+  month = {August},
+  URL = {http://dx.doi.org/10.3233/SPR-2012-0345},
+  keywords = {Parallel I/O, I/O libraries, data staging, data services},
+  abstract = {Trilinos I/O Support (Trios) is a new capability area in Trilinos
+  that serves two important roles: (1) it provides and supports I/O libraries
+  used by in-production scientific codes; (2) it provides a research vehicle
+  for the evaluation and distribution of new techniques to improve I/O on
+  advanced platforms. This paper provides a brief overview of the
+  production-grade I/O libraries in Trios as well as some of the ongoing
+  research efforts that contribute to the experimental libraries in Trios.}
+}
+
