@@ -18,10 +18,10 @@ Network with a 3D Torus topology and has a peak throughput rate of 6 GB/s/link.
 
 The experiments in this report include strong scaling results for four different
 CTH applications: an application that writes spyplot files, representing the traditional 
-post-processing approach; an application that uses a Nessie servivce to provide in-transit
-ParaView analysis; and two applications that perform ParaView in-situ analysis.  The first 
-in-situ application, labeled \emph{in-situ (untuned)}, uses an algorithm that does not scale.
-The second in-situ application, labeled \emph{in-situ (tuned)}, uses a more
+post-processing approach; an application that uses a Nessie servivce to provide \intransit
+ParaView analysis; and two applications that perform ParaView \insitu analysis.  The first 
+\insitu application, labeled \emph{\insitu (untuned)}, uses an algorithm that does not scale.
+The second \insitu application, labeled \emph{\insitu (tuned)}, uses a more
 scalable implementation of the same algorithm.  
 
 %%%%%%%%%%%%%%%%%%%%%% -- table ---
@@ -82,39 +82,75 @@ possible.  On Cielo there are 16 cores per node and in each case the nodes were
  loaded with 16 MPI ranks executing the statically linked executable.  
 
 In order to understand CTH memory usage results, it is important to note that
-CTH preallocates memory based on a value for "max number of blocks" provided
+CTH preallocates memory based on a value for ``max number of blocks'' provided
 through the input deck.  Because of this, CTH memory usage is highly impacted
 by the user specification.  In this case we ran the results with what we
-believe are reasonable values for "max number of blocks" given the size of the
+believe are reasonable values for ``max number of blocks'' given the size of the
 problem.  Figure~\ref{fig:MaxBlocks} shows the corresponding max blocks for
 each run.
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=\linewidth]{figures/MemoryUsageInSituPerNode.pdf}
-  \caption{Plot of average per node memory usage of the in-situ run on Cielo.}
+  \includegraphics[width=\linewidth]{figures/MaxNumberOfBlocks}
+  \caption{A plot of the ``max number of blocks'' parameter supplied to CTH for each run.}
+  \label{fig:MaxBlocks}
+\end{figure}
+
+Figure~\ref{fig:MemoryUsageAll} provides an overview of all memory
+measurements taken for the system.  The memory taken by CTH is quite flat,
+as expected, for each run.  However, even though the size of the mesh
+changes throughout the simulation, the memory overhead for \insitu and
+\intransit runs changes only moderately.  Thus, for the rest of the results
+analysis, we summarize all measurements as simply the maximum value, which
+is a reasonable representation of all values.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=\linewidth]{figures/MemoryUsageAll}
+  \caption{Matrix of all measurements taken for memory usage comparisons.
+    Each measurement is the total memory in use in a node (so for \insitu and
+    \intransit memory includes both CTH simulation and overhead).  Each
+    measurement is plotted as the maximum memory use in all nodes at the
+    time the measurement was taken.}
+  \label{fig:MemoryUsageAll}
+\end{figure}
+
+Figure~\ref{fig:MemoryInSituPerNode} gives a summary of the extra memory
+used when using Catalyst for \insitu analysis during our experiments.
+Likewise, Figure~\ref{fig:MemoryInTransitPerNode} gives the same summary
+for the \intransit memory overhead for the nodes within the simulation
+(memory usage on the separate analysis job is not given).  In all cases the
+added overhead is less than 50\% than the memory used by CTH itself, and in
+most cases the additional overhead is significantly smaller than that.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=\linewidth]{figures/MemoryUsageInSituPerNode}
+  \caption{Plot of average per node memory usage of the \insitu run on Cielo.}
   \label{fig:MemoryInSituPerNode}
 \end{figure}
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=\linewidth]{figures/MemoryUsageInTransitPerNode.pdf}
-  \caption{Plot of average per node memory usage of the in-transit run on Cielo.}
+  \includegraphics[width=\linewidth]{figures/MemoryUsageInTransitPerNode}
+  \caption{Plot of average per node memory usage of the \intransit run on Cielo.}
   \label{fig:MemoryInTransitPerNode}
 \end{figure}
 
-\begin{figure}[htb]
-  \centering
-  \includegraphics[width=\linewidth]{figures/MemoryUsageCompare.pdf}
-  \caption{Plot of the average overhead per node of both InSitu and InTransit}
-  \label{fig:MemoryCompare}
-\end{figure}
+Figure~\ref{fig:MemoryCompare} compares the amount of memory per node added
+when using \insitu versus \intransit.  As expected, the \intransit approach
+requires a smaller memory overhead than \insitu within the nodes of the
+simulation.  Thus, \intransit could be a better option when the simulation
+requires as much memory per process as possible, but the \intransit
+approach also requires separate nodes to be reserved for the analysis,
+which also may cause the total amount of available simulation memory to be
+reduced if nodes must be taken away from the simulation.
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=\linewidth]{figures/MaxNumberOfBlocks.pdf}
-  \caption{A plot of the "max number of blocks" parameter supplied to CTH for each run.}
-  \label{fig:MaxBlocks}
+  \includegraphics[width=\linewidth]{figures/MemoryUsageCompare}
+  \caption{Plot of the average overhead per node of both \insitu and \intransit}
+  \label{fig:MemoryCompare}
 \end{figure}
 
 
