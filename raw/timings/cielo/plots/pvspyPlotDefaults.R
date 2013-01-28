@@ -24,6 +24,10 @@ pvspy_colors <- c(
 pvspy_shapes <- c(21, 22, 23, 24, 25)
 pvspy_lines <- 1:8      # linetype
 
-pvspy_plot_width <- 7
-pvspy_plot_height <- 5
+pvspy_line_size <- 1
+pvspy_point_size <- 3
+pvspy_error_width <- 0.1
+
+pvspy_plot_width <- 5
+pvspy_plot_height <- 4
 
