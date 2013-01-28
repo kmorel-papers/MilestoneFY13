@@ -1,7 +1,7 @@
 \section{Results}
 \label{sec:Results}
 
-\fix{Nathan and Ron}
+\fix{Need an intro paragraph}
 
 \subsection{Experimental Setup}
 
@@ -16,16 +16,51 @@ theoretical peak of 1.37 Petaflops for the machine. The compute nodes each
 have 32 GB of memory.  The interconnect consists of a proprietary Cray Gemini
 Network with a 3D Torus topology and has a peak throughput rate of 6 GB/s/link. 
 
-The experiments in this report include strong scaling results for four different
-CTH applications: an application that writes spyplot files, representing the traditional 
-post-processing approach; an application that uses a Nessie servivce to provide \intransit
-ParaView analysis; and two applications that perform ParaView \insitu analysis.  The first 
-\insitu application, labeled \emph{\insitu (untuned)}, uses an algorithm that does not scale.
-The second \insitu application, labeled \emph{\insitu (tuned)}, uses a more
-scalable implementation of the same algorithm.  
+This report includes strong scaling results from the following CTH
+applications:
+\begin{description}
+
+\item [\Insitu optimized:] A CTH application that performs \insitu analysis
+using a scalable version of the CTH analysis algorithm. \fix{Nathan describe
+this}.  
+
+\item [\Insitu unoptimized:] A CTH application that uses the original version of the 
+analysis algorithm to perform \insitu analysis.  \fix{Nathan describe this
+algorithm.}   We included results from this application for two reasons: First,
+we were not able to apply the same optimization to the \intransit applications,
+so this provides an apples-to-apples comparison of the benefit an \intransit
+approach could give using the same algorithm.  Second, we expect the complete
+fragment detection algorithm to have scalability issues similar to this
+algorithm. \fix{Ken, explain this... something to do with connectivity?}
+
+\item [\Intransit using extra nodes:] A CTH application that performs \intransit analysis
+using a separate allocation of compute nodes.  This represents a use case where there are 
+additional compute nodes (perhaps with special OS, runtime, or hardware features) that
+could be used to perform analysis on behalf of the application.   For example, the suggested
+``burst buffer'' architecture for the Trinity system may have special nodes
+with NVRAM and additional memory that would be appropriate for this type of
+\intransit analysis. 
+
+\item [\Intransit using internal nodes:] A CTH application that divides the nodes from a given
+allocation into compute and analysis nodes.  We chose this application to find out if, 
+given an equal number of resources for \insitu and \intransit, there might be
+situations where the preferable approach changes.  
+
+\item [Spyplot file] A CTH application that writes Spyplot files instead of doing 
+analysis.  This application represents the traditional post-processing approach.
+\end{description}
+
+All applications complete 500 cycles (i.e., timestep calculations) of the CTH
+code. The first four applications execute an analysis operation once every 10
+cycles.  For the Spyplot file application, we output spyplot data at a fixed 
+interval in simulated time, calculated so that the application executed 51
+I/O operations, equaling the number of analysis operations performed by the
+\insitu and \intransit applications.  We do not know of a way to tell CTH to
+output spyplot data every 10 cycles. 
+
 
 %%%%%%%%%%%%%%%%%%%%%% -- table ---
-\begin{table}
+\begin{table}[htb]
 
 \caption{Scaling Overview}
 \label{tab:ScalingOverview}
@@ -40,36 +75,186 @@ Data Set Size (blocks) & Client Ranks (16 cores/node) & Server Nodes (2, 4, and 
 \hline 
 220k & 1024, 2048, 4096, 8192 & 16\tabularnewline
 \hline 
-1.5m & 4096, 8192, 16384, 32768 & 128\tabularnewline
+1.5m & 4096, 8192, 16384, 32768, 65536 & 128\tabularnewline
 \hline 
 \end{tabular}
 \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%% -- table ---
 
-For each application, we run strong scaling experiments for three different datasets.  
-Table~\ref{tab:ScalingOvewview} shows the range of core sizes used for the various
-experiments.  The objective is run experiments with datasets representative of real
-production runs.  The number of nodes/cores used is limited by amount of memory required
-for a particular experiment.  
+For each application, we ran strong scaling experiments for three different datasets.  
+Table~\ref{tab:ScalingOverview} shows the range of core sizes used for the various
+experiments.  For every application we used the maximum 16 cores-per-node for the CTH client,
+since CTH is primarily bound by computation and scales very well.  For the \intransit service, 
+we experimented with different core-per-node counts to balance the memory requirements
+with the computational requirements of the ParaView analysis. 
+
+%The objective is run experiments with datasets representative of real
+%production runs.  The minimum number of cores per dataset is limited by
+%memory.  The maximum number of cores per dataset was decided to get scaling data,
 
 
-NEED MORE... WILL FINISH TOMORROW
+\subsection{Total Execution Time}
+\label{tab:ScalingOverview}
+
+\fix{more discussion}
+
+\begin{figure*}[htb]
+\begin{centering}
+\vspace{-6pt}
+\subfloat[\Insitu Unoptimized.]{
+  \includegraphics[width=0.5\linewidth]{figures/in-situ-unopt-line}
+  \label{fig:cth-in-situ}
+}
+\subfloat[\Insitu Optimized.]{
+  \includegraphics[width=0.5\linewidth]{figures/in-situ-opt-line}
+  \label{fig:cth-in-transit}
+}
+
+\vspace{-6pt}
+\subfloat[\Intransit with extra nodes.]{
+  \includegraphics[width=0.5\linewidth]{figures/in-transit-extra-line}
+  \label{fig:cth-in-transit}
+}
+\subfloat[\Intransit using internal nodes.]{
+  \includegraphics[width=0.5\linewidth]{figures/in-transit-inclusive-line}
+  \label{fig:cth-in-transit}
+}
+
+\vspace{-6pt}
+\subfloat[Spyplot I/O (no analysis)]{
+  \includegraphics[width=0.5\linewidth]{figures/spyplot-file-line}
+  \label{fig:cth-in-transit}
+}
+\caption[]{Total runtime for 500-cycle runs of each application.}
+\label{fig:runtime-individual}
+\end{centering}
+\end{figure*}
+
+Figures~\ref{fig:runtime-individual}~and~\ref{fig:runtime-total} shows the
+measured total execution time from each the different applications. 
+The first set of plots shows individual timings of each of the applications for each 
+size dataset, the second shows a direct comparison of all the applications for 
+the 1.5m block data set.  The results clearly show a ``sweet spot'' at 8K cores where
+the \intransit approach, even though it is using a less scalable algorithm,
+performs the same as the the optimized version of \insitu.   At 16K and 32K, none
+of the codes running analysis show significant improvement, the unoptimized \insitu and the
+\intransit approaches actually take longer.  Perhaps the biggest reason is that there
+is not enough work for the compute nodes.  At 32K cores, each core is processing around 
+46 blocks/node, where the same size problem using 4K nodes requires each core to process 
+366 blocks.  The key to making the \intransit approach successful is being able to 
+overlap computation and analysis.   If the analysis portion does not scale particularly
+well, the compute nodes need sufficient work to hide the analysis cost. 
+
+\begin{figure}[htb]
+\begin{centering}
+\includegraphics[scale=0.7]{figures/total-runtime-all.pdf}
+\caption{Execution time comparison for the 1.5m block dataset.}
+\label{fig:runtime-total}
+\par\end{centering}
+\end{figure}
+
+To better understand exactly where the time is being spent, we collected
+detailed timings of each application using a combination of instrumented timers
+and profiling tools (HPCToolkit).  Figure~\ref{fig:runtime-individual-bar} show
+the total runtime performance of the five applications as a stacked barplot
+illustrating the portion of runtime associated with select functions.  For the
+\insitu applications, we measured the initialization and computational time of
+CTH and the analysis/visualization.  For \intransit applications, we measured
+the initialization cost of CTH, the cost of transferring data to the service,
+and the time the client waits for the server operation to complete. The wait
+only occurs after CTH has finished its operation only executes if the 
+
+\begin{figure*}[htb]
+\begin{centering}
+\vspace{-24pt}
+\subfloat[\Insitu Unoptimized.]{
+  \includegraphics[width=0.5\linewidth]{figures/in-situ-unopt-bar}
+  \label{fig:insitu_unopt_bar}
+}
+\subfloat[\Insitu Optimized.]{
+  \includegraphics[width=0.5\linewidth]{figures/in-situ-opt-bar}
+  \label{fig:insitu-opt-bar}
+}
+
+\vspace{-24pt}
+\subfloat[\Intransit with extra nodes.]{
+  \includegraphics[width=0.5\linewidth]{figures/in-transit-extra-bar}
+  \label{fig:intransit-extra-bar}
+}
+\subfloat[\Intransit using internal nodes.]{
+  \includegraphics[width=0.5\linewidth]{figures/in-transit-inclusive-bar}
+  \label{fig:intransit-internal-bar}
+}
+
+\vspace{-24pt}
+\subfloat[Spyplot I/O (no analysis)]{
+  \includegraphics[width=0.5\linewidth]{figures/spyplot-file-bar}
+  \label{fig:spyplot-file-bar}
+}
+
+\caption[Breakdown of operation timings.]{Illustration showing the
+contributions of selected operations to the total execution times for each
+application.} 
+\label{fig:runtime-individual-bar}
+\end{centering}
+\end{figure*}
 
 
-\subsection{Total Runtime Measurements}
+Results from Figure~\ref{fig:insitu-unopt-bar} show that there is a clear
+scaling problem with the analysis portion (labeled ``Viz'') of the unoptimized
+\insitu application.  It almost appears as if the execution time is more
+dependent on the problem size than the number of cores performing the analysis.
+The optimized version dramatically improves the performance but also looks to
+flatten out at large scale.  Another glaring issue is the initialization cost 
+of the analysis.  While the CTH initialization cost appears to decrease as the 
+core count increases, the initialization cost for analysis ``Viz Init''
+increases dramatically, accounting for more than 1/3 of the total time for a
+500-cycle run.  For long runs, the initialization cost will get amortized, but
+it still seems large enough that it needs to be addressed. 
+
+The \intransit application results in
+Figures~\ref{fig:intransit-extra-bar}~and~\ref{fig:intransit-internal-bar} show
+that the \insitu approach effectively hides the analysis overhead when the
+clients have sufficient compute requirements.  For 
+the 1.5m block dataset, Figure~\ref{fig:intransit-extra-bar} shows that \intransit
+with an extra 128 nodes sucessfully hides most of the cost of 
+analysis at 4K and 8K nodes, but the wait time at larger core counts eliminates
+any benefit of \intransit using the unoptimized algorithm.   The \intransit 
+application that carves out a subset of 100 nodes for analysis has a couple of 
+interesting results as well.  First, observe that the number of cores used for 
+CTH is much smaller, leading to an increase in the time spent doing CTH computation.
+Even with this increase in computational cost, there is still benefit.  At 4K and 
+8K, all of the analysis cost is hidden.  At 8K, the total runtime is slightly  
+less than the optimized version of \insitu.  This result was a bit of a
+surprise given that they are both using the exact same number of resources.
+The difference, it appears, is being able to hide the initialization as well
+ as the analysis cost.  An improved algorithm for initialization would give the
+advantage back to the optimized \insitu application.  Given more time, it would
+have been interesting to measure performance of the \intransit applications
+using the optimized version of the analysis algorithm.  If the the \intransit
+approach achieved the same performance improvement shown by
+Figure~\ref{fig:insitu-opt-bar}, the \intransit approach would be able to hide
+most of the analysis cost even at large scale. 
+
+Another perhaps surprising result is the performance of the spyplot file application.  
+For the size of datasets we studied, this application performed quite well, showing that
+the Lustre file system on Cielo is quite strong. 
+
+\fix{Ron: more analysis.. get file sizes, data rates, ...}. 
 
 
-\subsection{Per Cycle Timings}
+\subsection{Time-Series Analysis}
+
+\fix{How performance changes over the life of the application}
 
 
+\subsection{Scaling Analysis}
 
+\fix{Using block-processing rate to show scaling performance of the different \insitu operations}
 
+\fix{Performance for different nodes-per-core on the servers}
 
-The following plots provide measured values of total runtime for each of the 
-
-Total runtime is the ultimate measure of the performance when comparing 
-approaches.  
 
 
 \subsection{Memory}

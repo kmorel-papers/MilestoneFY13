@@ -25,12 +25,12 @@ we developed services for staging checkpoint
 data~\cite{oldfield:ft-ldrd-tr,reiss:checkpoint-proxy,oldfield:modeling_checkpoints},
 HPC database integration~\cite{oldfield:sql-proxy}, interactive
 visualization~\cite{oldfield:multilingual-siam}, network traffic analysis, and 
-most recently CTH in-transit analysis~\cite{moreland:2011:in-transit}.  A recent
+most recently CTH \intransit analysis~\cite{moreland:2011:in-transit}.  A recent
 paper describes these services in detail~\cite{lofstead:2013:data-staging}.
 
 
 This section includes a brief description of the Nessie architecture and APIs followed
-by a more detailed description of the in-transit service for CTH analysis using 
+by a more detailed description of the \intransit service for CTH analysis using 
 ParaView.  
 
 
@@ -79,7 +79,7 @@ fixed-sized request).  In contrast, a data message is typically large and
 consists of ``raw'' bytes that, in most cases, do not need to be
 encoded/decoded by the server. For example,
 Figure~\ref{fig:nssi-movement-protocol} shows the transport protocol for an
-in-transit service that performs analysis of simulation data.
+\intransit service that performs analysis of simulation data.
 
 \begin{figure}
 \begin{centering}
@@ -119,17 +119,29 @@ argument marshaling.
 \subsubsection{NNTI API}
 
 The Nessie Network Transport Interface (NNTI) provides a portable, lightweight,
-interface for RDMA operations on the major HPC platforms.  Our current
+interface for RDMA operations on HPC platforms.  Our current
 implementation includes support for the Cray Seastar, InfiniBand,
 Cray Gemini, and IBM DCMF interconnects.  The APIs include commands
 to open and close the interface, connect and disconnect to a peer,
 register and deregister memory buffers, and finally asynchronously transport
 (through put, get, and wait commands) bulk data. 
 
-The NNTI library sits below the Nessie RPC library to enable portability across
-HPC interconnects.  NNTI is also used by the
+\begin{figure}
+\begin{centering}
+\includegraphics{figures/NSSISoftwareStack}
+\par\end{centering}
+\caption{Software stack for applications using the Nessie and NNTI libraries.}
+\end{figure}
+
+
+Figure~\ref{fig:nssi-software-stack} illustrates the software stack for applications 
+using Nessie and NTTI. The NNTI library sits below the Nessie RPC library to
+enable portability across HPC interconnects.  In addition to the Nessie
+library, NNTI is also used by the
 ADIOS/DataStager~\cite{abbasi:2010:datastager} to provide the same level of
-portability and performance.
+portability and performance.  We are also discussing NNTI as the lowest-layer
+network transport for the Sirocco parallel file system, another ASC project at
+SNL.
 
 \subsubsection{CommSplitter API}
 
@@ -165,65 +177,65 @@ not run in MPMD mode.
 
 
 
-\subsection{CTH in-transit analysis}
+\subsection{CTH \intransit analysis}
 
-In this milestone, we used Nessie to construct an in-transit CTH analysis 
+In this milestone, we used Nessie to construct an \intransit CTH analysis 
 service.  The analysis service exists as its own parallel job 
 that communicates with a parallel CTH job using the Nessie APIs.  
-The in-transit CTH analysis library is a drop-in replacement
+The \intransit CTH analysis library is a drop-in replacement
 for the PVSPY library~\cite{moreland:2010:coprocessing-milestone} used for
-in-situ analysis.  This makes comparing in-situ and in-transit approaches
+\insitu analysis.  This makes comparing \insitu and \intransit approaches
 extremely convenient since it only requires the user to link a different
 library when compiling CTH.  Instead of executing the analysis on the 
-same compute nodes of the CTH application (as the in-situ library does), the
-in-transit library marshals requests, sends data to the analysis service, and
+same compute nodes of the CTH application (as the \insitu library does), the
+\intransit library marshals requests, sends data to the analysis service, and
 performs all the analysis on the separate application.
 Figure~\ref{fig:cth-service} illustrates this process for analysis that does
 fragment detection. 
 
 \begin{figure*}
 \begin{centering}
-\subfloat[In-situ analysis]{
+\subfloat[\Insitu analysis]{
   \includegraphics[scale=0.55]{figures/cth-in-situ}
   \label{fig:cth-in-situ}
 }
-\subfloat[In-transit analysis]{
+\subfloat[\Intransit analysis]{
   \includegraphics[scale=0.55]{figures/cth-in-transit}
   \label{fig:cth-in-transit}
 }
-\caption[In-Situ and In-Transit Analysis]{Comparison of in-situ (a) and in-transit (b)
+\caption[\Insitu and \Intransit Analysis]{Comparison of \insitu (a) and \intransit (b)
 fragment detection for the CTH shock physics code.}
 \label{fig:cth-service}
 \end{centering}
 \end{figure*}
 
 % There are a couple of trade-offs to consider when deciding whether to perform
-% the analysis in-transit or in-situ.  First, the in-transit approach allows
-% fragment detection to execute in parallel with CTH, unlike the in-situ approach
+% the analysis \intransit or \insitu.  First, the \intransit approach allows
+% fragment detection to execute in parallel with CTH, unlike the \insitu approach
 % that requires CTH to wait for the analysis to complete.  If the time to execute
 % the analysis code is substantially larger than the time to transfer the raw data
-% to the service, there is a performance advantage to using the in-transit
+% to the service, there is a performance advantage to using the \intransit
 % approach.
 
 % A second consideration is library scalability.  While significant effort has
 % gone into making the CTH code scale to extremely large core counts, not as much
 % effort has gone into scalability of the analysis code.  For example, the
 % ParaView coProcessing libraries have not successfully run on more than 32
-% thousand cores.  Linking CTH to ParaView for in-situ analysis also limits the
+% thousand cores.  Linking CTH to ParaView for \insitu analysis also limits the
 % scalability of the CTH run.  In contrast, the data service will likely use
 % a much smaller number of cores, putting no limitation on the scale of CTH. 
 
 % Another often overlooked consideration is the memory required to link a large
-% analysis library into a production scientific code.  In the in-situ case, CTH
+% analysis library into a production scientific code.  In the \insitu case, CTH
 % has to link ParaView.  Since many HPC systems do not efficiently support dynamic
 % libraries\footnote{Support for dynamic libraries is currently being evaluated
 % for the Cray XE6.}, the entire static ParaView library has to be linked. On the
-% Cray XE6, the in-situ binary for CTH is 330 MiB, where the in-transit binary for CTH is 30
+% Cray XE6, the \insitu binary for CTH is 330 MiB, where the \intransit binary for CTH is 30
 % MiB.  That is a substantial difference, especially on systems that are memory
 % limited -- as is the case for most multi-core HPC platforms.
 
 
-For efficiency reasons, the in-transit PVSPY client implementation does not
+For efficiency reasons, the \intransit PVSPY client implementation does not
 simply forward all the functions to the service.  In many cases, the client
 maintains metadata to avoid unnecessary data transfers.  For example, the PVSPY
 API includes ``setup'' functions for initializing data structures, assigning
@@ -234,12 +246,12 @@ the operations that synchronize the metadata and the data between the client
 and the server.  These operations occur just before a \emph{pvspy\_viz} operation
 that initiates the ParaView coProcessing on the remote service. 
 
-The in-situ version of PVSPY has the notion of a ``CTH source'' that allows the
+The \insitu version of PVSPY has the notion of a ``CTH source'' that allows the
 analysis code to work directly on the memory of the CTH application without
-making any copies.   Since the in-transit service does not have access to the
+making any copies.   Since the \intransit service does not have access to the
 physical memory of the CTH application, we created a virtual CTH source on the
 server that emulates the data structures on the CTH application.  That allows
-the service to use use the same PVSPY library that the client uses in the in-situ
+the service to use use the same PVSPY library that the client uses in the \insitu
 analysis.  
 
 With the exception of the operations to transfer metadata and data to the analysis
@@ -284,18 +296,20 @@ current machine.
 
 Most of the related efforts focus primarily on the I/O benefits of data-staging, but
 have not put a tremendous effort into complex analysis. The majority of the analyis
-codes relatively simple statistics and visualization.  With Nessie, and 
-this effort in particular, we treat the service as a potentially complext parallel application
+codes perform relatively simple statistics and/or visualization.  With Nessie, and 
+this effort in particular, we treat the service as a complex parallel application
 that includes all the synchronization, communication, and scaling issues inherent in HPC 
 parallel applications.  These issues require a level of detail and performance 
 tuning that is lacking in other efforts.  
 
 A second distinction between our approach and related work is a general 
 philosophy on supporting APIs.  While the other approaches, like ADIOS,
-provide a unified I/O API, our approach is to provide in-transit
+provide a unified I/O API, our approach is to provide \intransit
 implementations of commonly used APIs so the code does not have to change the
-source code.  It was this approach that made comparison between the in-situ and
-in-transit approaches so easy to perform.
+source code.  In this milestone, we implemented an \intransit version of
+the pvspy API, the same API used to perform the \insitu experiments.  It was
+this approach that made comparison between the \insitu and \intransit
+approaches so easy to perform.
 
 \subsection{Nessie Availability}
 
@@ -303,7 +317,6 @@ The Nessie software is available, open source, as part
 of the Trilinos I/O Support Package~\cite{oldfield:2012:trios-journal}.
 The package includes the NNTI, Nessie, CommSplitter libraries as well
 as a collection of CMake macros and other tools for constructing 
-applicatio-specific data services for a variety of different HPC 
-platforms. 
+application-specific data services.
 
 

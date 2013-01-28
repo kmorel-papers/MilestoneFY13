@@ -28,7 +28,9 @@ Problem Size :
       - Block Size: NCFields*Nx*Ny*Nz (cell data) + NMFields*NMaterials*Nx*Ny*Nz (mat data) = 640 kib
 
 Measurements and Metrics :
-  - pvspy_viz time per cycle: 
+  - Total run time (includes start up time for viz and cth as well as cycle timings)
+
+  - pvspy_viz time per 10-cycles: 
       - For in-situ, this is the total time to perform the analysis.
       - For in-transit, this is the time to sync the metadata and data + time to wait for previous viz to complete. 
           - measured values:  sync metadata, sync data, wait
