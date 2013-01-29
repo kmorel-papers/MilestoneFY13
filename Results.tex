@@ -134,27 +134,27 @@ data set and job size.
 \begin{centering}
 \vspace{-6pt}
 \subfloat[\Insitu Baseline.]{
-  \includegraphics[width=0.5\linewidth]{figures/in-situ-unopt-line}
+  \includegraphics[width=0.48\linewidth]{figures/in-situ-unopt-line}
   \label{fig:in-situ-unopt-line}
 }
 \subfloat[\Insitu Refined.]{
-  \includegraphics[width=0.5\linewidth]{figures/in-situ-opt-line}
+  \includegraphics[width=0.48\linewidth]{figures/in-situ-opt-line}
   \label{fig:in-situ-opt-line}
 }
 
 \vspace{-6pt}
 \subfloat[\Intransit with extra nodes.]{
-  \includegraphics[width=0.5\linewidth]{figures/in-transit-extra-line}
+  \includegraphics[width=0.48\linewidth]{figures/in-transit-extra-line}
   \label{fig:in-transit-extra-line}
 }
 \subfloat[\Intransit using internal nodes.]{
-  \includegraphics[width=0.5\linewidth]{figures/in-transit-inclusive-line}
+  \includegraphics[width=0.45\linewidth]{figures/in-transit-inclusive-line}
   \label{fig:in-transit-inclusive-line}
 }
 
 \vspace{-6pt}
 \subfloat[Spyplot I/O (no analysis)]{
-  \includegraphics[width=0.5\linewidth]{figures/spyplot-file-line}
+  \includegraphics[width=0.48\linewidth]{figures/spyplot-file-line}
   \label{fig:spyplot-file-line}
 }
 \caption[Total runtime.]{Total runtime for 500-cycle runs of each
@@ -208,21 +208,21 @@ wait time occurs.
 \begin{centering}
 \vspace{-24pt}
 \subfloat[\Insitu Baseline.]{
-  \includegraphics[width=0.5\linewidth]{figures/in-situ-unopt-bar}
+  \includegraphics[width=0.48\linewidth]{figures/in-situ-unopt-bar}
   \label{fig:insitu-unopt-bar}
 }
 \subfloat[\Insitu Refined.]{
-  \includegraphics[width=0.5\linewidth]{figures/in-situ-opt-bar}
+  \includegraphics[width=0.48\linewidth]{figures/in-situ-opt-bar}
   \label{fig:insitu-opt-bar}
 }
 
 \vspace{-24pt}
 \subfloat[\Intransit with extra nodes.]{
-  \includegraphics[width=0.5\linewidth]{figures/in-transit-extra-bar}
+  \includegraphics[width=0.48\linewidth]{figures/in-transit-extra-bar}
   \label{fig:intransit-extra-bar}
 }
 \subfloat[\Intransit using internal nodes.]{
-  \includegraphics[width=0.5\linewidth]{figures/in-transit-inclusive-bar}
+  \includegraphics[width=0.48\linewidth]{figures/in-transit-inclusive-bar}
   \label{fig:intransit-internal-bar}
 }
 
@@ -332,7 +332,8 @@ each run.
 \begin{figure}[htb]
   \centering
   \includegraphics[width=\linewidth]{figures/MaxNumberOfBlocks}
-  \caption{A plot of the ``max number of blocks'' parameter supplied to CTH for each run.}
+  \caption[Max number of blocks parameter.]{A plot of the ``max number of
+    blocks'' parameter supplied to CTH for each run.}
   \label{fig:MaxBlocks}
 \end{figure}
 
@@ -347,11 +348,11 @@ is a reasonable representation of all values.
 \begin{figure}[htb]
   \centering
   \includegraphics[width=\linewidth]{figures/MemoryUsageAll}
-  \caption{Matrix of all measurements taken for memory usage comparisons.
-    Each measurement is the total memory in use in a node (so for \insitu and
-    \intransit memory includes both CTH simulation and overhead).  Each
-    measurement is plotted as the maximum memory use in all nodes at the
-    time the measurement was taken.}
+  \caption[Memory usage plot matrix.]{Matrix of all measurements taken for
+    memory usage comparisons.  Each measurement is the total memory in use
+    in a node (so for \insitu and \intransit memory includes both CTH
+    simulation and overhead).  Each measurement is plotted as the maximum
+    memory use in all nodes at the time the measurement was taken.}
   \label{fig:MemoryUsageAll}
 \end{figure}
 
