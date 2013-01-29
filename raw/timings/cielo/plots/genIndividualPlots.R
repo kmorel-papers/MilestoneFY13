@@ -107,7 +107,7 @@ plot <- plot + theme(legend.position=c(0.15, 0.83),legend.key=element_rect(color
 plot <- plot + xlab("Client Ranks") + ylab("Time (min)")
 
 if (with_title == TRUE) {
-   plot <- plot + ggtitle("In Situ Unoptimized: Total Execution Time for 500 Cycles") 
+   plot <- plot + ggtitle("In Situ (Baseline): Total Execution Time for 500 Cycles") 
 }
 
 if (write_pdf == TRUE){ 
@@ -181,7 +181,7 @@ barplot(t(counts),
         ylab="Time (min)")
 
 if (with_title == TRUE) {
-   title(main="In-Situ Total Time\n(Unoptimized, 500 cycles, 1.5m Blocks)")
+   title(main="In-Situ Total Time\n(Baseline, 500 cycles, 1.5m Blocks)")
 }
 
 labels = c("CTH Init", "Viz Init", "CTH", "Viz")
@@ -214,7 +214,7 @@ plot <- plot + theme(legend.position=c(0.15, 0.83),legend.key=element_rect(color
 plot <- plot + xlab("Client Ranks") + ylab("Time (min)")
 
 if (with_title == TRUE) {
-   plot <- plot + ggtitle("In Situ Optimized: Total Execution Time for 500 Cycles") 
+   plot <- plot + ggtitle("In Situ (Refined): Total Execution Time for 500 Cycles") 
 }
 
 if (write_pdf == TRUE) {
@@ -250,7 +250,7 @@ barplot(t(counts),
         ylab="Time (min)")
 
 if (with_title == TRUE) {
-   title(main="In-Situ Total Time (Optimized, 500 cycles)")
+   title(main="In-Situ Total Time (Refined, 500 cycles)")
 }
 
 text(2.4, 140, "33k blocks")
@@ -289,7 +289,7 @@ barplot(t(counts),
         ylab="Time (min)")
 
 if (with_title == TRUE) {
-   title(main="In-Situ Total Time\n(Optimized, 500 cycles, 1.5m Blocks)")
+   title(main="In-Situ Total Time\n(Refined, 500 cycles, 1.5m Blocks)")
 }
 
 labels = c("CTH Init", "Viz Init", "CTH", "Viz")

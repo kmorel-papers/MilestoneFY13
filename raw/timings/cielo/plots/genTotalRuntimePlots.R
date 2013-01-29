@@ -111,8 +111,8 @@ d4 <- d4[d4$levels == "7",]
 d5 <- d5[d5$levels == "7",]
 
 # change group names
-d1$levels <- "In Situ (unoptimized)"
-d2$levels <- "In Situ (optimized)"
+d1$levels <- "In Situ (baseline)"
+d2$levels <- "In Situ (refined)"
 d3$levels <- "In Transit (128 extra nodes)"
 d4$levels <- "In Transit (100 internal nodes)"
 d5$levels <- "Spyplot File"
