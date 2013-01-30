@@ -5,7 +5,7 @@ library(ggplot2)
 ###########################################################
 # Create a plot for client_timing*.csv file
 ###########################################################
-extract_variance_data <- function(files) {
+plotClientSeries <- function(files, colors=heat.colors, title="") {
 
 	# For each directory, gather statistics on each experiment
 	for (file in files) {
@@ -20,24 +20,14 @@ extract_variance_data <- function(files) {
 
 		area_data <- rbind.data.frame(cth_data, xfer_data, wait_data)
 
-		title <- paste("In-Transit Cycle Timings for",
-				data$ranks[1]," Ranks (",
-				round(mean(data$active_blocks)), "blocks )\n\n", file)
+		p <- ggplot(area_data, aes(x=cycle, y=time, fill=Operation))
 
-		subtitle <- file
-
-		p <- ggplot(area_data, aes(x=cycle, y=time, group=Operation, fill=Operation)) +
-				geom_area() +
-				theme(legend.position=c(0.8,0.2)) + ggtitle(title)
+		p <- p + geom_area()
+		p <- p + scale_fill_manual(values=colors)
+		p <- p + theme(legend.position=c(0.8,0.3)) + ggtitle(title)
+		p <- p + xlab("Cycle") + ylab("Time (sec)")
 
 		print(p)
 	}
 }
 
-
-args <- commandArgs(TRUE)
-args
-
-
-
-extract_variance_data(args)
