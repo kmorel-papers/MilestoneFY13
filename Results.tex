@@ -12,14 +12,14 @@ done.  These data summarize evaluations run over the course of \fix{Ron,
 
 All experiments were performed on the Cielo supercomputer housed at Los Alamos
 National Laboratory.  Cielo is an 1,840-node Cray XE6 resource for the Advanced
-Simulation and Computing (ASC) program and is jointly managed by Sandia National 
+Simulation and Computing (ASC) program and is jointly managed by Sandia National
 Laboratories and Los Alamos National Laboratory under the New Mexico
 Alliance for Computing at Extreme Scale (ACES) project.  Each node contains
 two AMD Opteron 6100 (Magny-Cours) 8-way processor chips for a total of 16 cores
-per node.  Each core has a peak computational speed of 2.6 GHz, leading to a total 
+per node.  Each core has a peak computational speed of 2.6 GHz, leading to a total
 theoretical peak of 1.37 Petaflops for the machine. The compute nodes each
 have 32 GB of memory.  The interconnect consists of a proprietary Cray Gemini
-Network with a 3D Torus topology and has a peak throughput rate of 6 GB/s/link. 
+Network with a 3D Torus topology and has a peak throughput rate of 6 GB/s/link.
 
 This report includes strong scaling and weak scaling results from the
 following CTH and analysis workflows.
@@ -133,11 +133,11 @@ data set and job size.
 \begin{figure*}[htbp]
 \begin{centering}
 \vspace{-6pt}
-\subfloat[\Insitu Baseline.]{
+\subfloat[\Insitu baseline.]{
   \includegraphics[width=0.48\linewidth]{figures/in-situ-unopt-line}
   \label{fig:in-situ-unopt-line}
 }
-\subfloat[\Insitu Refined.]{
+\subfloat[\Insitu refined.]{
   \includegraphics[width=0.48\linewidth]{figures/in-situ-opt-line}
   \label{fig:in-situ-opt-line}
 }
@@ -164,17 +164,18 @@ data set and job size.
 \end{figure*}
 
 Figures~\ref{fig:runtime-individual}~and~\ref{fig:runtime-total} show the
-measured total execution time from each of the different workflows.  The
-set of plots in Figure~\ref{fig:runtime-individual} show individual timings
-of each of the workflows for each size dataset; the plot in
-Figure~\ref{fig:runtime-total} shows a direct comparison of all the
-applications for the 1.5M block data set.  The results clearly show a
-``sweet spot'' at 8K cores where the \intransit approach, even though it is
-using a less scalable algorithm, performs the same as the the refined
-version of \insitu.  At 16K and 32K, none of the codes running analysis
-show significant improvement, the baseline \insitu and the \intransit
-approaches actually take longer.  Perhaps the biggest reason is that there
-is not enough work for the compute nodes.  At 32K cores, each core is
+measured total execution time from each of the different workflows.  In cases
+where we ran the same experiment multiple times, we plot the mean with error
+bars representing the standard deviation from the mean. The set of plots in
+Figure~\ref{fig:runtime-individual} show individual timings of each of the
+workflows for each size dataset; the plot  in Figure~\ref{fig:runtime-total}
+shows a direct comparison of all the  applications for the 1.5M block data set.
+The results clearly show a ``sweet spot'' at 8K cores where the \intransit
+approach, even though it is using a less scalable algorithm, performs the same
+as the the refined version of \insitu.  At 16K and 32K, none of the codes
+running analysis show significant improvement, the baseline \insitu and the
+\intransit approaches actually take longer.  Perhaps the biggest reason is that
+there is not enough work for the compute nodes.  At 32K cores, each core is
 processing around 46 blocks/node, where the same size problem using 4K
 nodes requires each core to process 366 blocks.  The key to making the
 \intransit approach successful is being able to overlap computation and
@@ -185,7 +186,7 @@ compute nodes need sufficient work to hide the analysis cost.
 \begin{centering}
 \includegraphics[scale=0.7]{figures/total-runtime-all}
 \\ \fix{Can the label be changed to say baseline and refined instead of
-  unoptimized and optimized?}
+  unoptimized and optimized? \ldots yes.  Done. }
 \caption{Execution time comparison for the 1.5M block dataset.}
 \label{fig:runtime-total}
 \par\end{centering}
@@ -202,16 +203,16 @@ the initialization cost of CTH, the cost of transferring data to the service,
 and the time the client waits for the server operation to complete. The wait
 only occurs after CTH has finished its operation before the \vda is
 complete.  If the \vda completes before CTH finishes its operation, then no
-wait time occurs. 
+wait time occurs.
 
 \begin{figure*}[htbp]
 \begin{centering}
 \vspace{-24pt}
-\subfloat[\Insitu Baseline.]{
+\subfloat[\Insitu baseline.]{
   \includegraphics[width=0.48\linewidth]{figures/in-situ-unopt-bar}
   \label{fig:insitu-unopt-bar}
 }
-\subfloat[\Insitu Refined.]{
+\subfloat[\Insitu refined.]{
   \includegraphics[width=0.48\linewidth]{figures/in-situ-opt-bar}
   \label{fig:insitu-opt-bar}
 }
@@ -234,7 +235,7 @@ wait time occurs.
 
 \caption[Breakdown of operation timings.]{Illustration showing the
 contributions of selected operations to the total execution times for each
-application.} 
+application.}
 \label{fig:runtime-individual-bar}
 \end{centering}
 \end{figure*}
@@ -292,16 +293,147 @@ consistent, the I/O framework would have to report how data was
 repartitioned so that the neighborhood information could be mapped to the
 new decomposition.
 
-Another surprising result is the performance of the spyplot file application.  
+Another surprising result is the performance of the spyplot file application.
 For the size of datasets we studied, this application performed quite well, showing that
-the Lustre file system on Cielo is quite strong. 
+the Lustre file system on Cielo is quite strong.
 
-\fix{Ron: more analysis.. get file sizes, data rates, ...}. 
+\fix{Ron: more analysis.. get file sizes, data rates, ...}.
 
 
 \subsection{Time-Series Analysis}
 
 \fix{How performance changes over the life of the application}
+
+To illustrate how operation performance changes throughout a single run
+of the application, we selected one experiment and tracked the performance of
+each 10-cycle period over a span of a 500 cycle run.  Since the ``Viz''
+operation executes every 10 cycles, what is shown is the sum of 10-cycles worth
+of CTH and the time spent by 1 analysis operation. We chose to evaluate
+the experiments that uses 8K processors of the 1.5m block dataset--the ``sweet
+spot'' mentioned in Section\ref{sec:TotalExecutionTime}--because it is one of
+the interesting places where the performance of the refined \insitu application
+and both \intransit applications all have similar total runtime.
+
+Since we are running the adaptive-mesh refinement (AMR)
+variant of CTH, the number of ``active'' blocks gets
+recalculated by CTH at various points during a run. Since we expect this
+to have an impact on CTH execution and \intransit transfer times, we first plot
+the number of active blocks for our selected experiment in
+Figure~\ref{fig:active-blocks}.  \fix{anything we should say about this?}
+
+%In our particular execution, the number of
+%active blocks actually decreases slightly (less than .01\%).
+
+\begin{figure}[htbp]
+\begin{centering}
+\includegraphics[scale=1]{figures/active-blocks-series}
+\caption[Active Blocks]{Number of active blocks used in the course of a
+500-cycle run of CTH.}
+\label{fig:active-blocks}
+\end{centering}
+\end{figure}
+
+
+Figure~\ref{fig:time-series} shows
+the time contribution for a 10-cycle period of each important operation in the
+\insitu and \intransit applications using 8K processors.  One observation
+consistent across the different applications is that the time spent performing
+CTH computation tends to increase throughout the life of the application.
+
+We also observe for the \intransit applications that as long as there is some
+wait time, the total run time for each 10-cycle period remains relatively flat
+throughout the life of the application.  We see this in both the \intransit
+extra and \intransit inclusive experiments.  The reason for this is fairly
+obvious.  If we assume the ``Viz'' operation on the service is essentially
+constant, then the wait time should be the difference between the Viz time on
+the service and the CTH time on the client.  As the CTH time increases, the
+wait time decreases by the same amount.  Since the transfer time is close to
+constant (it's based on the number of blocks), the total time at each 10-cycle
+period remains about the same.
+
+
+\begin{figure*}[htbp]
+\begin{centering}
+\vspace{-24pt}
+\subfloat[\Insitu baseline.]{
+  \includegraphics[width=0.48\linewidth]{figures/in-situ-unopt-series}
+  \label{fig:insitu-unopt-series}
+}
+\subfloat[\Insitu refined.]{
+  \includegraphics[width=0.48\linewidth]{figures/in-situ-opt-series}
+  \label{fig:insitu-opt-series}
+}
+
+\vspace{-12pt}
+\subfloat[\Intransit with extra nodes.]{
+  \includegraphics[width=0.48\linewidth]{figures/in-transit-extra-series}
+  \label{fig:intransit-extra-series}
+}
+\subfloat[\Intransit using internal nodes.]{
+  \includegraphics[width=0.48\linewidth]{figures/in-transit-inclusive-series}
+  \label{fig:intransit-internal-series}
+}
+
+
+\caption[Time-series plots of experiments.]{Illustration showing the
+contributions of selected operations for each 10-cycle period of a 500-cycle
+CTH experiment.
+}
+\label{fig:time-series}
+\end{centering}
+\end{figure*}
+
+\subsection{Runtime Variance}
+
+An increasingly important metric for HPC applications is runtime variance.  A
+number of factors could contribute to inconsistent performance across multiple runs. Among
+them are resource contention for memory, network, or storage systems, operating
+sytem noise, and software techniques like garbage collection.
+Instead of trying to understand the cause of inconsistent behavior in our
+experiments, we intend to document the results with the intent of addressing
+them further in future work.
+
+We did not have time to run multiple experiments at each data point, but we were
+able to complete multiple experiments for the \insitu refined and \intransit
+extra applications.
+\fix{I also have multiple experiments for the other
+applications in on cielo.  I'm not yet ready to downshift that data.}
+The plots in Figure~\ref{fig:operation-variance} show the mean and standard
+deviation of the important \insitu and \intransit operations
+at 10-cycle increments of the 8k run.  In each plot, we gathered data from five
+separate 500-cycle experiments.
+
+
+\begin{figure*}[htbp]
+\begin{centering}
+\vspace{-24pt}
+\subfloat[CTH]{
+  \includegraphics[width=0.48\linewidth]{figures/in-situ-opt-cth-variance}
+  \label{fig:cth-variance}
+}
+\subfloat[\Insitu (refined) analysis]{
+  \includegraphics[width=0.48\linewidth]{figures/in-situ-opt-viz-variance}
+  \label{fig:insitu-opt-variance}
+}
+
+\vspace{-12pt}
+\subfloat[\Intransit (extra nodes) transfer time.]{
+  \includegraphics[width=0.48\linewidth]{figures/in-transit-extra-xfer-variance}
+  \label{fig:intransit-extra-xfer-variance}
+}
+\subfloat[\Intransit (extra nodes) wait time.]{
+  \includegraphics[width=0.48\linewidth]{figures/in-transit-extra-wait-variance}
+  \label{fig:intransit-extra-wait-variance}
+}
+
+
+\caption[Runtime variance of selected operations.]{Plots of the mean time and
+standard deviation of important operations at 10-cycle sections of five
+500-cycle experiments that uses 8K cores and 1.5m data blocks.}
+\label{fig:operation-variance}
+\end{centering}
+\end{figure*}
+
 
 
 \subsection{Scaling Analysis}
@@ -319,7 +451,7 @@ accounts for caches and buffers, so although you may run out of free memory in
 a system, the execution will not immediately fail due to memory freed from
 those other sources.  However, these are an indication of the worst case
 possible.  On Cielo there are 16 cores per node and in each case the nodes were
- loaded with 16 MPI ranks executing the statically linked executable.  
+ loaded with 16 MPI ranks executing the statically linked executable.
 
 In order to understand CTH memory usage results, it is important to note that
 CTH preallocates memory based on a value for ``max number of blocks'' provided
