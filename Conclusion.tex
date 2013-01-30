@@ -1,8 +1,68 @@
-\section{Conclusion}
+\section{Conclusions}
 \label{sec:Conclusion}
 
-\fix{Dave and Ken}
+This document summarizes a significant scaling study resulting from over 9
+million core-hours of execution and analyzes the comparative performance of
+multiple workflows for performing \vda on simulation results.  Most of
+these workflows benefit from running in tandem with the simulation to
+analyze its transient data before it is written to storage.  Based on this
+analysis, we make the following conclusions.
 
-\fix{When should one use in which situation.}
+\paragraph{\Intransit can provide a performance improvement over \insitu in
+  some circumstances, but the window is more narrow than we initially
+  thought.}  \Intransit analysis has an added overhead above embedded
+\insitu analysis involving transferring data between parallel jobs.  Given
+an analysis with perfect linear scalability, we suspect \intransit
+workflows will always have an added cost, and our results support this.
+With an analysis that does not scale perfectly, possibly due to
+communication overhead, it is theoretically possible for \intransit to be
+faster by reducing the size of the analysis job.  This is one of the
+motivations for choosing an analysis task that requires significant
+communication.  In our results, we do find instances where \intransit is
+faster, but by a smaller margin and for fewer configurations than we
+initially anticipated.  So although \intransit has several other positive
+features, we do not anticipate performance to be the main motivations for
+using it.
+
+\paragraph{There is room for improvement with regard to memory overhead.}
+The baseline amount of memory added to the CTH job to perform \insitu
+processing is roughly 100MB per core.  Considering that our embedded
+\insitu library is a fully featured visualization toolkit containing over 2
+million lines of code and algorithms developed over almost 2 decades, this
+overhead is not unreasonable.  Nevertheless, this footprint can be
+problematic for simulations already tight on memory.  Because of this,
+efforts are already underway to improve our memory footprint by making
+finer modules and being more selective on the available algorithms.  This,
+of course, requires a compromise between the size of the library and the
+algorithms that are dynamically available.  We also note that our algorithm
+has the potential to generate sizable meshes of its own.  Thus, it may be
+fruitful to pursue and support incremental algorithms where possible.
+
+\paragraph{Initialization time matters.}  Our scaling efforts to date
+focus on the scalability of the algorithms invoked during the run of a
+simulation.  The initialization cost, a one-time penalty, has yet to be
+seriously considered.  However, based on our HPCToolkit measurements,
+initialization becomes a significant cost at high process counts.
+
+\paragraph{Disk-based I/O is not dead\ldots{} yet.} Our initial assumption
+was that it would not be feasible to output full results at a fine enough
+temporal resolution from CTH to disk storage to perform our high fidelity
+analysis.  However, our control workflow shows that although the overall
+time to write data to disk and then read back again incurs a large cost, it
+is still realistic to do so.  Thus, users may still choose to incur the
+extra overhead to use a traditional offline post-processing \vda workflow.
+
+\paragraph{Better job scheduling is important.} One of the more complicated
+parts of running an \intransit workflow is scheduling the simulation job
+and service job to run in tandem.  Frankly, the capabilities of the
+scheduler are inadequate for our needs.  We cannot start and stop jobs
+independently and make reconnections dynamically.  Another experiment we
+would like to do but is challenging to schedule is to allow simulation and
+service to share nodes.  Since each node has 16 cores, perhaps we could get
+better transfer performance by allocating one core per node for service and
+the rest for simulation.  A similar scheduling scheme will be important to
+take advantage of burst buffers in future architectures.
+
+\fix{Perhaps other conclusions from results Ron will post later.}
 
 \fix{Timeline of work ahead.}
