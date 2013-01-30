@@ -185,8 +185,6 @@ compute nodes need sufficient work to hide the analysis cost.
 \begin{figure}[htbp]
 \begin{centering}
 \includegraphics[scale=0.7]{figures/total-runtime-all}
-\\ \fix{Can the label be changed to say baseline and refined instead of
-  unoptimized and optimized? \ldots yes.  Done. }
 \caption{Execution time comparison for the 1.5M block dataset.}
 \label{fig:runtime-total}
 \par\end{centering}
@@ -309,8 +307,8 @@ of the application, we selected one experiment and tracked the performance of
 each 10-cycle period over a span of a 500 cycle run.  Since the ``Viz''
 operation executes every 10 cycles, what is shown is the sum of 10-cycles worth
 of CTH and the time spent by 1 analysis operation. We chose to evaluate
-the experiments that uses 8K processors of the 1.5m block dataset--the ``sweet
-spot'' mentioned in Section\ref{sec:TotalExecutionTime}--because it is one of
+the experiments that use 8K processors of the 1.5M block dataset --- the ``sweet
+spot'' mentioned in Section\ref{sec:TotalExecutionTime} --- because it is one of
 the interesting places where the performance of the refined \insitu application
 and both \intransit applications all have similar total runtime.
 
@@ -319,7 +317,13 @@ variant of CTH, the number of ``active'' blocks gets
 recalculated by CTH at various points during a run. Since we expect this
 to have an impact on CTH execution and \intransit transfer times, we first plot
 the number of active blocks for our selected experiment in
-Figure~\ref{fig:active-blocks}.  \fix{anything we should say about this?}
+Figure~\ref{fig:active-blocks}.  As simulation progresses, it is common for
+the number of blocks to increase as finer resolution is needed to capture
+cumulative physical effects.  This simulation has an interesting drop in
+the number of blocks midway through.  This is caused by a number of
+fragments leaving the domain of the mesh. \fix{Verify that this is true.}
+However, the drop in the number of blocks is very slight (less than
+0.01\%).
 
 %In our particular execution, the number of
 %active blocks actually decreases slightly (less than .01\%).
@@ -337,8 +341,10 @@ Figure~\ref{fig:active-blocks}.  \fix{anything we should say about this?}
 Figure~\ref{fig:time-series} shows
 the time contribution for a 10-cycle period of each important operation in the
 \insitu and \intransit applications using 8K processors.  One observation
-consistent across the different applications is that the time spent performing
-CTH computation tends to increase throughout the life of the application.
+consistent across the different workflows is that the time spent performing
+CTH computation tends to increase throughout the life of the application,
+which is interesting considering that there not a significant increase in
+either the number of blocks or the visualization processing time.
 
 We also observe for the \intransit applications that as long as there is some
 wait time, the total run time for each 10-cycle period remains relatively flat
@@ -388,19 +394,27 @@ CTH experiment.
 An increasingly important metric for HPC applications is runtime variance.  A
 number of factors could contribute to inconsistent performance across multiple runs. Among
 them are resource contention for memory, network, or storage systems, operating
-sytem noise, and software techniques like garbage collection.
+system noise, and software techniques like garbage collection.
 Instead of trying to understand the cause of inconsistent behavior in our
-experiments, we intend to document the results with the intent of addressing
+experiments, we to document the results with the intent of addressing
 them further in future work.
 
 We did not have time to run multiple experiments at each data point, but we were
 able to complete multiple experiments for the \insitu refined and \intransit
-extra applications.
+extra workflows.  \fix{Ron, could you reword this?  I'm not sure what it
+  is supposed to be saying.  Are you saying that we did not hack up CTH to
+  compute the same iteration over and over again and instead ran the
+  complete 500 iteration simulation separate each time?  Or are you saying
+  that we only have multiple measurements for \insitu refined and
+  \intransit extra?  If the latter, I thought you ran each one 5 times, not
+  just those.}
 \fix{I also have multiple experiments for the other
-applications in on cielo.  I'm not yet ready to downshift that data.}
+applications in on Cielo.  I'm not yet ready to downshift that data.}
 The plots in Figure~\ref{fig:operation-variance} show the mean and standard
 deviation of the important \insitu and \intransit operations
-at 10-cycle increments of the 8k run.  In each plot, we gathered data from five
+at 10-cycle increments of the 8k run. \fix{Ron, is it really standard
+  deviation shown in these plots?  The symbol used looks like a min/max
+  range.}  In each plot, we gathered data from five
 separate 500-cycle experiments.
 
 
