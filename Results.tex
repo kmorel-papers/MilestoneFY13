@@ -308,7 +308,7 @@ each 10-cycle period over a span of a 500 cycle run.  Since the ``Viz''
 operation executes every 10 cycles, what is shown is the sum of 10-cycles worth
 of CTH and the time spent by 1 analysis operation. We chose to evaluate
 the experiments that use 8K processors of the 1.5M block dataset --- the ``sweet
-spot'' mentioned in Section\ref{sec:TotalExecutionTime} --- because it is one of
+spot'' mentioned in Section~\ref{sec:TotalExecutionTime} --- because it is one of
 the interesting places where the performance of the refined \insitu application
 and both \intransit applications all have similar total runtime.
 
@@ -320,10 +320,9 @@ the number of active blocks for our selected experiment in
 Figure~\ref{fig:active-blocks}.  As simulation progresses, it is common for
 the number of blocks to increase as finer resolution is needed to capture
 cumulative physical effects.  This simulation has an interesting drop in
-the number of blocks midway through.  This is caused by a number of
-fragments leaving the domain of the mesh. \fix{Verify that this is true.}
-However, the drop in the number of blocks is very slight (less than
-0.01\%).
+the number of blocks midway through; however, the drop in the number of
+blocks is very slight (less than 0.01\%), so for practical purposes the
+number of blocks is constant.
 
 %In our particular execution, the number of
 %active blocks actually decreases slightly (less than .01\%).
