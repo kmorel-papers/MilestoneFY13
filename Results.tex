@@ -115,9 +115,10 @@ sizes with different data set sizes provides a weak scaling overview.
 Table~\ref{tab:ScalingOverview} shows the range of core sizes used for the
 various experiments.  For every application we used the maximum 16
 cores-per-node for the CTH client, since CTH is primarily bound by
-computation and scales very well.  For the \intransit service, we
-experimented with different core-per-node counts to balance the memory
-requirements with the computational requirements of the ParaView analysis.
+computation and scales very well.  For the \intransit experiments in this
+section, we used 8 cores for each service node.  In
+Section~\ref{sec:node-scaling} we discuss \intransit performance under different
+core-per-node counts.
 
 %The objective is run experiments with datasets representative of real
 %production runs.  The minimum number of cores per dataset is limited by
@@ -222,7 +223,7 @@ wait time occurs.
 }
 \subfloat[\Intransit using internal nodes.]{
   \includegraphics[width=0.48\linewidth]{figures/in-transit-inclusive-bar}
-  \label{fig:intransit-internal-bar}
+  \label{fig:intransit-inclusive-bar}
 }
 
 \vspace{-24pt}
@@ -300,15 +301,13 @@ the Lustre file system on Cielo is quite strong.
 
 \subsection{Time-Series Analysis}
 
-\fix{How performance changes over the life of the application}
-
 To illustrate how operation performance changes throughout a single run
 of the application, we selected one experiment and tracked the performance of
 each 10-cycle period over a span of a 500 cycle run.  Since the ``Viz''
 operation executes every 10 cycles, what is shown is the sum of 10-cycles worth
 of CTH and the time spent by 1 analysis operation. We chose to evaluate
 the experiments that use 8K processors of the 1.5M block dataset --- the ``sweet
-spot'' mentioned in Section~\ref{sec:TotalExecutionTime} --- because it is one of
+spot'' mentioned in Section\ref{sec:TotalExecutionTime} --- because it is one of
 the interesting places where the performance of the refined \insitu application
 and both \intransit applications all have similar total runtime.
 
@@ -320,9 +319,10 @@ the number of active blocks for our selected experiment in
 Figure~\ref{fig:active-blocks}.  As simulation progresses, it is common for
 the number of blocks to increase as finer resolution is needed to capture
 cumulative physical effects.  This simulation has an interesting drop in
-the number of blocks midway through; however, the drop in the number of
-blocks is very slight (less than 0.01\%), so for practical purposes the
-number of blocks is constant.
+the number of blocks midway through.  This is caused by a number of
+fragments leaving the domain of the mesh. \fix{Verify that this is true.}
+However, the drop in the number of blocks is very slight (less than
+0.01\%).
 
 %In our particular execution, the number of
 %active blocks actually decreases slightly (less than .01\%).
@@ -400,8 +400,9 @@ them further in future work.
 
 The plots in Figures~\ref{fig:insitu-variance}~and~\ref{fig:intransit-variance}
 show the mean and standard error (the standard deviation from the mean) of the
-important \insitu and \intransit operations at 10-cycle increments of the 8k
-run.  In each plot, we gathered data from five separate 500-cycle experiments.
+important \insitu and \intransit operations for the 8k-core
+experiments.  In each plot, we gathered data from five separate 500-cycle
+experiments.
 
 
 \begin{figure*}[htbp]
@@ -421,9 +422,10 @@ run.  In each plot, we gathered data from five separate 500-cycle experiments.
   \label{fig:insitu-opt-variance}
 }
 \caption[Runtime variance of \insitu operations.]{Plots of the mean time and
-standard error for CTH and the \insitu analysis operations at each 10-cycle
-section of five 500-cycle experiments for 8K cores using the 1.5m data blocks
-data set.}
+standard error for CTH and the \insitu analysis operations.
+
+\fix{Update baseline plots with latest data for final version.}
+}
 \label{fig:insitu-variance}
 \end{centering}
 \end{figure*}
@@ -448,12 +450,11 @@ data set.}
   \includegraphics[width=0.48\linewidth]{figures/in-transit-inclusive-wait-variance}
   \label{fig:intransit-inclusive-wait-variance}
 }
-\fix{Update inclusive plots with latest data for final version.}
 
 \caption[Runtime variance of \intransit operations.]{Plots of the mean time and
-standard error for the \intransit transfer and wait operations at each 10-cycle
-section of five 500-cycle experiments for 8K cores using the 1.5m data blocks
-data set.}
+standard error for the \intransit transfer and wait operations.
+
+\fix{Update inclusive plots with latest data for final version.} }
 \label{fig:intransit-variance}
 \end{centering}
 \end{figure*}
@@ -462,10 +463,159 @@ data set.}
 
 \subsection{Scaling Analysis}
 
-\fix{Using block-processing rate to show scaling performance of the different \insitu operations}
+\subsubsection{Block Processing Rate}
 
-\fix{Performance for different nodes-per-core on the servers}
+One way to get a good understanding of the scalability of an operation is to
+look at the throughput or processing rate.  In this case, we look at the rate
+the analysis operation processes blocks as we increase the number of client
+cores.
 
+
+
+\begin{figure*}[htbp]
+\begin{centering}
+\vspace{-12pt}
+\subfloat[\Insitu baseline.]{
+  \includegraphics[width=0.45\linewidth]{figures/in-situ-unopt-rate}
+  \label{fig:service-2-cores}
+}
+\subfloat[\Insitu refined.]{
+  \includegraphics[width=0.45\linewidth]{figures/in-situ-opt-rate}
+  \label{fig:service-2-cores}
+}
+
+\subfloat[\Intransit with extra nodes.]{
+  \includegraphics[width=0.45\linewidth]{figures/in-transit-extra-rate}
+  \label{fig:service-4-cores}
+}
+\subfloat[\Intransit with internal nodes.]{
+  \includegraphics[width=0.45\linewidth]{figures/in-transit-inclusive-rate}
+  \label{fig:service-8-cores}
+}
+
+
+\caption[Processing rate of analysis.]{Processing rate of analysis portions of
+the four different applications.}
+\label{fig:processing-rates}
+\end{centering}
+\end{figure*}
+
+Figure~\ref{fig:processing-rates} shows the processing rates
+of the analysis portion of the \intransit applications and the ``effective''
+processing rate of the analysis portion (transfer time plus wait time) of the
+\intransit applications.  As we expect, the baseline application scales fine for
+the small data set, but starts to really drop off for the medium and large data.
+We see a dramatic improvement in the \insitu refined application as it scales
+consistently well all the way to 32K cores.  The \intransit applications are
+also not that surprising.  Since we use a fixed number of nodes for a dataset,
+we expect the effective processing rate to be essentially flat.  The dropoff for
+the medium and large datasets is due to the excessive waiting, identified in
+Figures~\ref{fig:intransit-extra-bar}~and~\ref{fig:intransit-inclusive-bar}.
+
+
+
+\subsubsection{Node scaling for \intransit experiments}
+
+In this section, we evaluate performance of the \intransit applications when
+using different numbers of cores/node for the \intransit service.  To better
+understand the impact of changing the core count for the services, consider the
+three HPCToolkit-generated performance traces in
+Figure~\ref{fig:node-scaling-traces}.  The traces show a 10-cycle window
+of execution for a 128-core job using 1 server node. For this small experiment,
+we used a dataset of only 5k blocks.
+
+\begin{figure*}[htbp]
+\begin{centering}
+\vspace{-12pt}
+\subfloat[\Intransit with 2 cores/server.]{
+  \includegraphics[width=0.95\linewidth]{figures/service-2-cores}
+  \label{fig:service-2-cores}
+}
+
+\subfloat[\Intransit with 4 cores/server.]{
+  \includegraphics[width=0.95\linewidth]{figures/service-4-cores}
+  \label{fig:service-4-cores}
+}
+
+\subfloat[\Intransit with 8 cores/server.]{
+  \includegraphics[width=0.95\linewidth]{figures/service-8-cores}
+  \label{fig:service-8-cores}
+}
+
+
+\caption[Performance trace of 128-core run with different core
+counts.]{HPCToolkit-generated traces showing a 10-cycle window of execution
+for a 128-core job using 2, 4, and 8 cores for the server nodes.}
+\label{fig:node-scaling-traces}
+\end{centering}
+\end{figure*}
+
+The tracing results show a dramatic difference in network performance and wait
+time between all three of the experiments.  We believe the relatively poor
+network performance in the 2-core experiment is caused by contention, because
+only 2 cores can process the bulk-data requests at a time, the clients are
+having to wait either for network transfers to complete, or for the server to
+send a finish copying the data to a server buffer.  The larger wait time on the
+2-core experiment tells us that for this size problem, there is a computational
+benefit to increasing the number of cores performing the analysis.
+
+
+
+\begin{figure*}[htbp]
+\begin{centering}
+\vspace{-12pt}
+\subfloat[Total time (33k blocks).]{
+  \includegraphics[width=0.3\linewidth]{figures/in-transit-33k-total}
+  \label{fig:core-scaling-33k-total}
+}
+\subfloat[Transfer time (33k blocks).]{
+  \includegraphics[width=0.3\linewidth]{figures/in-transit-33k-xfer}
+  \label{fig:core-scaling-33k-xfer}
+}
+\subfloat[Wait time (33k blocks).]{
+  \includegraphics[width=0.3\linewidth]{figures/in-transit-33k-wait}
+  \label{fig:core-scaling-33k-wait}
+}
+
+\subfloat[Total time (218k blocks).]{
+  \includegraphics[width=0.3\linewidth]{figures/in-transit-218k-total}
+  \label{fig:core-scaling-218k-total}
+}
+\subfloat[Transfer time (218k blocks).]{
+  \includegraphics[width=0.3\linewidth]{figures/in-transit-218k-xfer}
+  \label{fig:core-scaling-218k-total}
+}
+\subfloat[Wait time (218k blocks).]{
+  \includegraphics[width=0.3\linewidth]{figures/in-transit-218k-wait}
+  \label{fig:core-scaling-218k-total}
+}
+
+\subfloat[Total time  (1.5m blocks).]{
+  \includegraphics[width=0.3\linewidth]{figures/in-transit-1m-total}
+  \label{fig:core-scaling-1m-total}
+}
+\subfloat[Transfer time (1.5m blocks).]{
+  \includegraphics[width=0.3\linewidth]{figures/in-transit-1m-xfer}
+  \label{fig:core-scaling-1m-xfer}
+}
+\subfloat[Wait time (1.5m blocks).]{
+  \includegraphics[width=0.3\linewidth]{figures/in-transit-1m-wait}
+  \label{fig:core-scaling-1m-wait}
+}
+
+\caption[\Intransit core scaling.] {\Intransit
+performance for 2, 4, and 8 cores per server node.}
+\label{fig:core-scaling}
+\end{centering}
+\end{figure*}
+
+The plots in Figure~\ref{fig:core-scaling} show differences in the total,
+transfer, and wait times for the 2, 4, and 8 cores/node runs of the \intransit
+(extra) application for the three different data sets.  \fix{need more time to
+digest and understand these plots.  May need to run more results.}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \subsection{Memory}
