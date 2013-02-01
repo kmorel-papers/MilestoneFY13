@@ -76,6 +76,39 @@ executed 51 I/O operations, equaling the number of analysis operations
 performed by the \insitu and \intransit applications.  There is no way to
 directly instruct CTH to output spyplot data every 10 cycles.
 
+\begin{figure*}[p]
+\begin{centering}
+\vspace{-6pt}
+\subfloat[\Insitu baseline.]{
+  \includegraphics[width=0.48\linewidth]{figures/in-situ-unopt-line}
+  \label{fig:in-situ-unopt-line}
+}
+\subfloat[\Insitu refined.]{
+  \includegraphics[width=0.48\linewidth]{figures/in-situ-opt-line}
+  \label{fig:in-situ-opt-line}
+}
+
+\vspace{-6pt}
+\subfloat[\Intransit with extra nodes.]{
+  \includegraphics[width=0.48\linewidth]{figures/in-transit-extra-line}
+  \label{fig:in-transit-extra-line}
+}
+\subfloat[\Intransit using internal nodes.]{
+  \includegraphics[width=0.45\linewidth]{figures/in-transit-inclusive-line}
+  \label{fig:in-transit-inclusive-line}
+}
+
+\vspace{-6pt}
+\subfloat[Spyplot I/O (no analysis)]{
+  \includegraphics[width=0.48\linewidth]{figures/spyplot-file-line}
+  \label{fig:spyplot-file-line}
+}
+\caption[Total runtime.]{Total runtime for 500-cycle runs of each
+  workflow.}
+\label{fig:runtime-individual}
+\end{centering}
+\end{figure*}
+
 
 %%%%%%%%%%%%%%%%%%%%%% -- table ---
 \begin{table}[htb]
@@ -134,38 +167,13 @@ under different core-per-node counts.
 Our first consideration is the overall runtime of each workflow with each
 data set and job size.
 
-\begin{figure*}[htbp]
+\begin{figure}[bp]
 \begin{centering}
-\vspace{-6pt}
-\subfloat[\Insitu baseline.]{
-  \includegraphics[width=0.48\linewidth]{figures/in-situ-unopt-line}
-  \label{fig:in-situ-unopt-line}
-}
-\subfloat[\Insitu refined.]{
-  \includegraphics[width=0.48\linewidth]{figures/in-situ-opt-line}
-  \label{fig:in-situ-opt-line}
-}
-
-\vspace{-6pt}
-\subfloat[\Intransit with extra nodes.]{
-  \includegraphics[width=0.48\linewidth]{figures/in-transit-extra-line}
-  \label{fig:in-transit-extra-line}
-}
-\subfloat[\Intransit using internal nodes.]{
-  \includegraphics[width=0.45\linewidth]{figures/in-transit-inclusive-line}
-  \label{fig:in-transit-inclusive-line}
-}
-
-\vspace{-6pt}
-\subfloat[Spyplot I/O (no analysis)]{
-  \includegraphics[width=0.48\linewidth]{figures/spyplot-file-line}
-  \label{fig:spyplot-file-line}
-}
-\caption[Total runtime.]{Total runtime for 500-cycle runs of each
-  workflow.}
-\label{fig:runtime-individual}
-\end{centering}
-\end{figure*}
+\includegraphics[scale=0.7]{figures/total-runtime-all}
+\caption{Execution time comparison for the 1.5M block dataset.}
+\label{fig:runtime-total}
+\par\end{centering}
+\end{figure}
 
 Figures~\ref{fig:runtime-individual}~and~\ref{fig:runtime-total} show the
 measured total execution time from each of the different workflows.  In cases
@@ -186,13 +194,13 @@ nodes requires each core to process 366 blocks.  The key to making the
 analysis.  If the analysis portion does not scale particularly well, the
 compute nodes need sufficient work to hide the analysis cost.
 
-\begin{figure}[htbp]
-\begin{centering}
-\includegraphics[scale=0.7]{figures/total-runtime-all}
-\caption{Execution time comparison for the 1.5M block dataset.}
-\label{fig:runtime-total}
-\par\end{centering}
-\end{figure}
+% Beacuse we have such large figures, the figures tend to be pushed way
+% farther back in the document than they are referred to in the text, which
+% is annoying when you are trying to read it.  This command will force all
+% pending floats to be written out before continuing.  It can leave a large
+% empty space in the text, but that ugliness is still better than the
+% alternative.
+\FloatBarrier
 
 To better understand exactly where the time is being spent, we collect
 detailed timings of each application using a combination of instrumented timers
@@ -302,6 +310,14 @@ the Lustre file system on Cielo is quite strong.
 \fix{Ron: more analysis.. get file sizes, data rates, ...}.
 
 
+% Beacuse we have such large figures, the figures tend to be pushed way
+% farther back in the document than they are referred to in the text, which
+% is annoying when you are trying to read it.  This command will force all
+% pending floats to be written out before continuing.  It can leave a large
+% empty space in the text, but that ugliness is still better than the
+% alternative.
+\FloatBarrier
+
 \subsection{Time-Series Analysis}
 
 To illustrate how operation performance changes throughout a single run
@@ -313,6 +329,15 @@ the experiments that use 8K processors of the 1.5M block dataset --- the ``sweet
 spot'' mentioned in Section~\ref{sec:TotalExecutionTime} --- because it is one of
 the interesting places where the performance of the refined \insitu application
 and both \intransit applications all have similar total runtime.
+
+\begin{figure}[bp]
+\begin{centering}
+\includegraphics[scale=0.75]{figures/active-blocks-series}
+\caption[Active Blocks]{Number of active blocks used in the course of a
+500-cycle run of CTH.}
+\label{fig:active-blocks}
+\end{centering}
+\end{figure}
 
 Since we are running the adaptive-mesh refinement (AMR)
 variant of CTH, the number of ``active'' blocks gets
@@ -329,37 +354,7 @@ number of blocks is constant.
 %In our particular execution, the number of
 %active blocks actually decreases slightly (less than .01\%).
 
-\begin{figure}[htbp]
-\begin{centering}
-\includegraphics[scale=1]{figures/active-blocks-series}
-\caption[Active Blocks]{Number of active blocks used in the course of a
-500-cycle run of CTH.}
-\label{fig:active-blocks}
-\end{centering}
-\end{figure}
-
-
-Figure~\ref{fig:time-series} shows
-the time contribution for a 10-cycle period of each important operation in the
-\insitu and \intransit applications using 8K processors.  One observation
-consistent across the different workflows is that the time spent performing
-CTH computation tends to increase throughout the life of the application,
-which is interesting considering that there not a significant increase in
-either the number of blocks or the visualization processing time.
-
-We also observe for the \intransit applications that as long as there is some
-wait time, the total run time for each 10-cycle period remains relatively flat
-throughout the life of the application.  We see this in both the \intransit
-extra and \intransit inclusive experiments.  The reason for this is fairly
-obvious.  If we assume the ``Viz'' operation on the service is essentially
-constant, then the wait time should be the difference between the Viz time on
-the service and the CTH time on the client.  As the CTH time increases, the
-wait time decreases by the same amount.  Since the transfer time is close to
-constant (it's based on the number of blocks), the total time at each 10-cycle
-period remains about the same.
-
-
-\begin{figure*}[htbp]
+\begin{figure*}[bp]
 \begin{centering}
 \vspace{-24pt}
 \subfloat[\Insitu baseline.]{
@@ -390,6 +385,35 @@ CTH experiment.
 \end{centering}
 \end{figure*}
 
+
+Figure~\ref{fig:time-series} shows
+the time contribution for a 10-cycle period of each important operation in the
+\insitu and \intransit applications using 8K processors.  One observation
+consistent across the different workflows is that the time spent performing
+CTH computation tends to increase throughout the life of the application,
+which is interesting considering that there not a significant increase in
+either the number of blocks or the visualization processing time.
+
+We also observe for the \intransit applications that as long as there is some
+wait time, the total run time for each 10-cycle period remains relatively flat
+throughout the life of the application.  We see this in both the \intransit
+extra and \intransit inclusive experiments.  The reason for this is fairly
+obvious.  If we assume the ``Viz'' operation on the service is essentially
+constant, then the wait time should be the difference between the Viz time on
+the service and the CTH time on the client.  As the CTH time increases, the
+wait time decreases by the same amount.  Since the transfer time is close to
+constant (it's based on the number of blocks), the total time at each 10-cycle
+period remains about the same.
+
+
+% Beacuse we have such large figures, the figures tend to be pushed way
+% farther back in the document than they are referred to in the text, which
+% is annoying when you are trying to read it.  This command will force all
+% pending floats to be written out before continuing.  It can leave a large
+% empty space in the text, but that ugliness is still better than the
+% alternative.
+\FloatBarrier
+
 \subsection{Runtime Variance}
 
 An increasingly important metric for HPC applications is runtime variance.  A
@@ -399,13 +423,6 @@ system noise, and software techniques like garbage collection.
 Instead of trying to understand the cause of inconsistent behavior in our
 experiments, we to document the results with the intent of addressing
 them further in future work.
-
-The plots in Figures~\ref{fig:insitu-variance}~and~\ref{fig:intransit-variance}
-show the mean and standard error (the standard deviation from the mean) of the
-important \insitu and \intransit operations for the 8k-core
-experiments.  In each plot, we gathered data from five separate 500-cycle
-experiments.
-
 
 \begin{figure*}[htbp]
 \begin{centering}
@@ -462,16 +479,49 @@ standard error for the \intransit transfer and wait operations.
 \end{figure*}
 
 
+The plots in Figures \ref{fig:insitu-variance} and
+\ref{fig:intransit-variance} show the mean and standard error (the standard
+deviation from the mean) of the important \insitu and \intransit operations
+for the 8k-core experiments.  In each plot, we gathered data from five
+separate 500-cycle experiments.  Most of our measurements show a small
+amount of variance between experiments.  There are some outlier
+measurements in Figures \ref{fig:cth-variance} and
+\ref{fig:intransit-extra-wait-variance} that we attribute to another event
+running concurrently on Cielo by happenstance causing contention.
+\fix{Ron, my hypothesis is that for each one one measurement is either much
+  higher or much lower than the rest, driving up the standard deviation.
+  Can you check that?  I don't see all 5 measurements in the raw
+  directory.}  The transfer time of \intransit workflows (Figures
+\ref{fig:intransit-extra-xfer-variance} and
+\ref{fig:intransit-inclusive-xfer-variance}) have more variance than the
+rest, which we attribute to the Cielo job scheduler not taking into account
+the communication between the client and server jobs. \fix{Is this a
+  reasonable hypothesis?}
+
+
+% Beacuse we have such large figures, the figures tend to be pushed way
+% farther back in the document than they are referred to in the text, which
+% is annoying when you are trying to read it.  This command will force all
+% pending floats to be written out before continuing.  It can leave a large
+% empty space in the text, but that ugliness is still better than the
+% alternative.
+\FloatBarrier
+
 
 \subsection{Scaling Analysis}
 \label{sec:node-scaling}
 
 \subsubsection{Block Processing Rate}
 
-One way to get a good understanding of the scalability of an operation is to
-look at the throughput or processing rate.  In this case, we look at the rate
-the analysis operation processes blocks as we increase the number of client
-cores.
+One way to get a good understanding of the scalability of an operation is
+to look at the throughput or processing rate.  In this case, we look at the
+rate at which the analysis operation processes blocks as we increase the
+number of client cores. \fix{Ron, in talking to Nathan, it seems that the
+  blocks/second rate shouldl take into account all of the blocks, not just
+  the active blocks.  This is because the analysis has to run on inactive
+  blocks because they are frequently part of the main mass.  However, I
+  suspect these measurements are using ``active blocks'' instead of actual
+  blocks.}
 
 
 
@@ -503,17 +553,21 @@ the four different applications.}
 \end{centering}
 \end{figure*}
 
-Figure~\ref{fig:processing-rates} shows the processing rates
-of the analysis portion of the \intransit applications and the ``effective''
-processing rate of the analysis portion (transfer time plus wait time) of the
-\intransit applications.  As we expect, the baseline application scales fine for
-the small data set, but starts to really drop off for the medium and large data.
-We see a dramatic improvement in the \insitu refined application as it scales
-consistently well all the way to 32K cores.  The \intransit applications are
-also not that surprising.  Since we use a fixed number of nodes for a dataset,
-we expect the effective processing rate to be essentially flat.  The dropoff for
-the medium and large datasets is due to the excessive waiting, identified in
-Figures~\ref{fig:intransit-extra-bar}~and~\ref{fig:intransit-inclusive-bar}.
+Figure~\ref{fig:processing-rates} shows the processing rates of the
+analysis portion of the \intransit applications and the ``effective''
+processing rate of the analysis portion (transfer time plus wait time) of
+the \intransit applications.  Note that the effective \intransit rate does
+not include any processing time overlapped with the simulation execution,
+and thus could be much larger than the actual processing rate.  As we
+expect, the baseline application scales fine for the small data set, but
+starts to really drop off for the medium and large data.  We see a dramatic
+improvement in the \insitu refined application as it scales consistently
+well all the way to 32K cores.  The \intransit applications are also not
+that surprising.  Since we use a fixed number of nodes for a dataset, we
+expect the effective processing rate to be essentially flat.  The dropoff
+for the medium and large datasets is due to the excessive waiting,
+identified in Figures \ref{fig:intransit-extra-bar} and
+\ref{fig:intransit-inclusive-bar}.
 
 
 
@@ -558,7 +612,8 @@ time between all three of the experiments.  We believe the relatively poor
 network performance in the 2-core experiment is caused by contention, because
 only 2 cores can process the bulk-data requests at a time, the clients are
 having to wait either for network transfers to complete, or for the server to
-send a finish copying the data to a server buffer.  The larger wait time on the
+send a finish copying the data to a server buffer. \fix{Ron, reword the
+  second part of this sentence (after the ``or'').}  The larger wait time on the
 2-core experiment tells us that for this size problem, there is a computational
 benefit to increasing the number of cores performing the analysis.
 
@@ -620,6 +675,14 @@ digest and understand these plots.  May need to run more results.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+% Beacuse we have such large figures, the figures tend to be pushed way
+% farther back in the document than they are referred to in the text, which
+% is annoying when you are trying to read it.  This command will force all
+% pending floats to be written out before continuing.  It can leave a large
+% empty space in the text, but that ugliness is still better than the
+% alternative.
+\FloatBarrier
 
 \subsection{Memory}
 The following memory plots were taken by examining free memory on the nodes
