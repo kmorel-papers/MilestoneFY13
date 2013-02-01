@@ -9,7 +9,7 @@ library(ggplot2)
 # each directory has a number of results stored in files with
 # the name "client_timings*.csv".
 ###########################################################
-processClientTimings <- function(directories) {
+processClientTimings <- function(directories, pattern="client_timings*.csv") {
 
 	data <- {}
 # For each directory, gather statistics on each experiment
@@ -17,7 +17,7 @@ processClientTimings <- function(directories) {
 
 		print(dir)
 
-		files <- list.files(path=dir, pattern="client_timings.*csv", full.names=TRUE)
+		files <- list.files(path=dir, pattern=pattern, full.names=TRUE)
 		numfiles <- length(files)
 
 		my.data <- do.call("cbind", lapply(files, read.csv, comment.char="%"))
