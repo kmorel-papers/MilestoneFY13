@@ -119,9 +119,9 @@ Table~\ref{tab:ScalingOverview} shows the range of core sizes used for the
 various experiments.  For every application we used the maximum 16
 cores-per-node for the CTH client, since CTH is primarily bound by
 computation and scales very well.  For the \intransit experiments in this
-section, we used 8 cores for each service node.  In
-Section~\ref{sec:node-scaling} we discuss \intransit performance under different
-core-per-node counts.
+section, we used 8 cores for each service node.  The exception is in
+Section~\ref{sec:node-scaling} where we discuss \intransit performance
+under different core-per-node counts.
 
 %The objective is run experiments with datasets representative of real
 %production runs.  The minimum number of cores per dataset is limited by
@@ -261,7 +261,7 @@ Init,'' increases, accounting for more than 1/3 of the total time for a
 but is still large enough to warrant further study.
 
 The \intransit workflow results in
-Figures~\ref{fig:intransit-extra-bar}~and~\ref{fig:intransit-internal-bar}
+Figures~\ref{fig:intransit-extra-bar}~and~\ref{fig:intransit-inclusive-bar}
 show that the \intransit approach effectively hides the analysis overhead
 when the clients have sufficient compute resources.  For the 1.5M block
 dataset, Figure~\ref{fig:intransit-extra-bar} shows that \intransit with an
@@ -269,7 +269,7 @@ extra 128 nodes successfully hides most of the cost of analysis at 4K and 8K
 nodes, but the wait time at larger core counts eliminates any benefit of
 \intransit using the baseline algorithm.
 
-The \intransit workflow, shown in Figure~\ref{fig:intransit-internal-bar},
+The \intransit workflow, shown in Figure~\ref{fig:intransit-inclusive-bar},
 which carves out a subset of 100 nodes for analysis, has interesting
 results as well.  Observe that the number of cores used for CTH is much
 smaller, leading to an increase in the time spent doing CTH computation.
@@ -464,6 +464,7 @@ standard error for the \intransit transfer and wait operations.
 
 
 \subsection{Scaling Analysis}
+\label{sec:node-scaling}
 
 \subsubsection{Block Processing Rate}
 
@@ -479,20 +480,20 @@ cores.
 \vspace{-12pt}
 \subfloat[\Insitu baseline.]{
   \includegraphics[width=0.45\linewidth]{figures/in-situ-unopt-rate}
-  \label{fig:service-2-cores}
+  \label{fig:in-situ-unopt-rate}
 }
 \subfloat[\Insitu refined.]{
   \includegraphics[width=0.45\linewidth]{figures/in-situ-opt-rate}
-  \label{fig:service-2-cores}
+  \label{fig:in-situ-opt-rate}
 }
 
 \subfloat[\Intransit with extra nodes.]{
   \includegraphics[width=0.45\linewidth]{figures/in-transit-extra-rate}
-  \label{fig:service-4-cores}
+  \label{fig:in-transit-extra-rate}
 }
 \subfloat[\Intransit with internal nodes.]{
   \includegraphics[width=0.45\linewidth]{figures/in-transit-inclusive-rate}
-  \label{fig:service-8-cores}
+  \label{fig:in-transit-inclusive-rate}
 }
 
 
@@ -568,41 +569,41 @@ benefit to increasing the number of cores performing the analysis.
 \vspace{-12pt}
 \subfloat[Total time (33k blocks).]{
   \includegraphics[width=0.3\linewidth]{figures/in-transit-33k-total}
-  \label{fig:core-scaling-33k-total}
+  \label{fig:in-transit-33k-total}
 }
 \subfloat[Transfer time (33k blocks).]{
   \includegraphics[width=0.3\linewidth]{figures/in-transit-33k-xfer}
-  \label{fig:core-scaling-33k-xfer}
+  \label{fig:in-transit-33k-xfer}
 }
 \subfloat[Wait time (33k blocks).]{
   \includegraphics[width=0.3\linewidth]{figures/in-transit-33k-wait}
-  \label{fig:core-scaling-33k-wait}
+  \label{fig:in-transit-33k-wait}
 }
 
 \subfloat[Total time (218k blocks).]{
   \includegraphics[width=0.3\linewidth]{figures/in-transit-218k-total}
-  \label{fig:core-scaling-218k-total}
+  \label{fig:in-transit-218k-total}
 }
 \subfloat[Transfer time (218k blocks).]{
   \includegraphics[width=0.3\linewidth]{figures/in-transit-218k-xfer}
-  \label{fig:core-scaling-218k-total}
+  \label{fig:in-transit-218k-xfer}
 }
 \subfloat[Wait time (218k blocks).]{
   \includegraphics[width=0.3\linewidth]{figures/in-transit-218k-wait}
-  \label{fig:core-scaling-218k-total}
+  \label{fig:in-transit-218k-wait}
 }
 
 \subfloat[Total time  (1.5m blocks).]{
   \includegraphics[width=0.3\linewidth]{figures/in-transit-1m-total}
-  \label{fig:core-scaling-1m-total}
+  \label{fig:in-transit-1m-total}
 }
 \subfloat[Transfer time (1.5m blocks).]{
   \includegraphics[width=0.3\linewidth]{figures/in-transit-1m-xfer}
-  \label{fig:core-scaling-1m-xfer}
+  \label{fig:in-transit-1m-xfer}
 }
 \subfloat[Wait time (1.5m blocks).]{
   \includegraphics[width=0.3\linewidth]{figures/in-transit-1m-wait}
-  \label{fig:core-scaling-1m-wait}
+  \label{fig:in-transit-1m-wait}
 }
 
 \caption[\Intransit core scaling.] {\Intransit
