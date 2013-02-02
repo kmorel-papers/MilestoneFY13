@@ -2,7 +2,11 @@
 source("pvspyPlotDefaults.R")
 source("processVariance.R")
 
+# insitu_opt_dirs, insitu_unopt_dirs, intransit_dirs, intransit_inclusive_dirs
+source("pvspyDirs.R")
+
 write_pdf <- TRUE
+
 
 insitu_opt_dir <- "../amr_in-situ-hpctoolkit/pipe-7-08192"
 insitu_unopt_dir <- "../amr_in-situ-unopt/pipe-7-08192"

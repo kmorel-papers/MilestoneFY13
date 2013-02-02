@@ -22,6 +22,9 @@ source("processClientTimings.R")
 # Load plot defaults (pvspy_colors, pvspy_shapes, pvspy_lines)
 source("pvspyPlotDefaults.R")
 
+# insitu_opt_dirs, insitu_unopt_dirs, intransit_dirs, intransit_inclusive_dirs
+source("pvspyDirs.R")
+
 # Override the plot height and width
 pvspy_plot_height <- 4 
 pvspy_plot_width <- 5
@@ -33,19 +36,6 @@ write_pdf <- TRUE
 #################################################
 # Extract Data From Result Files (only the results up to 32K)
 #################################################
-
-
-# paths to hpctoolkit experiments
-insitu_opt_dirs <- list.files(path="../amr_in-situ-hpctoolkit", full.names=TRUE, pattern="pipe-.*", recursive=FALSE)[1:12]
-
-intransit_dirs <- list.files(path="../amr_in-transit-hpctoolkit", full.names=TRUE, pattern="pipe-.*", recursive=FALSE)[1:12]
-spyplot_file_dirs <- list.files(path="../amr-file-hpctoolkit", full.names=TRUE, pattern="pipe-.*", recursive=FALSE)[1:12]
-
-
-# I will soon have hpctoolkit dirs for these as well
-intransit_inclusive_dirs <- list.files(path="../amr_in-transit-inclusive", full.names=TRUE, pattern="pipe-.*", recursive=FALSE)[1:12]
-insitu_unopt_dirs <- list.files(path="../amr_in-situ-unopt", full.names=TRUE, pattern="pipe-.*", recursive=FALSE)[1:12]
-
 
 
 # Use HPCToolkit data to get initialization timings
@@ -65,9 +55,6 @@ insitu_viz_init_err <- insitu_hpc_data$viz_init_err / 1e6
 intransit_viz_init_secs <- intransit_hpc_data$viz_init_mean / 1e6
 intransit_viz_init_err <- intransit_hpc_data$viz_init_err / 1e6
 
-# Use client timings to get in-transit data
-#intransit_data <- processClientTimings(intransit_dirs)
-#intransit_inclusive_data <- processClientTimings(intransit_inclusive_dirs)
 
 # Use extracted timings for in-situ (when we have HPCTOOLKIT data for all data, we will not do this)
 insitu_opt_data <- processExtractedTimings(insitu_opt_dirs)

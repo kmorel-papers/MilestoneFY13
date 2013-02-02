@@ -27,16 +27,17 @@ processExtractedTimings <- function(directories) {
 		tmp <- str_replace(dir, pattern=".*pipe-", replacement="pipe-")
 		levels <- as.numeric(unlist(str_split(tmp, "-"))[2])
 
+		# The number of blocks represents the mean allocated blocks
 		if (levels == 3) {
 			numblocks <- 1146
 		} else if (levels == 4) {
 			numblocks <- 5080
 		} else if (levels == 5) {
-			numblocks <- 33094
+			numblocks <- 32965
 		} else if (levels == 6) {
-			numblocks <- 218510
+			numblocks <- 218362
 		} else if (levels == 7) {
-			numblocks <- 1498866
+			numblocks <- 1498445
 		} else if (levels == 8) {
 			numblocks <- 10728933
 		}

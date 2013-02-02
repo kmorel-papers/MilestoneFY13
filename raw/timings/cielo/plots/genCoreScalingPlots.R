@@ -22,6 +22,9 @@ source("processClientTimings.R")
 # Load plot defaults (pvspy_colors, pvspy_shapes, pvspy_lines)
 source("pvspyPlotDefaults.R")
 
+# insitu_opt_dirs, insitu_unopt_dirs, intransit_dirs, intransit_inclusive_dirs
+source("pvspyDirs.R")
+
 pvspy_plot_width <- 4
 pvspy_plot_height <- 4
 
@@ -30,8 +33,8 @@ write_pdf <- TRUE
 
 
 # Use HPCToolkit data to get initialization timings
-dirs <- list.files(path="../amr_in-situ-hpctoolkit", full.names=TRUE, pattern="pipe-.*", recursive=FALSE)[1:12]
-insitu_hpc_data <- processHPCClient(directories=dirs)
+dirs <- insitu_opt_dirs
+insitu_hpc_data <- processHPCClient(directories=pvspy_opt_dirs)
 
 # CTH Initialization
 amrini_secs <- insitu_hpc_data$amrini_mean / 1e6   # convert to seconds (same for insitu and in-transit)
@@ -39,7 +42,7 @@ amrini_err <- insitu_hpc_data$amrini_err / 1e6   # convert to seconds (same for 
 
 
 # Now get the data for the 2, 4, 8 core runs
-dirs <- list.files(path="../amr_in-transit", full.names=TRUE, pattern="pipe-.*", recursive=FALSE)[1:12]
+dirs <- intransit_dirs
 
 data2 <- processClientTimings(directories=dirs, pattern="client_timings-02.csv")
 data4 <- processClientTimings(directories=dirs, pattern="client_timings-04.csv")
