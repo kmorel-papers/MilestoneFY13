@@ -285,11 +285,13 @@ Even with this increase in computational cost, there is still benefit.  At
 4K and 8K, all of the analysis cost is hidden.  At 8K, the total runtime is
 slightly less than the refined version of \insitu.  This result is a bit
 of a surprise given that they are both using the exact same number of
-resources.  The difference, it appears, is being able to hide the
-initialization as well as the analysis cost. \fix{Are we confident in
-  saying this? Perhaps describe what data leads to this conclusion.}  An
-improved algorithm for initialization could give the advantage back to the
-refined \insitu application.
+resources.
+
+%The difference, it appears, is being able to hide the
+%initialization as well as the analysis cost. \fix{Are we confident in
+%  saying this? Perhaps describe what data leads to this conclusion.}  An
+%improved algorithm for initialization could give the advantage back to the
+%refined \insitu application.
 
 Given more time, it would have been interesting to measure
 performance of the \intransit workflows using the refined version of
@@ -516,7 +518,9 @@ the communication between the client and server jobs. \fix{Is this a
 One way to get a good understanding of the scalability of an operation is
 to look at the throughput or processing rate.  In this case, we look at the
 rate at which the analysis operation processes blocks as we increase the
-number of client cores. \fix{Ron, in talking to Nathan, it seems that the
+number of client cores.
+
+\fix{Ron, in talking to Nathan, it seems that the
   blocks/second rate shouldl take into account all of the blocks, not just
   the active blocks.  This is because the analysis has to run on inactive
   blocks because they are frequently part of the main mass.  However, I
@@ -609,13 +613,13 @@ for a 128-core job using 2, 4, and 8 cores for the server nodes.}
 
 The tracing results show a dramatic difference in network performance and wait
 time between all three of the experiments.  We believe the relatively poor
-network performance in the 2-core experiment is caused by contention, because
+network performance in the 2-core experiment is caused by contention. Because
 only 2 cores can process the bulk-data requests at a time, the clients are
-having to wait either for network transfers to complete, or for the server to
-send a finish copying the data to a server buffer. \fix{Ron, reword the
-  second part of this sentence (after the ``or'').}  The larger wait time on the
-2-core experiment tells us that for this size problem, there is a computational
-benefit to increasing the number of cores performing the analysis.
+either waiting for network transfers to complete, or the are waiting for the
+server to finish copying the data to a server buffer, causing the request to
+sit in the server's pending queue. The larger wait time on the 2-core experiment
+tells us that for this size  problem, there is a computational benefit to
+increasing the number of cores  performing the analysis.
 
 
 
