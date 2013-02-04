@@ -8,8 +8,7 @@ analysis places on the simulation and the efficiency with which it can be
 done.  These data summarize evaluations run over the course of 9.36 million
 core-hours of execution.  The results come from measurements taken from
 instrumented code as well as the HPCToolkit profiling
-tool~\cite{adhianto:hpctoolkit}. \fix{This statement should satisfy the
-milestone requirement.}
+tool~\cite{adhianto:hpctoolkit}.
 
 \subsection{Experimental Setup}
 
@@ -484,21 +483,16 @@ standard error for the \intransit transfer and wait operations.
 The plots in Figures \ref{fig:insitu-variance} and
 \ref{fig:intransit-variance} show the mean and standard error (the standard
 deviation from the mean) of the important \insitu and \intransit operations
-for the 8k-core experiments.  In each plot, we gathered data from five or more
- 500-cycle experiments.  Most of our measurements show a small
-amount of variance between experiments.  There are some outlier
-measurements in Figures \ref{fig:cth-variance} and
-\ref{fig:intransit-extra-wait-variance} that we attribute to another event
-running concurrently on Cielo by happenstance causing contention.
-\fix{Ron, my hypothesis is that for each one one measurement is either much
-  higher or much lower than the rest, driving up the standard deviation.
-  Can you check that?  I don't see all 5 measurements in the raw
-  directory.} \fix{Yes.  A couple of points for CTH are high.  There are now 8
-  experiments in that directory.  Not sure why those data points are
-  high.  } The transfer time of \intransit workflows (Figures
-  \ref{fig:intransit-extra-xfer-variance} and \ref{fig:intransit-inclusive-xfer-variance}) have more variance than the rest, which we attribute to the Cielo job scheduler not taking into account
-the communication between the client and server jobs. \fix{Is this a
-  reasonable hypothesis?}
+for the 8k-core experiments.  In each plot, we gathered data from five or
+more 500-cycle experiments.  Most of our measurements show a small amount
+of variance between experiments.  There are some outlier measurements in
+Figures \ref{fig:cth-variance} and \ref{fig:intransit-extra-wait-variance}
+that we attribute to another event running concurrently on Cielo by
+happenstance causing contention.  The transfer time of \intransit workflows
+(Figures \ref{fig:intransit-extra-xfer-variance} and
+\ref{fig:intransit-inclusive-xfer-variance}) have more variance than the
+rest, which we attribute to the Cielo job scheduler not taking into account
+the communication between the client and server jobs.
 
 
 % Beacuse we have such large figures, the figures tend to be pushed way
