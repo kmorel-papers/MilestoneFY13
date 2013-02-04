@@ -32,6 +32,33 @@ configured through Python scripts.
   \label{fig:CatalystCoupling}
 \end{figure}
 
+\subsection{Catalyst Architecture}
+
+Catalyst boils the ParaView and VTK architecture down into five API calls that
+manage all the processing required for operating a processing pipeline.
+Initialize and Finalize are expected calls when dealing with MPI; this is where
+Catalyst will first access MPI World.  RequestDataDescription and CoProcess
+handle the hand-shake from the simulation code to Catalyst.
+RequestDataDescription passed current time information to Catalyst, and
+Catalyst passes back whether or not it should process and which fields it
+needs.  This may allow the simulation code, through the adaptor described
+below, to efficiently pass only what is necessary at that time.  The CoProcess
+call is where control is passed to Catalyst for processing.  This call will
+hang until Catalyst finishes and returns control to the simulation.
+
+The AddPipeline call is where a majority of the work is done.  Although there
+is usually only one pipeline object passed to Catalyst, it is possible to pass
+several.  It is also common for this pipeline object to be written in Python
+because this is the native scripting language for ParaView, but it is possible
+for the pipeline to be hard coded C++.  There is a well supported plugin for
+ParaView that will automatically create Catalyst Python scripts automatically
+from within the GUI, based on traces of user interaction with the GUI.  While
+there is some overhead cost to using Python code in the pipeline here, it is
+very low due to its nature as a glue code combining the C++ filters which are
+written in VTK.  The advantage is that the scripted pipeline can change to
+access any feature available in Catalyst while only compiling the capability
+once.
+
 Since Catalyst will extend to a variety of existing simulation codes, our
 design does not expect its API to easily and efficiently process internal
 structures in all possible codes directly.  Our solution is to rely on
