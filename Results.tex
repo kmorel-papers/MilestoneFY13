@@ -63,8 +63,8 @@ following CTH and analysis workflows.
   approach changes.
 
 \item [Spyplot file] A CTH job that writes Spyplot files instead of doing
-  analysis.  This workflow represents the traditional post-processing
-  approach.
+  analysis.  This workflow represents
+  the traditional post-processing approach.
 \end{description}
 
 All applications complete 500 cycles (i.e., timestep calculations) of the
@@ -98,7 +98,7 @@ directly instruct CTH to output spyplot data every 10 cycles.
 }
 
 \vspace{-6pt}
-\subfloat[Spyplot I/O (no analysis)]{
+\subfloat[Spyplot I/O (post-processing analysis)]{
   \includegraphics[width=0.48\linewidth]{figures/spyplot-file-line}
   \label{fig:spyplot-file-line}
 }
@@ -237,7 +237,7 @@ wait time occurs.
 }
 
 \vspace{-24pt}
-\subfloat[Spyplot I/O (no analysis)]{
+\subfloat[Spyplot I/O (post-processing analysis)]{
   \includegraphics[width=0.5\linewidth]{figures/spyplot-file-bar}
   \label{fig:spyplot-file-bar}
 }
@@ -306,9 +306,11 @@ new decomposition.
 
 Another surprising result is the performance of the spyplot file application.
 For the size of datasets we studied, this application performed quite well, showing that
-the Lustre file system on Cielo is quite strong.
+the Lustre file system on Cielo is quite strong.  The plots include the time
+spent writing the spyplot files during the experiment and the measured time to
+perform the analysis as a post-processing step.
 
-\fix{Ron: more analysis.. get file sizes, data rates, ...}.
+\fix{Ron: more analysis.. get file sizes, data rates, ...}
 
 
 % Beacuse we have such large figures, the figures tend to be pushed way
