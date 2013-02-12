@@ -1,14 +1,14 @@
 #################################################
 # Generate plots that show total runtime
-# 
-# Unfortunately, we didn't capture total runtime for all the 
+#
+# Unfortunately, we didn't capture total runtime for all the
 # plots.   I would like to use HPCToolkit data, but we only
-# captured HPCToolkit data for in-situ (optimized) and 
+# captured HPCToolkit data for in-situ (optimized) and
 # in-transit (extra nodes).   We use HPCToolkit runs
 # to extract timings for amrini and viz_init (pvspy_fil),
-# then we used client_timings*.csv and extracted*.csv to 
-# get CTH and viz costs during the cycle calculations. 
-# 
+# then we used client_timings*.csv and extracted*.csv to
+# get CTH and viz costs during the cycle calculations.
+#
 #################################################
 
 library(stringr)
@@ -40,7 +40,7 @@ write_pdf <- TRUE
 # Use HPCToolkit data to get initialization timings
 insitu_hpc_data <- processHPCClient(directories=insitu_opt_dirs)
 intransit_hpc_data <- processHPCClient(directories = intransit_dirs)
-amr_file_hpc_data <- processHPCClient(directories = amr_file_dirs)
+amr_file_hpc_data <- processHPCClient(directories = spyplot_file_dirs)
 
 # CTH Initialization
 amrini_secs <- insitu_hpc_data$amrini_mean / 1e6   # convert to seconds (same for insitu and in-transit)
@@ -63,9 +63,11 @@ insitu_opt_data <- processExtractedTimings(insitu_opt_dirs)
 insitu_unopt_data <- processExtractedTimings(insitu_unopt_dirs)
 intransit_data <- processExtractedTimings(intransit_dirs)
 intransit_inclusive_data <- processExtractedTimings(intransit_inclusive_dirs)
-amr_file_data <- processExtractedTimings(amr_file_dirs)
 
-# Use extracted timings for in-situ 
+amr_file_data <- processExtractedTimings(spyplot_file_dirs)
+amr_file_data <- processHPCClient(spyplot_file_dirs)
+
+# Use extracted timings for in-situ
 
 
 ##########   PLOTS COMPARING ALL THE DATA #####################
@@ -90,9 +92,25 @@ d4 <- intransit_inclusive_data
 d4$complete <- (d4$totalmean)*51 + amrini_secs + intransit_viz_init_secs
 d4$complete_err <- (d4$totalerr*51) + amrini_err + intransit_viz_init_err
 
+#d5 <- amr_file_data
+#d5$complete <- (d5$totalmean)*51 + amrini_secs + intransit_viz_init_secs
+#d5$complete_err <- (d5$totalerr*51) + amrini_err + intransit_viz_init_err
+
+
 d5 <- amr_file_data
-d5$complete <- (d5$totalmean)*51 + amrini_secs + intransit_viz_init_secs
-d5$complete_err <- (d5$totalerr*51) + amrini_err + intransit_viz_init_err
+d5$complete <- d5$total_mean/1e6
+d5$complete_err <- d5$total_err/1e6
+
+## ------ MANUALLY ADD POST-PROCESSING TIME
+
+# 183.21 secs for the 33k blocks
+d5$complete[d5$levels == 5] <- d5$complete[d5$levels == 5] + 183.21
+# 646.24 secs for 219k blocks
+d5$complete[d5$levels == 6] <- d5$complete[d5$levels == 6] + 646.24
+# 2576.43 secs for 1.5m blocks
+d5$complete[d5$levels == 7] <- d5$complete[d5$levels == 7] +  2576.43
+
+## ------
 
 # take only the large data set
 d1 <- d1[d1$levels == "7",]
@@ -100,6 +118,13 @@ d2 <- d2[d2$levels == "7",]
 d3 <- d3[d3$levels == "7",]
 d4 <- d4[d4$levels == "7",]
 d5 <- d5[d5$levels == "7",]
+
+# use only the cores, complete, and complete_err cols
+d1 <- cbind.data.frame(cores=d1$cores, complete=d1$complete, complete_err=d1$complete_err, levels=d1$levels)
+d2 <- cbind.data.frame(cores=d2$cores, complete=d2$complete, complete_err=d2$complete_err, levels=d2$levels)
+d3 <- cbind.data.frame(cores=d3$cores, complete=d3$complete, complete_err=d3$complete_err, levels=d3$levels)
+d4 <- cbind.data.frame(cores=d4$cores, complete=d4$complete, complete_err=d4$complete_err, levels=d4$levels)
+d5 <- cbind.data.frame(cores=d5$cores, complete=d5$complete, complete_err=d5$complete_err, levels=d5$levels)
 
 # change group names
 d1$levels <- "In Situ (baseline)"
@@ -110,7 +135,7 @@ d5$levels <- "Spyplot File"
 
 
 data <- rbind.data.frame(d1, d2, d3, d4, d5)
-names(data)[1] <- "Experiments"
+names(data)[4] <- "Experiments"
 
 
 # Compare untuned experiments
@@ -122,12 +147,12 @@ plot <- ggplot(data, aes(x=cores, y=complete/60, ymax=200, ymin=0)) +
 	scale_color_manual(values=pvspy_colors[1:5]) +
 	scale_shape_manual(values=pvspy_shapes[1:5]) +
 	scale_linetype_manual(values=pvspy_lines[1:5]) +
-	xlab("Client Ranks") + ylab("Time (min)") + 
-	theme_bw() + 
+	xlab("Client Ranks") + ylab("Time (min)") +
+	theme_bw() +
 	theme(legend.position=c(0.8, 0.8),legend.key=element_rect(color="white"),legend.background=element_rect(color="black"))
 
 if (with_title==TRUE) {
-   plot <- plot + ggtitle("Total Execution Time for 500 Cycles (1.5m blocks)") 
+   plot <- plot + ggtitle("Total Execution Time for 500 Cycles (1.5m blocks)")
 }
 
 if (write_pdf == TRUE) {
@@ -138,7 +163,7 @@ plot
 ##########   PLOT WITHOUT Optimized  #####################
 
 data <- rbind.data.frame(d1, d3, d4, d5)
-names(data)[1] <- "Experiments"
+names(data)[4] <- "Experiments"
 
 
 
@@ -151,8 +176,8 @@ plot <- ggplot(data, aes(x=cores, y=complete/60, ymax=200, ymin=0)) +
 	scale_color_manual(values=pvspy_colors[c(1,3,4,5)]) +
 	scale_shape_manual(values=pvspy_shapes[c(1,3,4,5)]) +
 	scale_linetype_manual(values=pvspy_lines[c(1,3,4,5)]) +
-	xlab("Client Ranks") + ylab("Time (min)") + 
-	theme_bw() + 
+	xlab("Client Ranks") + ylab("Time (min)") +
+	theme_bw() +
 	theme(legend.position=c(0.8, 0.8),legend.key=element_rect(color="white"),legend.background=element_rect(color="black"))
 
 if (with_title == TRUE) {
