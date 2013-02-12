@@ -9,7 +9,7 @@ library(ggplot2)
 # each directory has a number of results stored in files with
 # the name "client_timings*.csv".
 ###########################################################
-processClientTimings <- function(directories, pattern="client_timings*.csv") {
+processClientTimings <- function(directories, pattern="client_timings.*.csv") {
 
 	data <- {}
 # For each directory, gather statistics on each experiment
