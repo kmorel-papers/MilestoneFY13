@@ -21,6 +21,6 @@ set(tex_sources
 add_latex_document(MilestoneFY13.tex
   INPUTS ${tex_sources}
   BIBFILES MilestoneFY13.bib oldfield.bib
-  IMAGE_DIRS SANDimages figures
+  IMAGE_DIRS SANDimages figures Summary
   DEFAULT_PDF
   )
