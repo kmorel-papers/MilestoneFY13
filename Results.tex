@@ -24,43 +24,67 @@ have 32 GB of memory.  The interconnect consists of a proprietary Cray Gemini
 Network with a 3D Torus topology and has a peak throughput rate of 6 GB/s/link.
 
 This report includes strong scaling and weak scaling results from the
-following CTH and analysis workflows.
+following CTH and analysis experiments.  These represent three different
+workflows, two of which have two different configurations for a total of
+five experiments.
 
 \begin{description}
 
-\item [\Insitu baseline:] A CTH job that directly runs an \insitu analysis
-  using the baseline version of our watertight surface algorithm.  As
-  described in Section~\ref{sec:UseCase}, the baseline version of the
-  algorithm includes a somewhat unnecessary step of global communication to
-  find AMR block neighbors.  We include results from this workflow for two
-  reasons: First, we are not able to apply the same optimization to the
-  \intransit workflows, so this provides an apples-to-apples comparison
-  of the benefit an \intransit approach could give using the same
-  algorithm.  Second, we anticipate other important analysis algorithms
-  could have similar communication characteristics.  For example, a
-  connected components algorithm could require communication between most
-  or all processes to resolve the connectivity of large fragments.
+\item[\Insitu:] A CTH job that directly runs an \insitu analysis.  Thus,
+  the \vda is performed in the same job and memory space as the
+  simulation.  Within the \insitu workflow, we measure two variations of
+  our watertight surface algorithm.
 
-\item [\Insitu refined:] A CTH that job directly runs an \insitu analysis
-  using the refined version of our watertight surface algorithm.  As
-  described in Section~\ref{sec:UseCase}, the refined version of the
-  algorithm bypasses the step of global communication by retrieving the AMR
-  block neighbors from the running CTH simulation.
+  \begin{description}
 
-\item [\Intransit using extra nodes:] A CTH job that performs \intransit
-  analysis using a separate allocation of compute nodes.  This represents a
-  use case where there are additional compute nodes (perhaps with special
-  OS, runtime, or hardware features) that could be used to perform analysis
-  on behalf of the application.  For example, the suggested ``burst
-  buffer'' architecture for the Trinity system may have special nodes with
-  NVRAM and additional memory that would be appropriate for this type of
-  \intransit analysis.
+  \item[Baseline:] As described in Section~\ref{sec:UseCase}, the baseline
+    version of the algorithm includes a somewhat unnecessary step of global
+    communication to find AMR block neighbors.  We include results from
+    this workflow for two reasons: First, we are not able to apply the same
+    optimization to the \intransit workflows, so this provides an
+    apples-to-apples comparison of the benefit an \intransit approach could
+    give using the same algorithm.  Second, we anticipate other important
+    analysis algorithms could have similar communication characteristics.
+    For example, a connected components algorithm could require
+    communication between most or all processes to resolve the connectivity
+    of large fragments.
 
-\item [\Intransit using internal nodes:] A CTH job that divides the nodes
-  from a given allocation into compute and analysis nodes.  We chose this
-  application to find out if, given an equal number of resources for
-  \insitu and \intransit, there might be situations where the preferable
-  approach changes.
+  \item[Refined:] As described in Section~\ref{sec:UseCase}, the refined
+    version of the algorithm bypasses the step of global communication by
+    retrieving the AMR block neighbors from the running CTH simulation.  We
+    thus expect it to have better scaling performance.
+
+  \end{description}
+
+\item[\Intransit:] A CTH job that performs \intransit analysis using a
+  separate allocation of compute nodes.  Data is transferred from the
+  simulation to a service where \vda is performed asynchronously with
+  respect to the simulation.  Within the \intransit workflow, we measure
+  two job scheduling variations.
+
+  \begin{description}
+
+  \item[Extra nodes:] Allocate the CTH job with the same number of nodes as
+    we would without the analysis, and then create a \vda service using
+    extra nodes.  For example, if the simulation were normally to be run on
+    256 nodes, then still schedule the simulation on 256 nodes and also
+    schedule the \vda service on an additional 16 nodes.  This allocation
+    represents a use case where there are additional compute nodes (perhaps
+    with special OS, runtime, or hardware features) that could be used to
+    perform analysis on behalf of the application.  For example, the
+    suggested ``burst buffer'' architecture for the Trinity system may have
+    special nodes with NVRAM and additional memory that would be
+    appropriate for this type of \intransit analysis.
+
+  \item[Internal nodes:] Divide the nodes normally allocated to the CTH job
+    between the simulation and the \vda service.  For example, if the
+    simulation were normally to be run on 256 nodes, then schedule the
+    simulation on only 240 nodes and use the remaining 16 nodes to schedule
+    the \vda service.  We use this workflow to find out if, given an equal
+    number of resources for \insitu and \intransit, there might be
+    situations where the preferable approach changes.
+    
+  \end{description}
 
 \item [Spyplot file] A CTH job that writes Spyplot files instead of doing
   analysis.  At some point later a batch analysis job is run on the saved
@@ -73,7 +97,14 @@ every 10 cycles.  For the Spyplot file application, we output spyplot data
 at a fixed interval in simulated time, calculated so that the application
 executed 51 I/O operations, equaling the number of analysis operations
 performed by the \insitu and \intransit applications.  There is no way to
-directly instruct CTH to output spyplot data every 10 cycles.
+directly instruct CTH to output spyplot data every 10 cycles.  The
+resulting data files are then loaded in a separate analysis job run at a
+latter time.  This analysis was performed on the Red Sky cluster for
+simplicity.  \fix{We intend to update these numbers with post-processing
+  running on Cielo when available.}  The time to run the simulation, read
+and write files, and perform the post-processing analysis are all summed
+together to get a processing time for computation equivalent to that done
+in the \insitu and \intransit workflows.
 
 \begin{figure*}[p]
 \begin{centering}
@@ -166,7 +197,7 @@ under different core-per-node counts.
 Our first consideration is the overall runtime of each workflow with each
 data set and job size.
 
-\begin{figure}[bp]
+\begin{figure}[tbp]
 \begin{centering}
 \includegraphics[scale=0.7]{figures/total-runtime-all}
 \caption{Execution time comparison for the 1.5M block dataset.}
@@ -193,13 +224,13 @@ nodes requires each core to process 366 blocks.  The key to making the
 analysis.  If the analysis portion does not scale particularly well, the
 compute nodes need sufficient work to hide the analysis cost.
 
-% Beacuse we have such large figures, the figures tend to be pushed way
-% farther back in the document than they are referred to in the text, which
-% is annoying when you are trying to read it.  This command will force all
-% pending floats to be written out before continuing.  It can leave a large
-% empty space in the text, but that ugliness is still better than the
-% alternative.
-\FloatBarrier
+%% % Beacuse we have such large figures, the figures tend to be pushed way
+%% % farther back in the document than they are referred to in the text, which
+%% % is annoying when you are trying to read it.  This command will force all
+%% % pending floats to be written out before continuing.  It can leave a large
+%% % empty space in the text, but that ugliness is still better than the
+%% % alternative.
+%% \FloatBarrier
 
 To better understand exactly where the time is being spent, we collect
 detailed timings of each application using a combination of instrumented timers
@@ -333,7 +364,7 @@ spot'' mentioned in Section~\ref{sec:TotalExecutionTime} --- because it is one o
 the interesting places where the performance of the refined \insitu application
 and both \intransit applications all have similar total runtime.
 
-\begin{figure}[bp]
+\begin{figure}[tbp]
 \begin{centering}
 \includegraphics[scale=0.75]{figures/active-blocks-series}
 \caption[Active Blocks]{Number of active blocks used in the course of a
@@ -429,7 +460,7 @@ them further in future work.
 
 \begin{figure*}[htbp]
 \begin{centering}
-\vspace{-24pt}
+%\vspace{-24pt}
 \subfloat[CTH]{
   \includegraphics[width=0.48\linewidth]{figures/in-situ-opt-cth-variance}
   \label{fig:cth-variance}
@@ -454,7 +485,7 @@ standard error for CTH and the \insitu analysis operations.
 
 \begin{figure*}[htbp]
 \begin{centering}
-\vspace{-12pt}
+%\vspace{-12pt}
 \subfloat[\Intransit (extra nodes) transfer time.]{
   \includegraphics[width=0.48\linewidth]{figures/in-transit-extra-xfer-variance}
   \label{fig:intransit-extra-xfer-variance}
