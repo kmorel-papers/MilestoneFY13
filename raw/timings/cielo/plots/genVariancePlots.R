@@ -8,14 +8,9 @@ source("pvspyDirs.R")
 write_pdf <- TRUE
 
 
-insitu_opt_dir <- "../amr_in-situ-hpctoolkit/pipe-7-08192"
-insitu_unopt_dir <- "../amr_in-situ-unopt/pipe-7-08192"
-intransit_inclusive_dir <- "../amr_in-transit-inclusive/pipe-7-08192"
-intransit_extra_dir <- "../amr_in-transit-hpctoolkit/pipe-7-08192"
-
 # Insitu CTH Plot
 color <- pvspy_colors[3]
-data <- processExtractedVariance(insitu_opt_dir)
+data <- processExtractedVariance(insitu_opt_dirs)
 #data <- data[!data$cycle==0,]  # remove cycle=0 from plot
 plot <- ggplot(data, aes(x=cycle, y=cth_mean, ymin=0))
 plot <- plot + geom_line(size=pvspy_line_size, linetype=1, color=color)
@@ -32,7 +27,7 @@ plot
 
 # Insitu refined Viz Plot
 color <- pvspy_colors[4]
-data <- processExtractedVariance(insitu_opt_dir)
+data <- processExtractedVariance(insitu_opt_dirs)
 plot <- ggplot(data, aes(x=cycle, y=viz_mean, ymin=0, ymax=70))
 plot <- plot + geom_line(size=pvspy_line_size, linetype=1, color=color)
 plot <- plot + geom_point(size=pvspy_point_size, fill="white", color=color, shape=pvspy_shapes[2])
@@ -46,7 +41,7 @@ plot
 
 # Insitu baseline Viz Plot
 color <- pvspy_colors[4]
-data <- processExtractedVariance(insitu_unopt_dir)
+data <- processExtractedVariance(insitu_unopt_dirs)
 plot <- ggplot(data, aes(x=cycle, y=viz_mean, ymin=0, ymax=70))
 plot <- plot + geom_line(size=pvspy_line_size, linetype=1, color=color)
 plot <- plot + geom_point(size=pvspy_point_size, fill="white", color=color, shape=pvspy_shapes[2])
@@ -60,7 +55,7 @@ plot
 
 # In-transit Extra Xfer Plot
 color <- pvspy_colors[6]
-data <- processClientVariance(intransit_extra_dir)
+data <- processClientVariance(intransit_extra_dirs)
 #data <- data[!data$cycle==0,]  # remove cycle=0 from plot
 plot <- ggplot(data, aes(x=cycle, y=xfer_mean, ymin=0, ymax=25))
 plot <- plot + geom_line(size=pvspy_line_size, linetype=1, color=color)
@@ -76,7 +71,7 @@ plot
 
 # In-transit extra wait Plot
 color <- pvspy_colors[7]
-data <- processClientVariance(intransit_extra_dir)
+data <- processClientVariance(intransit_extra_dirs)
 data <- data[!data$cycle==0,]  # remove cycle=0 from plot
 plot <- ggplot(data, aes(x=cycle, y=wait_mean, ymin=0, ymax=70))
 plot <- plot + geom_line(size=pvspy_line_size, linetype=1, color=color)
@@ -92,7 +87,7 @@ plot
 
 # In-transit Inclusive Xfer Plot
 color <- pvspy_colors[6]
-data <- processClientVariance(intransit_inclusive_dir)
+data <- processClientVariance(intransit_inclusive_dirs)
 #data <- data[!data$cycle==0,]  # remove cycle=0 from plot
 plot <- ggplot(data, aes(x=cycle, y=xfer_mean, ymin=0, ymax=25))
 plot <- plot + geom_line(size=pvspy_line_size, linetype=1, color=color)
@@ -108,7 +103,7 @@ plot
 
 # In-transit extra wait Plot
 color <- pvspy_colors[7]
-data <- processClientVariance(intransit_inclusive_dir)
+data <- processClientVariance(intransit_inclusive_dirs)
 data <- data[!data$cycle==0,]  # remove cycle=0 from plot
 plot <- ggplot(data, aes(x=cycle, y=wait_mean, ymin=0, ymax=70))
 plot <- plot + geom_line(size=pvspy_line_size, linetype=1, color=color)

@@ -22,7 +22,7 @@ source("processClientTimings.R")
 # Load plot defaults (pvspy_colors, pvspy_shapes, pvspy_lines)
 source("pvspyPlotDefaults.R")
 
-# insitu_opt_dirs, insitu_unopt_dirs, intransit_dirs, intransit_inclusive_dirs
+# insitu_opt_dirs, insitu_unopt_dirs, intransit_extra_dirs, intransit_inclusive_dirs
 source("pvspyDirs.R")
 
 # Override the plot height and width
@@ -40,7 +40,7 @@ write_pdf <- TRUE
 
 # Use HPCToolkit data to get initialization timings
 insitu_hpc_data <- processHPCClient(directories=insitu_opt_dirs)
-intransit_hpc_data <- processHPCClient(directories = intransit_dirs)
+intransit_hpc_data <- processHPCClient(directories = intransit_extra_dirs)
 amr_file_hpc_data <- processHPCClient(directories = spyplot_file_dirs)
 
 # CTH Initialization
@@ -59,7 +59,7 @@ intransit_viz_init_err <- intransit_hpc_data$viz_init_err / 1e6
 # Use extracted timings for in-situ (when we have HPCTOOLKIT data for all data, we will not do this)
 insitu_opt_data <- processExtractedTimings(insitu_opt_dirs)
 insitu_unopt_data <- processExtractedTimings(insitu_unopt_dirs)
-intransit_data <- processExtractedTimings(intransit_dirs)
+intransit_data <- processExtractedTimings(intransit_extra_dirs)
 intransit_inclusive_data <- processExtractedTimings(intransit_inclusive_dirs)
 amr_file_data <- processExtractedTimings(spyplot_file_dirs)
 
@@ -287,7 +287,7 @@ legend("topright", ncol=2, labels, bg="white", inset=.01, fill=pvspy_colors[1:4]
 ##########  Line Plot of In-Transit (extra)   #####################
 
 # timings in ms
-data <- processHPCClient(directories=intransit_dirs)
+data <- processHPCClient(directories=intransit_extra_dirs)
 
 
 data$levels[data$levels == 5] <- "33k blocks (2 extra nodes)"
@@ -323,8 +323,8 @@ plot
 ##########  Bar Plot of In-Transit (128 extra nodes)   #####################
 
 # Use client timings to get in-transit data
-data <- processClientTimings(intransit_dirs)
-data <- processHPCClient(intransit_dirs)
+data <- processClientTimings(intransit_extra_dirs)
+data <- processHPCClient(intransit_extra_dirs)
 
 names <- data$cores
 
@@ -576,12 +576,22 @@ names <- data$cores
 
 ## ------ MANUALLY ADD POST-PROCESSING TIME
 
+# Timings from Red Sky
+# 33k blocks, 3.59 sec avg, 183.21 sec total
+# 219k blocks, 12.66 sec avg, 646.24 sec total
+# 1.5m blocks, 51.51 sec avg, 2576.43 sec total.
+
+# Timings from Cielo
+# 33k, 3.28s avg, 194s  total
+# 219k, 10.55s avg, 555s total
+# 1.5m, 64.63s avg, 3232s total 
+
 # 183.21 secs for the 33k blocks
-data$pp_mean[data$levels == 5] <- 183.21 * 1e6
+data$pp_mean[data$levels == 5] <- 194 * 1e6
 # 646.24 secs for 219k blocks
-data$pp_mean[data$levels == 6] <- 646.24 * 1e6
+data$pp_mean[data$levels == 6] <- 555 * 1e6
 # 2576.43 secs for 1.5m blocks
-data$pp_mean[data$levels == 7] <- 2576.43 * 1e6
+data$pp_mean[data$levels == 7] <- 3232 * 1e6
 
 ## ------
 
@@ -614,9 +624,9 @@ if (with_title == TRUE) {
 }
 
 
-text(2.4, 120, "33k blocks")
-text(7.5, 120, "219k blocks")
-text(12.8, 120, "1.5m blocks")
+text(2.4, 130, "33k blocks")
+text(7.5, 130, "219k blocks")
+text(12.8, 130, "1.5m blocks")
 
 abline(v=4.9,col="gray25",lty=3)
 abline(v=9.7,col="gray25",lty=3)

@@ -21,6 +21,8 @@ source("processClientTimings.R")
 
 # Load plot defaults (pvspy_colors, pvspy_shapes, pvspy_lines)
 source("pvspyPlotDefaults.R")
+source("pvspyDirs.R")
+
 
 # Override the plot height and width
 pvspy_plot_height <- 4
@@ -30,21 +32,22 @@ with_title <- FALSE
 write_pdf <- TRUE
 
 
+
 #################################################
 # Extract Data From Result Files (only the results up to 32K)
 #################################################
 
 
 # paths to hpctoolkit experiments
-insitu_opt_dirs <- list.files(path="../amr_in-situ-hpctoolkit", full.names=TRUE, pattern="pipe-.*", recursive=FALSE)[1:12]
+#insitu_opt_dirs <- list.files(path="../amr_in-situ-hpctoolkit", full.names=TRUE, pattern="pipe-.*", recursive=FALSE)[1:12]
 
-intransit_dirs <- list.files(path="../amr_in-transit-hpctoolkit", full.names=TRUE, pattern="pipe-.*", recursive=FALSE)[1:12]
-spyplot_file_dirs <- list.files(path="../amr-file-hpctoolkit", full.names=TRUE, pattern="pipe-.*", recursive=FALSE)[1:12]
+#intransit_dirs <- list.files(path="../amr_in-transit-hpctoolkit", full.names=TRUE, pattern="pipe-.*", recursive=FALSE)[1:12]
+#spyplot_file_dirs <- list.files(path="../amr-file-hpctoolkit", full.names=TRUE, pattern="pipe-.*", recursive=FALSE)[1:12]
 
 
 # I will soon have hpctoolkit dirs for these as well
-intransit_inclusive_dirs <- list.files(path="../amr_in-transit-inclusive", full.names=TRUE, pattern="pipe-.*", recursive=FALSE)[1:12]
-insitu_unopt_dirs <- list.files(path="../amr_in-situ-unopt", full.names=TRUE, pattern="pipe-.*", recursive=FALSE)[1:12]
+#intransit_inclusive_dirs <- list.files(path="../amr_in-transit-inclusive", full.names=TRUE, pattern="pipe-.*", recursive=FALSE)[1:12]
+#insitu_unopt_dirs <- list.files(path="../amr_in-situ-unopt", full.names=TRUE, pattern="pipe-.*", recursive=FALSE)[1:12]
 
 
 
@@ -124,7 +127,7 @@ plot
 
 ##########  In-transit extra  processing rate #####################
 
-data <- processExtractedTimings(intransit_dirs)
+data <- processExtractedTimings(intransit_extra_dirs)
 
 data$complete <- data$vizrate
 data$complete_err <- data$vizrateerr
