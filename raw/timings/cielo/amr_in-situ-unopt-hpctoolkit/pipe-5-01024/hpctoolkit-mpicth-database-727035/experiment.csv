@@ -1,0 +1,46 @@
+Function  , sum  , mean  , min  , max  
+MPI_Allgather , 1.369076E8 , 22283.138020833332 , 9033.0 , 154824.0
+MPI_Allgather , 1.17506E10 , 1.14751953125E7 , 5449310.0 , 1.17383E7
+MPI_Allgatherv , 2.03151E9 , 1983896.484375 , 1675730.0 , 2353780.0
+MPI_Barrier , 1.704567067E11 , 4268246.862479968 , 8808.0 , 8.90643E7
+MPI_Barrier , 4.0996336E10 , 5004435.546875 , 440938.0 , 1.17058E7
+MPI_Bcast , 1.5573472E9 , 108631.91964285714 , 8151.0 , 626366.0
+MPI_Bcast , 2.53865E9 , 2479150.390625 , 21649.0 , 1.04265E7
+MPI_Bcast , 4.89135E8 , 31844.7265625 , 8433.0 , 223380.0
+MPI_Finalize , 3.80643E8 , 371721.6796875 , 11096.0 , 711677.0
+MPI_Isend , 6.09167E7 , 14872.2412109375 , 11911.0 , 132096.0
+MPI_Recv , 1.7222227E10 , 289975.5354256466 , 8144.0 , 1.52602E7
+MPI_Reduce_scatter , 1.005487E8 , 19638.41796875 , 9119.0 , 130445.0
+MPI_Send , 1.020978851E11 , 2492624.1479492188 , 9361.0 , 2.59447E7
+MPI_Type_commit , 6.387727E8 , 20793.382161458332 , 8816.0 , 203117.0
+MPI_Type_commit , 1.459678E8 , 17818.3349609375 , 11480.0 , 144345.0
+MPI_Type_struct , 3.50747E7 , 17126.318359375 , 11902.0 , 83737.0
+amrini_ , 8.50012E10 , 8.3008984375E7 , 8.29585E7 , 8.30327E7
+cth , 9.93824E11 , 9.7053125E8 , 9.55967E8 , 9.72149E8
+pvspy_fil , 4.30728E10 , 4.206328125E7 , 3.43597E7 , 4.45645E7
+pvspy_fin , 4.84162E7 , 47281.4453125 , 32474.0 , 61423.0
+pvspy_smf , 1.10224E7 , 10764.0625 , 312006.0 , 2807500.0
+pvspy_smx , 1.54648E7 , 15102.34375 , 10777.0 , 1999580.0
+pvspy_stb , 2.38075E8 , 232495.1171875 , 10831.0 , 3183530.0
+pvspy_stm , 1.37307E7 , 13408.88671875 , 83229.0 , 1404000.0
+pvspy_viz , 1.02396E11 , 9.999609375E7 , 9.21647E7 , 1.01693E8
+pvspy_vizcheck , 2.03108E8 , 198347.65625 , 59778.0 , 394718.0
+vtkAMRDualGridHelper::AddBlock(int, vtkImageData *) , 1.66171E9 , 1622763.671875 , 23643.0 , 7662410.0
+vtkAMRDualGridHelper::AssignBlockSharedRegions(vtkAMRDualGridHelperBlock *, int, int, int, int) , 3.19532E10 , 3.1204296875E7 , 3.07296E7 , 3.20079E7
+vtkAMRDualGridHelper::AssignSharedRegions(void) , 3.45072E10 , 3.36984375E7 , 3.33496E7 , 3.39609E7
+vtkAMRDualGridHelper::ClaimBlockSharedRegion(vtkAMRDualGridHelperBlock *, int, int, int, int, int, int) , 3.02234E10 , 2.95150390625E7 , 2.89024E7 , 3.02635E7
+vtkAMRDualGridHelper::DegenerateRegionMessageSize(vtkIdTypeArray *, vtkIdTypeArray *) , 4.25681E8 , 415704.1015625 , 191162.0 , 619467.0
+vtkAMRDualGridHelper::FinishDegenerateRegionsCommMPIAsynchronous(bool, vtkAMRDualGridHelperCommRequestList &, vtkAMRDualGridHelperCommRequestList &) , 4.4814E8 , 437636.71875 , 11154.0 , 2066650.0
+vtkAMRDualGridHelper::GetBlock(int, int) , 5.87442E7 , 57367.3828125 , 11591.0 , 6355820.0
+vtkAMRDualGridHelper::Initialize(vtkHierarchicalBoxDataSet *, char const *) , 9.54544E10 , 9.32171875E7 , 8.48875E7 , 9.54286E7
+vtkAMRDualGridHelper::ProcessRegionRemoteCopyQueueMPIAsynchronous(bool) , 1.68906E10 , 1.64947265625E7 , 1.01379E7 , 1.69312E7
+vtkAMRDualGridHelper::ShareBlocks(void) , 2.74255E10 , 2.678271484375E7 , 2.07097E7 , 2.85744E7
+vtkAMRDualGridHelper::__dt(void) , 2.6092E9 , 2548046.875 , 1968630.0 , 8004350.0
+vtkAMRDualGridHelperAddBackGhostValues(vtkDataArray *, int *, int *, int *, int *) , 1.49608E9 , 1461015.625 , 35397.0 , 7269770.0
+vtkAMRDualGridHelperBlock::AddBackGhostLevels(int *) , 1.55963E9 , 1523076.171875 , 11517.0 , 7553480.0
+vtkAMRDualGridHelperCommRequestList::WaitAny(void) , 2.46225E7 , 24045.41015625 , 10730.0 , 963809.0
+vtkAMRDualGridHelperLevel::AddGridBlock(int, int, int, vtkImageData *) , 5.62115E7 , 54894.04296875 , 11552.0 , 332986.0
+vtkAMRDualGridHelperLevel::__dt(void) , 2.59595E9 , 2535107.421875 , 1956880.0 , 7992430.0
+vtkCPProcessor::CoProcess(vtkCPDataDescription *) , 1.01471E11 , 9.90927734375E7 , 9.11843E7 , 1.00794E8
+vtkCPPythonScriptPipeline::CoProcess(vtkCPDataDescription *) , 1.01471E11 , 9.90927734375E7 , 9.11843E7 , 1.00794E8
+vtkCTHSource::FillInputData(vtkCPInputDataDescription *) , 9.11577E8 , 890211.9140625 , 238669.0 , 1043130.0

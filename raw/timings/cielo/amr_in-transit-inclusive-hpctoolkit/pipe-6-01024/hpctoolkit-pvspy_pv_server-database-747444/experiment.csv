@@ -1,0 +1,41 @@
+Function  , sum  , mean  , min  , max  
+MPI_Allgather , 1.63115E7 , 127433.59375 , 59885.0 , 203605.0
+MPI_Allgatherv , 1.41121E9 , 1.1025078125E7 , 1.01925E7 , 1.15088E7
+MPI_Barrier , 2.688356313E10 , 2.6253479619140625E7 , 11939.0 , 1.04174E8
+MPI_Bcast , 4.21874E7 , 329589.0625 , 10987.0 , 877167.0
+MPI_Gather , 2371330.0 , 18526.015625 , 8835.0 , 119489.0
+MPI_Isend , 1.07121E8 , 836882.8125 , 11941.0 , 3918810.0
+nssi_service_start , 1.10023E11 , 8.595546875E8 , 8.57173E8 , 8.65495E8
+pvspy_fil , 5.81115E8 , 4539960.9375 , 4471400.0 , 4757960.0
+pvspy_fil_srvr__FUlPC11NNTI_peer_tPC14pvspy_fil_argsPC13NNTI_buffer_tT4 , 5.81115E8 , 4539960.9375 , 4471400.0 , 4757960.0
+pvspy_fin , 4899740.0 , 38279.21875 , 30035.0 , 46528.0
+pvspy_fin_srvr__FUlPC11NNTI_peer_tPCiPC13NNTI_buffer_tT4 , 5024760.0 , 39255.9375 , 30035.0 , 48785.0
+pvspy_scx , 6172370.0 , 48221.640625 , 8470.0 , 356327.0
+pvspy_smx , 1.37195E7 , 107183.59375 , 23470.0 , 443742.0
+pvspy_sync_data_srvr__FUlPC11NNTI_peer_tPC15pvspy_sync_argsPC13NNTI_buffer_tT4 , 4.72124E7 , 368846.875 , 27366.0 , 1185330.0
+pvspy_sync_metadata_srvr__FUlPC11NNTI_peer_tPC24pvspy_sync_metadata_argsPC13NNTI_buffer_tT4 , 3.2287E8 , 2522421.875 , 1749110.0 , 3427930.0
+pvspy_viz , 1.09012E11 , 8.5165625E8 , 8.49803E8 , 8.58646E8
+pvspy_viz_srvr__FUlPC11NNTI_peer_tPC14pvspy_viz_argsPC13NNTI_buffer_tT4 , 1.09064E11 , 8.520625E8 , 8.505E8 , 8.59064E8
+vtkAMRDualGridHelper::AddBlock(int, vtkImageData *) , 6.01025E9 , 4.6955078125E7 , 7063040.0 , 1.06467E8
+vtkAMRDualGridHelper::AssignBlockSharedRegions(vtkAMRDualGridHelperBlock *, int, int, int, int) , 2.74888E10 , 2.1475625E8 , 2.0996E8 , 2.31122E8
+vtkAMRDualGridHelper::AssignSharedRegions(void) , 2.98093E10 , 2.3288515625E8 , 2.3251E8 , 2.33133E8
+vtkAMRDualGridHelper::ClaimBlockSharedRegion(vtkAMRDualGridHelperBlock *, int, int, int, int, int, int) , 2.60982E10 , 2.038921875E8 , 1.98672E8 , 2.20952E8
+vtkAMRDualGridHelper::CopyDegenerateRegionBlockToBlock(int, int, int, vtkAMRDualGridHelperBlock *, vtkDataArray *, vtkAMRDualGridHelperBlock *, vtkDataArray *) , 8601890.0 , 67202.265625 , 11973.0 , 525844.0
+vtkAMRDualGridHelper::CopyDegenerateRegionBlockToMessage(vtkAMRDualGridHelperDegenerateRegion const &, void *) , 2.75424E7 , 215175.0 , 11947.0 , 517033.0
+vtkAMRDualGridHelper::CopyDegenerateRegionMessageToBlock(vtkAMRDualGridHelperDegenerateRegion const &, void const *, bool) , 3.67266E7 , 286926.5625 , 11954.0 , 872503.0
+vtkAMRDualGridHelper::DegenerateRegionMessageSize(vtkIdTypeArray *, vtkIdTypeArray *) , 4.0504E8 , 3164375.0 , 2696430.0 , 3560390.0
+vtkAMRDualGridHelper::FinishDegenerateRegionsCommMPIAsynchronous(bool, vtkAMRDualGridHelperCommRequestList &, vtkAMRDualGridHelperCommRequestList &) , 3.40688E9 , 2.661625E7 , 3060630.0 , 5.84661E7
+vtkAMRDualGridHelper::GetBlock(int, int) , 4.21403E7 , 329221.09375 , 203308.0 , 478254.0
+vtkAMRDualGridHelper::GetBlock(int, int, int, int) , 6.41433E7 , 501119.53125 , 274885.0 , 1771300.0
+vtkAMRDualGridHelper::Initialize(vtkHierarchicalBoxDataSet *, char const *) , 8.50658E10 , 6.645765625E8 , 6.45864E8 , 6.83029E8
+vtkAMRDualGridHelper::ProcessRegionRemoteCopyQueueMPIAsynchronous(bool) , 1.27166E10 , 9.93484375E7 , 9.91035E7 , 9.97027E7
+vtkAMRDualGridHelper::ShareBlocks(void) , 3.05269E10 , 2.3849140625E8 , 1.78983E8 , 2.78289E8
+vtkAMRDualGridHelper::__dt(void) , 4.10947E9 , 3.2105234375E7 , 2.70832E7 , 3.86939E7
+vtkAMRDualGridHelperAddBackGhostValues(vtkDataArray *, int *, int *, int *, int *) , 4.98275E9 , 3.8927734375E7 , 383419.0 , 9.92468E7
+vtkAMRDualGridHelperBlock::AddBackGhostLevels(int *) , 5.22163E9 , 4.0793984375E7 , 71715.0 , 1.0318E8
+vtkAMRDualGridHelperCommRequestList::WaitAny(void) , 1.03813E8 , 811039.0625 , 11949.0 , 3625090.0
+vtkAMRDualGridHelperLevel::AddGridBlock(int, int, int, vtkImageData *) , 4.198E8 , 3279687.5 , 561476.0 , 1.91977E7
+vtkAMRDualGridHelperLevel::__dt(void) , 4.10421E9 , 3.2064140625E7 , 2.70593E7 , 3.86819E7
+vtkCPProcessor::CoProcess(vtkCPDataDescription *) , 1.02932E11 , 8.0415625E8 , 8.02575E8 , 8.14081E8
+vtkCPPythonScriptPipeline::CoProcess(vtkCPDataDescription *) , 1.02932E11 , 8.0415625E8 , 8.02575E8 , 8.14081E8
+vtkCTHSource::FillInputData(vtkCPInputDataDescription *) , 6.07985E9 , 4.7498828125E7 , 4.4565E7 , 4.86005E7

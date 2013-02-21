@@ -1,0 +1,47 @@
+Function  , sum  , mean  , min  , max  
+MPI_Allgather , 2.062423E9 , 62940.155029296875 , 9517.0 , 559288.0
+MPI_Allgather , 9.25892E9 , 2260478.515625 , 1387460.0 , 3065630.0
+MPI_Allgatherv , 4.51989E10 , 1.10348876953125E7 , 1.01875E7 , 1.20751E7
+MPI_Barrier , 1.350130481E12 , 7665620.917741642 , 8258.0 , 1.25526E8
+MPI_Barrier , 3.7620777E11 , 1.1480950012207031E7 , 47819.0 , 7.68697E7
+MPI_Bcast , 5.1579554E9 , 96866.650390625 , 8363.0 , 705296.0
+MPI_Bcast , 3.18066E10 , 7765283.203125 , 11836.0 , 2.47207E7
+MPI_Bcast , 3.021019E9 , 43385.498046875 , 19396.0 , 163433.0
+MPI_Finalize , 9.81831E8 , 239704.833984375 , 23557.0 , 339640.0
+MPI_Recv , 1.187933388E11 , 517897.85679408483 , 8135.0 , 3.23532E7
+MPI_Reduce_scatter , 5.649635E9 , 275861.083984375 , 10838.0 , 835190.0
+MPI_Send , 6.53247781E11 , 3889861.5008098325 , 9419.0 , 3.80984E7
+MPI_Type_commit , 2.726565E9 , 41604.08020019531 , 8140.0 , 747515.0
+MPI_Type_commit , 4.594156E8 , 28040.5029296875 , 11524.0 , 178772.0
+MPI_Type_struct , 1.15555E8 , 28211.669921875 , 11736.0 , 119503.0
+amrini_ , 4.6827E11 , 1.1432373046875E8 , 1.14296E8 , 1.14345E8
+cth , 8.11777E12 , 1.98187744140625E9 , 1.98099E9 , 1.98743E9
+initvtkCoProcessorPython , 2.79686E8 , 68282.71484375 , 5143730.0 , 1.10877E7
+pvspy_fil , 8.5974E11 , 2.098974609375E8 , 1.92191E8 , 2.16721E8
+pvspy_fin , 1.7467E8 , 42644.04296875 , 32005.0 , 60030.0
+pvspy_scx , 2.17667E8 , 53141.357421875 , 8564.0 , 1.4244E7
+pvspy_smf , 2.44489E8 , 29844.8486328125 , 223268.0 , 1.38077E7
+pvspy_smx , 9.66657E8 , 47200.048828125 , 8916.0 , 1.50998E7
+pvspy_stb , 5.35273E9 , 1306818.84765625 , 10690.0 , 1.63945E7
+pvspy_stm , 5.39377E8 , 131683.837890625 , 435579.0 , 1.64042E7
+pvspy_viz , 1.7292E12 , 4.2216796875E8 , 4.17239E8 , 4.28619E8
+pvspy_vizcheck , 8.38762E8 , 204775.87890625 , 35971.0 , 443875.0
+vtkAMRDualGridHelper::AddBlock(int, vtkImageData *) , 7.83918E9 , 1913862.3046875 , 71677.0 , 1.07731E7
+vtkAMRDualGridHelper::AssignBlockSharedRegions(vtkAMRDualGridHelperBlock *, int, int, int, int) , 8.19942E11 , 2.0018115234375E8 , 1.99207E8 , 2.01608E8
+vtkAMRDualGridHelper::AssignSharedRegions(void) , 9.16424E11 , 2.23736328125E8 , 2.23416E8 , 2.2403E8
+vtkAMRDualGridHelper::ClaimBlockSharedRegion(vtkAMRDualGridHelperBlock *, int, int, int, int, int, int) , 7.75676E11 , 1.893740234375E8 , 1.88005E8 , 1.91486E8
+vtkAMRDualGridHelper::DegenerateRegionMessageSize(vtkIdTypeArray *, vtkIdTypeArray *) , 6.26778E9 , 1530219.7265625 , 1198290.0 , 1929570.0
+vtkAMRDualGridHelper::FinishDegenerateRegionsCommMPIAsynchronous(bool, vtkAMRDualGridHelperCommRequestList &, vtkAMRDualGridHelperCommRequestList &) , 2.57936E9 , 629726.5625 , 11088.0 , 4960650.0
+vtkAMRDualGridHelper::GetBlock(int, int) , 1.28416E9 , 313515.625 , 131704.0 , 633780.0
+vtkAMRDualGridHelper::Initialize(vtkHierarchicalBoxDataSet *, char const *) , 1.61854E12 , 3.951513671875E8 , 3.83156E8 , 4.02152E8
+vtkAMRDualGridHelper::ProcessRegionRemoteCopyQueueMPIAsynchronous(bool) , 9.24875E10 , 2.25799560546875E7 , 7572230.0 , 2.30254E7
+vtkAMRDualGridHelper::ShareBlocks(void) , 5.56224E11 , 1.35796875E8 , 1.268E8 , 1.37883E8
+vtkAMRDualGridHelper::__dt(void) , 7.60549E10 , 1.85680908203125E7 , 1.78567E7 , 2.05335E7
+vtkAMRDualGridHelperAddBackGhostValues(vtkDataArray *, int *, int *, int *, int *) , 4.99008E9 , 1218281.25 , 11915.0 , 1.01161E7
+vtkAMRDualGridHelperBlock::AddBackGhostLevels(int *) , 5.21699E9 , 1273679.19921875 , 10205.0 , 1.06417E7
+vtkAMRDualGridHelperCommRequestList::WaitAny(void) , 4.12166E8 , 100626.46484375 , 11126.0 , 826673.0
+vtkAMRDualGridHelperLevel::AddGridBlock(int, int, int, vtkImageData *) , 2.28917E9 , 558879.39453125 , 11795.0 , 3805880.0
+vtkAMRDualGridHelperLevel::__dt(void) , 7.58761E10 , 1.85244384765625E7 , 1.78447E7 , 2.04978E7
+vtkCPProcessor::CoProcess(vtkCPDataDescription *) , 1.72314E12 , 4.206884765625E8 , 4.15728E8 , 4.27122E8
+vtkCPPythonScriptPipeline::CoProcess(vtkCPDataDescription *) , 1.72314E12 , 4.206884765625E8 , 4.15728E8 , 4.27122E8
+vtkCTHSource::FillInputData(vtkCPInputDataDescription *) , 6.00162E9 , 1465239.2578125 , 465459.0 , 1676430.0

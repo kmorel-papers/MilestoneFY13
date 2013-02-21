@@ -1,0 +1,45 @@
+Function  , sum  , mean  , min  , max  
+MPI_Allgather , 3.556112E10 , 241164.27951388888 , 10366.0 , 1031260.0
+MPI_Allgather , 1.68988E11 , 1.0314208984375E7 , 7353500.0 , 1.36546E7
+MPI_Allgatherv , 5.20639E12 , 3.177728271484375E8 , 3.05031E8 , 3.25056E8
+MPI_Barrier , 1.116831661E13 , 1.7041498733520508E7 , 8373.0 , 2.49784E8
+MPI_Barrier , 1.36663455E13 , 1.0426594161987305E8 , 2467630.0 , 7.79737E8
+MPI_Bcast , 2.054457E10 , 250788.2080078125 , 8025.0 , 1303680.0
+MPI_Bcast , 4.63494E11 , 2.82894287109375E7 , 8745.0 , 8.75553E7
+MPI_Bcast , 1.301548E10 , 132400.30924479166 , 59079.0 , 219928.0
+MPI_Finalize , 8.28288E9 , 505546.875 , 95539.0 , 893853.0
+MPI_Recv , 1.03440556E12 , 2104503.4993489585 , 8456.0 , 5.7058E7
+MPI_Reduce_scatter , 1.7277303E11 , 958657.1710759943 , 11893.0 , 4085930.0
+MPI_Send , 4.9763688E12 , 7231748.744419643 , 9419.0 , 7.10564E7
+MPI_Type_commit , 4.33968E9 , 132436.5234375 , 11891.0 , 1282540.0
+amrini_ , 2.94859E12 , 1.799676513671875E8 , 1.79936E8 , 1.79994E8
+cth , 1.19617E14 , 7.30084228515625E9 , 7.29756E9 , 7.32347E9
+initvtkCoProcessorPython , 5.5741E9 , 340216.064453125 , 1.15113E7 , 6.3156E7
+pvspy_fil , 1.98183E13 , 1.209613037109375E9 , 1.14814E9 , 1.26028E9
+pvspy_scx , 1.15852E10 , 707104.4921875 , 8740.0 , 1.09619E8
+pvspy_smf , 7.79808E9 , 237978.515625 , 4700000.0 , 7.76793E7
+pvspy_smx , 6.553082E10 , 666613.9729817709 , 8125.0 , 1.09912E8
+pvspy_stb , 2.63881E11 , 1.610601806640625E7 , 10375.0 , 1.11988E8
+pvspy_stm , 1.07608E10 , 656787.109375 , 2823060.0 , 1.11615E8
+pvspy_viz , 5.80357E13 , 3.542218017578125E9 , 3.53668E9 , 3.55823E9
+pvspy_vizcheck , 3.54045E9 , 216091.9189453125 , 36090.0 , 469856.0
+real_initvtkCoProcessorPython(char const *) , 5.5741E9 , 340216.064453125 , 1.15113E7 , 6.3156E7
+vtkAMRDualGridHelper::AddBlock(int, vtkImageData *) , 1.29862E11 , 7926147.4609375 , 359321.0 , 4.00327E7
+vtkAMRDualGridHelper::AssignBlockSharedRegions(vtkAMRDualGridHelperBlock *, int, int, int, int) , 2.33625E13 , 1.425933837890625E9 , 1.41972E9 , 1.43702E9
+vtkAMRDualGridHelper::AssignSharedRegions(void) , 2.83494E13 , 1.73031005859375E9 , 1.72977E9 , 1.73069E9
+vtkAMRDualGridHelper::ClaimBlockSharedRegion(vtkAMRDualGridHelperBlock *, int, int, int, int, int, int) , 2.2151E13 , 1.35198974609375E9 , 1.34579E9 , 1.36351E9
+vtkAMRDualGridHelper::DegenerateRegionMessageSize(vtkIdTypeArray *, vtkIdTypeArray *) , 1.55298E11 , 9478637.6953125 , 8861830.0 , 1.01761E7
+vtkAMRDualGridHelper::FinishDegenerateRegionsCommMPIAsynchronous(bool, vtkAMRDualGridHelperCommRequestList &, vtkAMRDualGridHelperCommRequestList &) , 5.15329E10 , 3145318.603515625 , 11904.0 , 5.66261E7
+vtkAMRDualGridHelper::GetBlock(int, int) , 3.93963E10 , 2404559.326171875 , 1731480.0 , 3627470.0
+vtkAMRDualGridHelper::Initialize(vtkHierarchicalBoxDataSet *, char const *) , 5.53945E13 , 3.381011962890625E9 , 3.3655E9 , 3.39725E9
+vtkAMRDualGridHelper::ProcessRegionRemoteCopyQueueMPIAsynchronous(bool) , 3.07409E12 , 1.876275634765625E8 , 1.62873E8 , 1.88183E8
+vtkAMRDualGridHelper::ShareBlocks(void) , 2.33849E13 , 1.427301025390625E9 , 1.39777E9 , 1.43587E9
+vtkAMRDualGridHelper::__dt(void) , 2.12899E12 , 1.299432373046875E8 , 1.26941E8 , 1.40106E8
+vtkAMRDualGridHelperAddBackGhostValues(vtkDataArray *, int *, int *, int *, int *) , 1.63058E10 , 995227.05078125 , 11806.0 , 1.49613E7
+vtkAMRDualGridHelperBlock::AddBackGhostLevels(int *) , 1.71137E10 , 1044537.353515625 , 10009.0 , 1.563E7
+vtkAMRDualGridHelperCommRequestList::WaitAny(void) , 2.35989E10 , 1440362.548828125 , 11909.0 , 2.81041E7
+vtkAMRDualGridHelperLevel::AddGridBlock(int, int, int, vtkImageData *) , 1.10101E11 , 6720031.73828125 , 95975.0 , 3.99133E7
+vtkAMRDualGridHelperLevel::__dt(void) , 2.12458E12 , 1.29674072265625E8 , 1.26691E8 , 1.39892E8
+vtkCPProcessor::CoProcess(vtkCPDataDescription *) , 5.79943E13 , 3.539691162109375E9 , 3.53415E9 , 3.55573E9
+vtkCPPythonScriptPipeline::CoProcess(vtkCPDataDescription *) , 5.79942E13 , 3.53968505859375E9 , 3.53415E9 , 3.55573E9
+vtkCTHSource::FillInputData(vtkCPInputDataDescription *) , 4.11927E10 , 2514202.880859375 , 1302750.0 , 2749920.0

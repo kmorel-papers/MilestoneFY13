@@ -1,0 +1,47 @@
+Function  , sum  , mean  , min  , max  
+MPI_Allgather , 1.9698958E9 , 60116.448974609375 , 9737.0 , 239659.0
+MPI_Allgather , 1.10822E10 , 2705615.234375 , 1856120.0 , 3974360.0
+MPI_Allgatherv , 5.62646E10 , 1.3736474609375E7 , 1.2318E7 , 1.50923E7
+MPI_Barrier , 1.1192006233E12 , 6354473.01564771 , 8095.0 , 1.12801E8
+MPI_Barrier , 3.9588732E11 , 1.2081522216796875E7 , 778410.0 , 7.80996E7
+MPI_Bcast , 4.834931E9 , 98366.92301432292 , 8101.0 , 4351680.0
+MPI_Bcast , 2.75153E10 , 6717602.5390625 , 11743.0 , 2.19799E7
+MPI_Bcast , 2.4814895E9 , 50486.03312174479 , 8026.0 , 2077620.0
+MPI_Finalize , 1.04124E9 , 254208.984375 , 35531.0 , 347687.0
+MPI_Recv , 1.173574546E11 , 520940.40571732953 , 8054.0 , 3.24263E7
+MPI_Reduce_scatter , 5.047238E9 , 246447.16796875 , 9703.0 , 770369.0
+MPI_Send , 6.52261055E11 , 3883985.8934355946 , 8487.0 , 3.53865E7
+MPI_Type_commit , 2.75412E9 , 42024.5361328125 , 8359.0 , 435366.0
+MPI_Type_commit , 4.587448E8 , 27999.560546875 , 11220.0 , 190925.0
+MPI_Type_struct , 1.20666E8 , 29459.47265625 , 11502.0 , 119477.0
+amrini_ , 4.66268E11 , 1.138349609375E8 , 1.13786E8 , 1.13861E8
+cth , 8.4216E12 , 2.0560546875E9 , 2.05522E9 , 2.06302E9
+initvtkCoProcessorPython , 1.09777E8 , 26801.025390625 , 2563940.0 , 1.01679E7
+pvspy_fil , 1.36051E12 , 3.3215576171875E8 , 3.1515E8 , 3.39365E8
+pvspy_fin , 1.75374E8 , 42815.91796875 , 32094.0 , 264982.0
+pvspy_scx , 2.50841E8 , 61240.478515625 , 8815.0 , 5876010.0
+pvspy_smf , 2.83583E8 , 34617.0654296875 , 2215820.0 , 1.38519E7
+pvspy_smx , 6.4558E8 , 52537.434895833336 , 9079.0 , 1.4992E7
+pvspy_stb , 6.16003E9 , 1503913.57421875 , 9818.0 , 1.63352E7
+pvspy_stm , 6.42014E8 , 156741.69921875 , 1519290.0 , 1.62477E7
+pvspy_viz , 1.76157E12 , 4.3007080078125E8 , 4.24968E8 , 4.36502E8
+pvspy_vizcheck , 8.42522E8 , 205693.84765625 , 59865.0 , 467997.0
+vtkAMRDualGridHelper::AddBlock(int, vtkImageData *) , 7.83684E9 , 1913291.015625 , 71632.0 , 1.06639E7
+vtkAMRDualGridHelper::AssignBlockSharedRegions(vtkAMRDualGridHelperBlock *, int, int, int, int) , 8.2E11 , 2.001953125E8 , 1.99293E8 , 2.02162E8
+vtkAMRDualGridHelper::AssignSharedRegions(void) , 9.21193E11 , 2.24900634765625E8 , 2.2452E8 , 2.25203E8
+vtkAMRDualGridHelper::ClaimBlockSharedRegion(vtkAMRDualGridHelperBlock *, int, int, int, int, int, int) , 7.75763E11 , 1.89395263671875E8 , 1.87903E8 , 1.91034E8
+vtkAMRDualGridHelper::DegenerateRegionMessageSize(vtkIdTypeArray *, vtkIdTypeArray *) , 6.2619E9 , 1528784.1796875 , 1150670.0 , 1917840.0
+vtkAMRDualGridHelper::FinishDegenerateRegionsCommMPIAsynchronous(bool, vtkAMRDualGridHelperCommRequestList &, vtkAMRDualGridHelperCommRequestList &) , 2.57091E9 , 627663.57421875 , 11124.0 , 5343550.0
+vtkAMRDualGridHelper::GetBlock(int, int) , 1.28097E9 , 312736.81640625 , 131101.0 , 1085030.0
+vtkAMRDualGridHelper::Initialize(vtkHierarchicalBoxDataSet *, char const *) , 1.65096E12 , 4.0306640625E8 , 3.92483E8 , 4.10077E8
+vtkAMRDualGridHelper::ProcessRegionRemoteCopyQueueMPIAsynchronous(bool) , 9.80367E10 , 2.39347412109375E7 , 9423300.0 , 2.43316E7
+vtkAMRDualGridHelper::ShareBlocks(void) , 5.73573E11 , 1.40032470703125E8 , 1.3106E8 , 1.42071E8
+vtkAMRDualGridHelper::__dt(void) , 7.60213E10 , 1.85598876953125E7 , 1.7823E7 , 2.05058E7
+vtkAMRDualGridHelperAddBackGhostValues(vtkDataArray *, int *, int *, int *, int *) , 4.99224E9 , 1218808.59375 , 11522.0 , 1.01025E7
+vtkAMRDualGridHelperBlock::AddBackGhostLevels(int *) , 5.21924E9 , 1274228.515625 , 11041.0 , 1.05205E7
+vtkAMRDualGridHelperCommRequestList::WaitAny(void) , 4.12353E8 , 100672.119140625 , 11668.0 , 1071690.0
+vtkAMRDualGridHelperLevel::AddGridBlock(int, int, int, vtkImageData *) , 2.29374E9 , 559995.1171875 , 11421.0 , 3866610.0
+vtkAMRDualGridHelperLevel::__dt(void) , 7.58414E10 , 1.8515966796875E7 , 1.77873E7 , 2.04701E7
+vtkCPProcessor::CoProcess(vtkCPDataDescription *) , 1.75551E12 , 4.2859130859375E8 , 4.23424E8 , 4.35064E8
+vtkCPPythonScriptPipeline::CoProcess(vtkCPDataDescription *) , 1.75551E12 , 4.2859130859375E8 , 4.23424E8 , 4.35064E8
+vtkCTHSource::FillInputData(vtkCPInputDataDescription *) , 5.99568E9 , 1463789.0625 , 440957.0 , 1667440.0

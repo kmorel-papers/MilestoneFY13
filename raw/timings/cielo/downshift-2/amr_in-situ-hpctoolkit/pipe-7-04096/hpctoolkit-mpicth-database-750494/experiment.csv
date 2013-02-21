@@ -1,0 +1,43 @@
+Function  , sum  , mean  , min  , max  
+MPI_Allgather , 1.850376E9 , 112937.98828125 , 11975.0 , 566897.0
+MPI_Barrier , 3.391827328E12 , 2.238061739864865E7 , 8501.0 , 2.30566E8
+MPI_Barrier , 3.13637095E12 , 7.657155639648438E7 , 1317620.0 , 3.91772E8
+MPI_Bcast , 3.703626E9 , 226051.3916015625 , 42326.0 , 622163.0
+MPI_Bcast , 6.30957E10 , 1.54042236328125E7 , 11911.0 , 4.07643E7
+MPI_Bcast , 7.03303E8 , 85852.4169921875 , 16003.0 , 191893.0
+MPI_Finalize , 9.94095E8 , 242698.974609375 , 21966.0 , 327659.0
+MPI_Isend , 3.71058E9 , 905903.3203125 , 23945.0 , 3219920.0
+MPI_Recv , 5.18381898E11 , 3330475.8043791116 , 8258.0 , 2.05261E8
+MPI_Reduce_scatter , 9.379565E9 , 457986.572265625 , 24026.0 , 1278520.0
+MPI_Send , 2.345407665E12 , 1.4682289569561299E7 , 11757.0 , 2.1294E8
+MPI_Type_commit , 7.843314E9 , 119679.47387695312 , 11896.0 , 729959.0
+amrini_ , 1.52043E12 , 3.7119873046875E8 , 3.71124E8 , 3.71249E8
+cth , 3.26754E13 , 7.977392578125E9 , 7.97361E9 , 7.98419E9
+pvspy_fil , 9.44076E11 , 2.304873046875E8 , 2.12556E8 , 2.3754E8
+pvspy_stb , 3.35057E9 , 818010.25390625 , 47175.0 , 9890230.0
+pvspy_stm , 5.71915E8 , 139627.685546875 , 107345.0 , 9799820.0
+pvspy_viz , 4.75767E12 , 1.16154052734375E9 , 1.15442E9 , 1.18143E9
+pvspy_vizcheck , 9.29552E8 , 226941.40625 , 47781.0 , 477790.0
+vtkAMRDualGridHelper::AddBlock(int, vtkImageData *) , 5.79133E10 , 1.41389892578125E7 , 1151030.0 , 5.61141E7
+vtkAMRDualGridHelper::AssignBlockSharedRegions(vtkAMRDualGridHelperBlock *, int, int, int, int) , 3.63484E11 , 8.87412109375E7 , 2.77376E7 , 2.39924E8
+vtkAMRDualGridHelper::AssignSharedRegions(void) , 1.00973E12 , 2.4651611328125E8 , 2.46119E8 , 2.46908E8
+vtkAMRDualGridHelper::ClaimBlockSharedRegion(vtkAMRDualGridHelperBlock *, int, int, int, int, int, int) , 3.4527E11 , 8.429443359375E7 , 2.63384E7 , 2.27959E8
+vtkAMRDualGridHelper::DegenerateRegionMessageSize(vtkIdTypeArray *, vtkIdTypeArray *) , 1.51601E9 , 370119.62890625 , 23957.0 , 1019130.0
+vtkAMRDualGridHelper::FinishDegenerateRegionsCommMPIAsynchronous(bool, vtkAMRDualGridHelperCommRequestList &, vtkAMRDualGridHelperCommRequestList &) , 1.63114E10 , 3982275.390625 , 11982.0 , 1.77113E7
+vtkAMRDualGridHelper::GetBlock(int, int) , 5.01951E8 , 122546.630859375 , 11947.0 , 369406.0
+vtkAMRDualGridHelper::Initialize(vtkHierarchicalBoxDataSet *, char const *) , 4.60513E12 , 1.12429931640625E9 , 1.10075E9 , 1.14799E9
+vtkAMRDualGridHelper::ProcessRegionRemoteCopyQueueMPIAsynchronous(bool) , 1.24804E11 , 3.04697265625E7 , 3.01256E7 , 3.08289E7
+vtkAMRDualGridHelper::ShareBlocksWithNeighbors(vtkIntArray *) , 3.27878E12 , 8.004833984375E8 , 7.586E8 , 8.14396E8
+vtkAMRDualGridHelper::ShareBlocksWithNeighborsAsynchronous(vtkIntArray *) , 3.27878E12 , 4.0024169921875E8 , 3.21432E8 , 4.37669E8
+vtkAMRDualGridHelper::UnmarshalBlocksFromOne(vtkIntArray *, int) , 9.22623E11 , 1.126248779296875E8 , 5595560.0 , 3.93696E8
+vtkAMRDualGridHelper::__dt(void) , 2.99792E10 , 7319140.625 , 2403000.0 , 1.85328E7
+vtkAMRDualGridHelperAddBackGhostValues(vtkDataArray *, int *, int *, int *, int *) , 1.62853E10 , 3975903.3203125 , 11972.0 , 3.33815E7
+vtkAMRDualGridHelperBlock::AddBackGhostLevels(int *) , 1.7068E10 , 4166992.1875 , 11858.0 , 3.47442E7
+vtkAMRDualGridHelperCommRequestList::WaitAll(void) , 4.80761E10 , 1.17373291015625E7 , 11900.0 , 1.75731E8
+vtkAMRDualGridHelperCommRequestList::WaitAny(void) , 5.676017E9 , 37.5907752248976 , 11888.0 , 2915500.0
+vtkAMRDualGridHelperCommRequestList::WaitAny(void) , 5.676017E9 , 37.5907752248976 , 11888.0 , 2915500.0
+vtkAMRDualGridHelperLevel::AddGridBlock(int, int, int, vtkImageData *) , 3.84628E10 , 9390332.03125 , 323616.0 , 5.56009E7
+vtkAMRDualGridHelperLevel::__dt(void) , 2.9931E10 , 7307373.046875 , 2403000.0 , 1.85089E7
+vtkCPProcessor::CoProcess(vtkCPDataDescription *) , 4.7158E12 , 1.151318359375E9 , 1.14418E9 , 1.17136E9
+vtkCPPythonScriptPipeline::CoProcess(vtkCPDataDescription *) , 4.7158E12 , 1.151318359375E9 , 1.14418E9 , 1.17136E9
+vtkCTHSource::FillInputData(vtkCPInputDataDescription *) , 4.18022E10 , 1.0205615234375E7 , 6365390.0 , 1.04538E7

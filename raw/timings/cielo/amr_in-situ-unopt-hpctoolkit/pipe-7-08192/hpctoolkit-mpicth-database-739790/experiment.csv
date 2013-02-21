@@ -1,0 +1,45 @@
+Function  , sum  , mean  , min  , max  
+MPI_Allgather , 8.117713E9 , 165155.2937825521 , 35952.0 , 454091.0
+MPI_Allgather , 4.79483E10 , 5853063.96484375 , 5041390.0 , 6730760.0
+MPI_Allgatherv , 6.75821E11 , 8.24976806640625E7 , 7.98964E7 , 8.59281E7
+MPI_Barrier , 6.042845915E12 , 1.8914156134189703E7 , 8474.0 , 3.41739E8
+MPI_Barrier , 5.2677914E12 , 8.038011779785156E7 , 2575390.0 , 6.55721E8
+MPI_Bcast , 1.05278E10 , 257026.3671875 , 11868.0 , 745710.0
+MPI_Bcast , 1.99196E11 , 2.431591796875E7 , 21239.0 , 8.71859E7
+MPI_Bcast , 9.34388E8 , 114061.03515625 , 71952.0 , 254917.0
+MPI_Finalize , 2.34124E9 , 285795.8984375 , 57863.0 , 390688.0
+MPI_Recv , 6.6643673E11 , 2711737.996419271 , 8524.0 , 9.10346E7
+MPI_Reduce_scatter , 4.1480968E10 , 723370.6752232143 , 11985.0 , 2513510.0
+MPI_Send , 3.268118947E12 , 9973507.528686523 , 10394.0 , 1.1527E8
+MPI_Type_commit , 1.1835627E10 , 96318.5791015625 , 11402.0 , 855283.0
+amrini_ , 1.95316E12 , 2.384228515625E8 , 2.38394E8 , 2.38455E8
+cth , 6.21189E13 , 7.58287353515625E9 , 7.57998E9 , 7.60804E9
+initvtkCoProcessorPython , 2.3973E9 , 292639.16015625 , 1.66399E7 , 4.84544E7
+pvspy_fil , 4.75977E12 , 5.81026611328125E8 , 5.08785E8 , 6.13479E8
+pvspy_scx , 3.43328E9 , 419101.5625 , 8367.0 , 6.83276E7
+pvspy_smf , 2.72984E9 , 166616.2109375 , 1.768E7 , 7.0984E7
+pvspy_smx , 1.464309E10 , 297914.4287109375 , 8177.0 , 6.91751E7
+pvspy_stb , 6.25407E10 , 7634362.79296875 , 11553.0 , 7.16306E7
+pvspy_stm , 3.48944E9 , 425957.03125 , 1.7552E7 , 7.0108E7
+pvspy_viz , 2.55149E13 , 3.11461181640625E9 , 3.1051E9 , 3.1431E9
+pvspy_vizcheck , 1.78246E9 , 217585.44921875 , 47723.0 , 489433.0
+real_initvtkCoProcessorPython(char const *) , 2.3973E9 , 292639.16015625 , 1.66399E7 , 4.84544E7
+vtkAMRDualGridHelper::AddBlock(int, vtkImageData *) , 8.53495E10 , 1.041864013671875E7 , 395526.0 , 4.58515E7
+vtkAMRDualGridHelper::AssignBlockSharedRegions(vtkAMRDualGridHelperBlock *, int, int, int, int) , 1.16117E13 , 1.41744384765625E9 , 1.41099E9 , 1.43359E9
+vtkAMRDualGridHelper::AssignSharedRegions(void) , 1.35115E13 , 1.64935302734375E9 , 1.6489E9 , 1.64978E9
+vtkAMRDualGridHelper::ClaimBlockSharedRegion(vtkAMRDualGridHelperBlock *, int, int, int, int, int, int) , 1.10022E13 , 1.3430419921875E9 , 1.33619E9 , 1.3593E9
+vtkAMRDualGridHelper::DegenerateRegionMessageSize(vtkIdTypeArray *, vtkIdTypeArray *) , 7.76977E10 , 9484582.51953125 , 8861450.0 , 1.02712E7
+vtkAMRDualGridHelper::FinishDegenerateRegionsCommMPIAsynchronous(bool, vtkAMRDualGridHelperCommRequestList &, vtkAMRDualGridHelperCommRequestList &) , 4.28184E10 , 5226855.46875 , 11903.0 , 9.21488E7
+vtkAMRDualGridHelper::GetBlock(int, int) , 1.75102E10 , 2137475.5859375 , 1588310.0 , 2973890.0
+vtkAMRDualGridHelper::Initialize(vtkHierarchicalBoxDataSet *, char const *) , 2.41488E13 , 2.9478515625E9 , 2.92687E9 , 2.97719E9
+vtkAMRDualGridHelper::ProcessRegionRemoteCopyQueueMPIAsynchronous(bool) , 1.32278E12 , 1.6147216796875E8 , 1.53822E8 , 1.62054E8
+vtkAMRDualGridHelper::ShareBlocks(void) , 8.92941E12 , 1.090015869140625E9 , 1.05695E9 , 1.10003E9
+vtkAMRDualGridHelper::__dt(void) , 1.0591E12 , 1.2928466796875E8 , 1.26307E8 , 1.40075E8
+vtkAMRDualGridHelperAddBackGhostValues(vtkDataArray *, int *, int *, int *, int *) , 1.6275E10 , 1986694.3359375 , 11952.0 , 2.24975E7
+vtkAMRDualGridHelperBlock::AddBackGhostLevels(int *) , 1.7066E10 , 2083251.953125 , 8893.0 , 2.34177E7
+vtkAMRDualGridHelperCommRequestList::WaitAny(void) , 1.16249E10 , 1419055.17578125 , 11788.0 , 3.46227E7
+vtkAMRDualGridHelperLevel::AddGridBlock(int, int, int, vtkImageData *) , 6.57435E10 , 8025329.58984375 , 119863.0 , 4.56366E7
+vtkAMRDualGridHelperLevel::__dt(void) , 1.0569E12 , 1.2901611328125E8 , 1.25997E8 , 1.39872E8
+vtkCPProcessor::CoProcess(vtkCPDataDescription *) , 2.54732E13 , 3.109521484375E9 , 3.09994E9 , 3.13795E9
+vtkCPPythonScriptPipeline::CoProcess(vtkCPDataDescription *) , 2.54732E13 , 3.109521484375E9 , 3.09994E9 , 3.13795E9
+vtkCTHSource::FillInputData(vtkCPInputDataDescription *) , 4.15768E10 , 5075292.96875 , 3034060.0 , 5316180.0
