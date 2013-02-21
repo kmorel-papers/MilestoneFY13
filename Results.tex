@@ -89,6 +89,9 @@ five experiments.
 \item [Spyplot file] A CTH job that writes Spyplot files instead of doing
   analysis.  At some point later a batch analysis job is run on the saved
   data.  This workflow represents the traditional post-processing approach.
+  The number of nodes used matches the number used for analysis in the Extra
+  nodes version of \intransit.
+
 \end{description}
 
 All applications complete 500 cycles (i.e., timestep calculations) of the
@@ -96,15 +99,16 @@ CTH code. The first four applications execute an analysis operation once
 every 10 cycles.  For the Spyplot file application, we output spyplot data
 at a fixed interval in simulated time, calculated so that the application
 executed 51 I/O operations, equaling the number of analysis operations
-performed by the \insitu and \intransit applications.  There is no way to
-directly instruct CTH to output spyplot data every 10 cycles.  The
-resulting data files are then loaded in a separate analysis job run at a
-latter time.  This analysis was performed on the Red Sky cluster for
-simplicity.  \fix{We intend to update these numbers with post-processing
-  running on Cielo when available.}  The time to run the simulation, read
-and write files, and perform the post-processing analysis are all summed
-together to get a processing time for computation equivalent to that done
-in the \insitu and \intransit workflows.
+performed by the \insitu and \intransit applications.  The number of nodes
+used is the same as the \intransit application using external nodes. There is
+no way to directly instruct CTH to output spyplot data every 10 cycles.  The
+resulting data files are then loaded in a separate analysis job run at a latter
+time.  This analysis was also performed on Cielo statically compiled from the
+same code base as the \insitu code, but executed by ParaView's pvbatch
+application.  The time to run the simulation, read and write files, and perform
+the post-processing analysis are all summed together to get a processing time
+for computation equivalent to that done in the \insitu and \intransit
+workflows.
 
 \begin{figure*}[p]
 \begin{centering}
