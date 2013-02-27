@@ -47,14 +47,14 @@ call is where control is passed to Catalyst for processing.  This call will
 hang until Catalyst finishes and returns control to the simulation.
 
 The AddPipeline call is where a majority of the work is done.  Although there
-is usually only one pipeline object passed to Catalyst, it is possible to pass
-several.  It is also common for this pipeline object to be written in Python
-because this is the native scripting language for ParaView, but it is possible
-for the pipeline to be hard coded C++.  While there is some overhead cost to
-using Python code in the pipeline here, it is very low due to its nature as a
-glue code combining the C++ filters which are written in VTK.  The advantage is
-that the scripted pipeline can change to access any feature available in
-Catalyst while only compiling the capability once.
+is usually only one pipeline added to Catalyst, it is possible to add several.
+It is also common for this pipeline to be written in Python, because this is
+the native scripting language for ParaView; it is also possible for the
+pipeline to be hard coded C++.  While there is some overhead cost to using
+Python code in the pipeline here, it is very low due to its nature as a glue
+code combining the C++ filters which are written in VTK.  The advantage to
+using Python is that a scripted pipeline can change alongside the simulation
+input deck without needing to recompile.
 
 \begin{figure}[htb]
   \centering
@@ -66,23 +66,25 @@ Catalyst pipelines for use within a coupled simulation.}
 
 In addition to the advantages of writing Python pipeline scripts by hand, there
 is a well supported plugin for ParaView that will automatically create Catalyst
-Python scripts automatically from within the GUI, based on traces of user
-interaction with the GUI, Figure~\ref{fig:ScriptExport}.  This plugin works by
-replacing a file read at the top of the pipeline with the same VTK data object
-provided by the adaptor (described below).  From the perspective of the
-pipeline it could be operating on data being read from a file, but this data is
-coming from an in-memory \insitu transfer.  The plugin will examine all views
-currently open within the ParaView view and create equivalent views with
-independent image sizes in the script.  It is also possible to make place-holder
-objects within the pipeline to act as file write points.  Usually these will be
-placed at the end of a long chain of processing to store the resulting
-processed data, but it is also possible to splice these file writes earler in
-the pipeline to see the effects of different stages of processing.  Each file
-and image writer can write at an independent frequency, allowing for very
-infrequent writes of potentially large files while also allowing for more
-frequent small image writes as the simulation proceeds.
+Python scripts automatically from within the GUI based on what the user
+does interactively, Figure~\ref{fig:ScriptExport}.  This plugin works by
+replacing a file read in at the top of the pipeline with the same VTK data
+object provided by the adaptor, Section~\ref{sec:Adaptor}.  The rest of the
+pipeline is agnostic as to whether it is operating on data being read from a
+file or whether that data is coming from an in-memory \insitu transfer.  
 
-\subsection{Simulation Adaptor}
+To create images, the plugin will examine all views currently open within the
+ParaView window and create equivalent views with independent image sizes in the
+script.  For writing files, it is possible to create place-holder objects
+within the pipeline to act as file write points.  Usually these will be placed
+at the end of a long chain of processing to store the resulting processed data,
+but it is also possible to splice these file writes earler in the pipeline to
+see the effects of different stages of processing.  Each file and image writer
+can write at an independent frequency, allowing for very infrequent writes of
+potentially large files while also very frequently writing images in the same
+simulation run.
+
+\subsection{Simulation Adaptor}\label{sec:Adaptor}
 
 Since Catalyst will extend to a variety of existing simulation codes, our
 design does not expect its API to easily and efficiently process internal
