@@ -82,8 +82,9 @@ which data is transfered from the simulation job to a separate \vda
 service.
 
 All three workflows are considered in our measurements.  The offline
-post-processing workflow is implemented the standard CTH I/O to write full
-meshes to storage.  The embedded \insitu workflow is implemented with the
-\keyterm{Catalyst} \insitu library discussed in
-Section~\ref{sec:Catalyst}.  The \intransit workflow is implemented with
-the \keyterm{Nessie} I/O service described in Section~\ref{sec:Nessie}.
+post-processing workflow is implemented using the standard CTH I/O to write
+full meshes to storage and then reading those meshes in a scripted parallel
+ParaView job.  The embedded \insitu workflow is implemented with the
+\keyterm{Catalyst} \insitu library discussed in Section~\ref{sec:Catalyst}.
+The \intransit workflow is implemented with the \keyterm{Nessie} I/O
+service described in Section~\ref{sec:Nessie}.

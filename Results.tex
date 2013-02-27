@@ -41,13 +41,13 @@ five experiments.
     version of the algorithm includes a somewhat unnecessary step of global
     communication to find AMR block neighbors.  We include results from
     this workflow for two reasons: First, we are not able to apply the same
-    optimization to the \intransit workflows, so this provides an
-    apples-to-apples comparison of the benefit an \intransit approach could
-    give using the same algorithm.  Second, we anticipate other important
-    analysis algorithms could have similar communication characteristics.
-    For example, a connected components algorithm could require
-    communication between most or all processes to resolve the connectivity
-    of large fragments.
+    optimization to the \intransit and offline post-processing workflows,
+    so this provides an apples-to-apples comparison of the benefit an
+    \intransit approach could give using the same algorithm.  Second, we
+    anticipate other important analysis algorithms could have similar
+    communication characteristics.  For example, a connected components
+    algorithm could require communication between most or all processes to
+    resolve the connectivity of large fragments.
 
   \item[Refined:] As described in Section~\ref{sec:UseCase}, the refined
     version of the algorithm bypasses the step of global communication by
