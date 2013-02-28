@@ -83,7 +83,7 @@ five experiments.
     the \vda service.  We use this workflow to find out if, given an equal
     number of resources for \insitu and \intransit, there might be
     situations where the preferable approach changes.
-    
+
   \end{description}
 
 \item [Spyplot file] A CTH job that writes Spyplot files instead of doing
@@ -465,9 +465,13 @@ them further in future work.
 \begin{figure*}[htbp]
 \begin{centering}
 %\vspace{-24pt}
-\subfloat[CTH]{
+\subfloat[CTH mean and stddev]{
   \includegraphics[width=0.48\linewidth]{figures/in-situ-opt-cth-variance}
   \label{fig:cth-variance}
+}
+\subfloat[CTH overlay]{
+  \includegraphics[width=0.48\linewidth]{figures/in-situ-opt-cth-overlay}
+  \label{fig:cth-overlay}
 }
 
 \subfloat[\Insitu (baseline) analysis]{
@@ -478,8 +482,10 @@ them further in future work.
   \includegraphics[width=0.48\linewidth]{figures/in-situ-opt-viz-variance}
   \label{fig:insitu-opt-variance}
 }
-\caption[Runtime variance of \insitu operations.]{Plots of the mean time and
-standard error for CTH and the \insitu analysis operations.
+\caption[Runtime variance of \insitu operations.]{Plots (a), (c), and (d) show
+ the mean time and standard error for CTH and the \insitu analysis operations.
+ Plot (b) shows an overlay of the CTH experiments to show outliers for
+ experiment 1.
 
 \fix{Update baseline plots with latest data for final version.}
 }
@@ -517,19 +523,22 @@ standard error for the \intransit transfer and wait operations.
 \end{figure*}
 
 
-The plots in Figures \ref{fig:insitu-variance} and
-\ref{fig:intransit-variance} show the mean and standard error (the standard
-deviation from the mean) of the important \insitu and \intransit operations
-for the 8k-core experiments.  In each plot, we gathered data from five or
-more 500-cycle experiments.  Most of our measurements show a small amount
-of variance between experiments.  There are some outlier measurements in
-Figures \ref{fig:cth-variance} and \ref{fig:intransit-extra-wait-variance}
-that we attribute to another event running concurrently on Cielo by
-happenstance causing contention.  The transfer time of \intransit workflows
-(Figures \ref{fig:intransit-extra-xfer-variance} and
-\ref{fig:intransit-inclusive-xfer-variance}) have more variance than the
-rest, which we attribute to the Cielo job scheduler not taking into account
-the communication between the client and server jobs.
+The plots in Figures \ref{fig:insitu-variance} and \ref{fig:intransit-variance}
+show the mean and standard error (the standard deviation from the mean) of the
+important \insitu and \intransit operations for the 8k-core experiments.  In
+each plot, we gathered data from five or more 500-cycle experiments.  Most of
+our measurements for CTH and anlysis operations show a relatively small variance
+between experiments.  There are some outlier measurements in Figures
+\ref{fig:cth-variance} and \ref{fig:intransit-extra-wait-variance} that we
+attribute to another event running concurrently on Cielo by happenstance causing
+contention.  Figure~\ref{fig:cth-overlay} shows the CTH experiments overlayed to
+highlight the outliers in experiment 1.  The transfer time of \intransit
+workflows (Figures \ref{fig:intransit-extra-xfer-variance} and
+\ref{fig:intransit-inclusive-xfer-variance}) have more variance than the rest,
+which we believe is caused by the Cielo job scheduler not
+taking into account the communication between the client and server jobs.
+Further research in improved placement of client and server jobs for \intransit
+workflows is ongoing.
 
 
 % Beacuse we have such large figures, the figures tend to be pushed way
@@ -704,7 +713,13 @@ performance for 2, 4, and 8 cores per server node.}
 
 The plots in Figure~\ref{fig:core-scaling} show differences in the total,
 transfer, and wait times for the 2, 4, and 8 cores/node runs of the \intransit
-(extra) application for the three different data sets.  \fix{need more time to
+(extra) application for the three different data sets.  While the smaller
+datasets show clear benefit of using more cores/node for analysis, the inverse
+seems to be true for the large datasets.   Unfortunately, we did not run enough
+experiments of this type to make definitive claims.   A further
+investigation of the impact of core scaling for the large dataset is required.
+
+\fix{need more time to
 digest and understand these plots.  May need to run more results.}
 
 
