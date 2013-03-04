@@ -15,7 +15,7 @@ data_index <- 10
 color <- pvspy_colors[3]
 data <- processExtractedVariance(insitu_opt_dirs[data_index])
 #data <- data[!data$cycle==0,]  # remove cycle=0 from plot
-plot <- ggplot(data, aes(x=cycle, y=cth_mean, ymin=0))
+plot <- ggplot(data, aes(x=cycle, y=cth_mean, ymin=0, ymax=160))
 plot <- plot + geom_line(size=pvspy_line_size, linetype=1, color=color)
 plot <- plot + geom_point(size=pvspy_point_size, fill="white", color=color, shape=pvspy_shapes[1])
 plot <- plot + geom_errorbar(aes(ymin=cth_mean-cth_sd, ymax=cth_mean+cth_sd), color=color)

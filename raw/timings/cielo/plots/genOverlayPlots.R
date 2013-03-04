@@ -25,7 +25,7 @@ for (i in 1:length(files)) {
 
 # Insitu CTH Plot
 color <- pvspy_colors[3]
-plot <- ggplot(data, aes(x=cycle, y=cth, ymin=0, group=Experiment))
+plot <- ggplot(data, aes(x=cycle, y=cth, ymin=0, ymax=160, group=Experiment))
 plot <- plot + geom_line(size=pvspy_line_size,aes(linetype=Experiment, colour=Experiment))
 plot <- plot + geom_point(size=pvspy_point_size, aes(shape=Experiment, colour=Experiment))
 plot <- plot + scale_color_manual(values=pvspy_colors[1:length(files)])

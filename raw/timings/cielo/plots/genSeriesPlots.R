@@ -42,3 +42,11 @@ if (write_pdf == TRUE) {
 }
 plot(x=intransit_extra_data$cycle, y=intransit_extra_data$active_blocks/1.0e6,
 		xlab="Cycle", ylab="Blocks (millons)")
+
+if (write_pdf == TRUE) {
+	pdf(file="active-blocks-series-2.pdf", height=pvspy_plot_height, width=pvspy_plot_width)
+}
+plot(x=intransit_extra_data$cycle, y=intransit_extra_data$active_blocks/1.0e6,
+		xlab="Cycle", ylab="Blocks (millons)",
+		ylim=c(0,1.75))
+
