@@ -24,6 +24,23 @@ initially anticipated.  So although \intransit has several other positive
 features, we do not anticipate performance to be the main motivations for
 using it.
 
+\paragraph{The efficiency of \intransit relies on balancing the time spent
+  in simulation and analysis.}
+The significant overhead cost, apart from data transfer, in the \intransit
+workflow is the idle time spent in the simulation waiting for the \vda
+service to become ready or the idle time spent in the \vda service waiting
+for the simulation to send more data.  This idle waiting time is minimized
+when the simulation and analysis spend the same amount of wall clock time
+between transfers.  Although not demonstrated in this work, it is possible
+to ``auto-balance'' the work between simulation and analysis by, at every
+iteration of the simulation, transfer data to the analysis if and only if
+the analysis service is ready to accept more work.  The disadvantage of
+such an approach is that the idle process time could be replaced with
+unnecessary extra analysis or less analysis than necessary.  However, we
+suspect that controlling the amount of \vda performed through job
+allocation sizes fits well with users' rules of thumb about resource
+allocation.
+
 \paragraph{Memory overhead will be an important trade-off space.}
 The baseline amount of memory added to the CTH job to perform \insitu
 processing is roughly 100MB per core.  Considering that our embedded
