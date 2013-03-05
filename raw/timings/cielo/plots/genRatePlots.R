@@ -64,7 +64,7 @@ data$levels[data$levels == 7] <- "1.5m blocks"
 
 names(data)[1] <- "Dataset"
 
-plot <- ggplot(data, aes(x=cores, y=complete/60, ymax=200, ymin=0, colour=Dataset, linetype=Dataset, shape=Dataset))
+plot <- ggplot(data, aes(x=cores, y=complete/60, ymax=2000, ymin=0, colour=Dataset, linetype=Dataset, shape=Dataset))
 
 plot <- plot + geom_line(size=pvspy_line_size)
 plot <- plot + geom_point(size=pvspy_point_size, fill="white")
@@ -101,7 +101,7 @@ data$levels[data$levels == 7] <- "1.5m blocks"
 
 names(data)[1] <- "Dataset"
 
-plot <- ggplot(data, aes(x=cores, y=complete/60, ymax=200, ymin=0, colour=Dataset, linetype=Dataset, shape=Dataset))
+plot <- ggplot(data, aes(x=cores, y=complete/60, ymax=2000, ymin=0, colour=Dataset, linetype=Dataset, shape=Dataset))
 
 plot <- plot + geom_line(size=pvspy_line_size)
 plot <- plot + geom_point(size=pvspy_point_size, fill="white")
@@ -138,7 +138,7 @@ data$levels[data$levels == 7] <- "1.5m blocks"
 
 names(data)[1] <- "Dataset"
 
-plot <- ggplot(data, aes(x=cores, y=complete/60, ymax=200, ymin=0, colour=Dataset, linetype=Dataset, shape=Dataset))
+plot <- ggplot(data, aes(x=cores, y=complete/60, ymax=2000, ymin=0, colour=Dataset, linetype=Dataset, shape=Dataset))
 
 plot <- plot + geom_line(size=pvspy_line_size)
 plot <- plot + geom_point(size=pvspy_point_size, fill="white")
@@ -176,7 +176,7 @@ data$levels[data$levels == 7] <- "1.5m blocks"
 
 names(data)[1] <- "Dataset"
 
-plot <- ggplot(data, aes(x=cores, y=complete/60, ymax=200, ymin=0, colour=Dataset, linetype=Dataset, shape=Dataset))
+plot <- ggplot(data, aes(x=cores, y=complete/60, ymax=2000, ymin=0, colour=Dataset, linetype=Dataset, shape=Dataset))
 
 plot <- plot + geom_line(size=pvspy_line_size)
 plot <- plot + geom_point(size=pvspy_point_size, fill="white")
