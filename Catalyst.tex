@@ -2,17 +2,17 @@
 \label{sec:Catalyst}
 
 Although it is straightforward for a simulation development team to add some
-basic \vda capabilities into simulation code, our desire is to have a
-general-purpose fully-featured library that leverages existing
+basic \vda capabilities into simulation code\lcite{CTH, LAMMPS}, our desire is
+to have a general-purpose fully-featured library that leverages existing
 implementations.  The intention is threefold.  First, by leveraging existing
 \vda libraries we can benefit from the accumulation of over two decades of
-visualization research and development.  Second, by making the library
-general purpose we can quickly apply our \insitu \vda capabilities to many
-simulations as opposed to a single simulation.  Third, by using our
-existing code we can integrate the \insitu tools with our traditional
-post-processing tools both to provide interfaces that users are already
-familiar and comfortable with and to apply scalable algorithms designed for
-\insitu with our post-processing tools and vice versa.
+visualization research and development.  Second, by making the library general
+purpose we can quickly apply our \insitu \vda capabilities to many simulations
+as opposed to a single simulation.  Third, by using our existing code we can
+integrate the \insitu tools with our traditional post-processing tools both to
+provide interfaces that users are already familiar and comfortable with and to
+apply scalable algorithms designed for \insitu with our post-processing tools
+and vice versa.
 
 Catalyst is a C++ library with an externally facing API to C, FORTRAN, and
 Python.  It is built atop the Visualization Toolkit (VTK)\lcite{VTK} and
