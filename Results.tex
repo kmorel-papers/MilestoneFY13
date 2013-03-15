@@ -4,7 +4,7 @@
 This section documents the results of our many experiments designed to
 characterize the performance of our data analysis workflows.  In
 particular, we are interested in determining the additional overhead our
-analysis places on the simulation and the efficiency with which it can be
+data analysis places on the simulation and the efficiency with which it can be
 done.  These data summarize evaluations run over the course of 10.58 million
 cpu-hours of execution.  The results come from measurements taken from
 instrumented code as well as the HPCToolkit profiling
@@ -24,13 +24,13 @@ have 32 GB of memory.  The interconnect consists of a proprietary Cray Gemini
 Network with a 3D Torus topology and has a peak throughput rate of 6 GB/s/link.
 
 This report includes strong scaling and weak scaling results from the
-following CTH and analysis experiments.  These represent three different
+following CTH and data analysis experiments.  These represent three different
 workflows, two of which have two different configurations for a total of
 five experiments.
 
 \begin{description}
 
-\item[\Insitu:] A CTH job that directly runs an \insitu analysis.  Thus,
+\item[\Insitu:] A CTH job that directly runs an \insitu data analysis.  Thus,
   the \vda is performed in the same job and memory space as the
   simulation.  Within the \insitu workflow, we measure two variations of
   our watertight surface algorithm.
@@ -56,7 +56,7 @@ five experiments.
 
   \end{description}
 
-\item[\Intransit:] A CTH job that performs \intransit analysis using a
+\item[\Intransit:] A CTH job that performs \intransit data analysis using a
   separate allocation of compute nodes.  Data is transferred from the
   simulation to a service where \vda is performed asynchronously with
   respect to the simulation.  Within the \intransit workflow, we measure
@@ -65,16 +65,16 @@ five experiments.
   \begin{description}
 
   \item[Extra nodes:] Allocate the CTH job with the same number of nodes as
-    we would without the analysis, and then create a \vda service using
+    we would without the data analysis, and then create a \vda service using
     extra nodes.  For example, if the simulation were normally to be run on
     256 nodes, then still schedule the simulation on 256 nodes and also
     schedule the \vda service on an additional 16 nodes.  This allocation
     represents a use case where there are additional compute nodes (perhaps
     with special OS, runtime, or hardware features) that could be used to
-    perform analysis on behalf of the application.  For example, the
+    perform data analysis on behalf of the application.  For example, the
     suggested ``burst buffer'' architecture for the Trinity system may have
     special nodes with NVRAM and additional memory that would be
-    appropriate for this type of \intransit analysis.
+    appropriate for this type of \intransit data analysis.
 
   \item[Internal nodes:] Divide the nodes normally allocated to the CTH job
     between the simulation and the \vda service.  For example, if the
@@ -87,32 +87,36 @@ five experiments.
   \end{description}
 
 \item [Spyplot file] A CTH job that writes Spyplot files instead of doing
-  analysis.  At some point later a batch analysis job is run on the saved
+  data analysis.  At some point later a batch data analysis job is run on the saved
   data.  This workflow represents the traditional post-processing approach.
-  The number of nodes used matches the number used for analysis in the Extra
-  nodes version of \intransit.
+  The number of nodes used matches the number used for data analysis in the Extra
+  nodes version of \intransit.  Note that although CTH is writing out
+  Spyplot files, these files are being read by the ParaView application and
+  running the same algorithm with the same code as the \intransit workflow
+  and the baseline algorithm for the \insitu workflow.
 
 \end{description}
 
 All applications complete 500 cycles (i.e., timestep calculations) of the
-CTH code. The first four applications execute an analysis operation once
-every 10 cycles.  Spyplot is an \insitu visualization capability written 
-as part of CTH to provide some basic visualization capability such as 
-isosurfaces and cut planes.  Because fragment detection is not available as 
-part of Spyplot, we don't consider the \insitu capability here.  Instead, for
-the Spyplot file application, we output Spyplot data which intended for
-fragment post-processing by ParaView, and written at a fixed interval in
-simulated time, calculated so that the application executed 51 I/O operations,
-equaling the number of analysis operations performed by the \insitu and
-\intransit applications.  The number of nodes used is the same as the
-\intransit application using external nodes. There is no way to directly
-instruct CTH to output Spyplot data every 10 cycles.  The resulting data files
-are then loaded in a separate ParaView data analysis job run at a latter time.
-This analysis was also performed on Cielo using ParaView statically compiled
-from the same code base as the \insitu and \intransit runs, but executed by
-ParaView's pvbatch application.  The time to run the simulation, read and write
-files, and perform the post-processing analysis are all summed together to get
-a processing time for computation equivalent to that done in the \insitu and
+CTH code. The first four applications execute a fragment analysis operation
+once every 10 cycles.  Spyplot is an \insitu visualization capability
+written as part of CTH to provide some basic visualization capability such
+as isosurfaces and cut planes.  Because fragment detection is not available
+as part of Spyplot, we do not consider the \insitu capability here.
+Instead, for the Spyplot file application, we output Spyplot data which
+intended for fragment post-processing by ParaView, and written at a fixed
+interval in simulated time, calculated so that the application executed 51
+I/O operations, equaling the number of fragment analysis operations
+performed by the \insitu and \intransit applications.  The number of nodes
+used is the same as the \intransit application using extra nodes. There
+is no way to directly instruct CTH to output Spyplot data every 10 cycles.
+The resulting data files are then loaded in a separate ParaView data
+analysis job run at a latter time.  This data analysis was also performed
+on Cielo using ParaView statically compiled from the same code base as the
+\insitu and \intransit runs, but executed by ParaView's pvbatch
+application.  The time to run the simulation, read and write files, and
+perform the post-processing analysis are all summed together to get a
+processing time for computation equivalent to that done in the \insitu and
 \intransit workflows.
 
 \begin{figure*}[p]
@@ -158,7 +162,7 @@ a processing time for computation equivalent to that done in the \insitu and
 \begin{tabular}{@{}lrrrrrrrr@{}}
 \toprule
 \qquad & \multicolumn{4}{c}{CTH}                                            & \multicolumn{4}{c@{}}{\Intransit Server} \\
-       & \multicolumn{2}{c}{Most} & \multicolumn{2}{r}{\Intransit Internal} & \multicolumn{2}{r}{External Nodes} & \multicolumn{2}{r@{}}{Internal Nodes} \\
+       & \multicolumn{2}{c}{Most} & \multicolumn{2}{r}{\Intransit Internal} & \multicolumn{2}{r}{Extra Nodes} & \multicolumn{2}{r@{}}{Internal Nodes} \\
        & Cores & Nodes            & \qquad Cores & Nodes                     & \qquad Cores & Nodes                  & \quad Cores & Nodes \\
 \midrule
 \multicolumn{5}{@{}l@{}}{33K Blocks --- 5 levels} \\
@@ -195,6 +199,14 @@ section, we used 8 cores for each service node.  The exception is in
 Section~\ref{sec:node-scaling} where we discuss \intransit performance
 under different core-per-node counts.
 
+We note that although the \intransit experiments use 128 visualization
+nodes when allocated using extra nodes but only 100 nodes when run internally.
+The rational is that we ran the experiments with extra nodes first, and
+determined that the visualization is a memory-bound problem with more
+memory than necessary on the nodes.  Thus, we reduced the visualization
+partition to 100 nodes when using internal nodes, but we were unable to
+repeat the former experiments to remove this minor discrepancy.
+
 %The objective is run experiments with datasets representative of real
 %production runs.  The minimum number of cores per dataset is limited by
 %memory.  The maximum number of cores per dataset was decided to get scaling data,
@@ -206,7 +218,7 @@ under different core-per-node counts.
 Our first consideration is the overall runtime of each workflow with each
 data set and job size.
 
-\begin{figure}[tbp]
+\begin{figure}[htbp]
 \begin{centering}
 \includegraphics[scale=0.7]{figures/total-runtime-all}
 \caption{Execution time comparison for the 1.5M block dataset.}
@@ -215,23 +227,24 @@ data set and job size.
 \end{figure}
 
 Figures~\ref{fig:runtime-individual}~and~\ref{fig:runtime-total} show the
-measured total execution time from each of the different workflows.  In cases
-where we ran the same experiment multiple times, we plot the mean with error
-bars representing the standard deviation from the mean. The set of plots in
-Figure~\ref{fig:runtime-individual} show individual timings of each of the
-workflows for each size dataset; the plot  in Figure~\ref{fig:runtime-total}
-shows a direct comparison of all the  applications for the 1.5M block data set.
-The results clearly show a ``sweet spot'' at 8K cores where the \intransit
-approach, even though it is using a less scalable algorithm, performs the same
-as the the refined version of \insitu.  At 16K and 32K, none of the codes
-running analysis show significant improvement, the baseline \insitu and the
-\intransit approaches actually take longer.  Perhaps the biggest reason is that
-there is not enough work for the compute nodes.  At 32K cores, each core is
-processing around 46 blocks/node, where the same size problem using 4K
-nodes requires each core to process 366 blocks.  The key to making the
+measured total execution time from each of the different workflows.  In
+cases where we ran the same experiment multiple times, we plot the mean
+with error bars representing the standard deviation from the mean. The set
+of plots in Figure~\ref{fig:runtime-individual} show individual timings of
+each of the workflows for each size dataset; the plot in
+Figure~\ref{fig:runtime-total} shows a direct comparison of all the
+applications for the 1.5M block data set.  The results clearly show a
+``sweet spot'' at 8K cores where the \intransit approach, even though it is
+using a less scalable algorithm, performs the same as the the refined
+version of \insitu.  At 16K and 32K, none of the codes running data
+analysis show significant improvement, the baseline \insitu and the
+\intransit approaches actually take longer.  Perhaps the biggest reason is
+that there is not enough work for the compute nodes.  At 32K cores, each
+core is processing around 46 blocks/node, where the same size problem using
+4K nodes requires each core to process 366 blocks.  The key to making the
 \intransit approach successful is being able to overlap computation and
-analysis.  If the analysis portion does not scale particularly well, the
-compute nodes need sufficient work to hide the analysis cost.
+data analysis.  If the data analysis portion does not scale particularly
+well, the compute nodes need sufficient work to hide the analysis cost.
 
 %% % Beacuse we have such large figures, the figures tend to be pushed way
 %% % farther back in the document than they are referred to in the text, which
@@ -240,19 +253,6 @@ compute nodes need sufficient work to hide the analysis cost.
 %% % empty space in the text, but that ugliness is still better than the
 %% % alternative.
 %% \FloatBarrier
-
-To better understand exactly where the time is being spent, we collect
-detailed timings of each application using a combination of instrumented timers
-and profiling tools (HPCToolkit).  Figure~\ref{fig:runtime-individual-bar} shows
-the total runtime performance of the five workflows as a stacked bar plots
-illustrating the portion of runtime associated with select functions.  For the
-\insitu workflows, we measure the initialization and computational time of
-CTH and the analysis/visualization.  For \intransit workflows, we measure
-the initialization cost of CTH, the cost of transferring data to the service,
-and the time the client waits for the server operation to complete. The wait
-only occurs after CTH has finished its operation before the \vda is
-complete.  If the \vda completes before CTH finishes its operation, then no
-wait time occurs.
 
 \begin{figure*}[htbp]
 \begin{centering}
@@ -290,41 +290,54 @@ application.}
 \end{figure*}
 
 
+To better understand exactly where the time is being spent, we collect
+detailed timings of each application using a combination of instrumented timers
+and profiling tools (HPCToolkit).  Figure~\ref{fig:runtime-individual-bar} shows
+the total runtime performance of the five workflows as a stacked bar plots
+illustrating the portion of runtime associated with select functions.  For the
+\insitu workflows, we measure the initialization and computational time of
+CTH and the analysis/visualization.  For \intransit workflows, we measure
+the initialization cost of CTH, the cost of transferring data to the service,
+and the time the client waits for the server operation to complete. The wait
+only occurs after CTH has finished its operation before the \vda is
+complete.  If the \vda completes before CTH finishes its operation, then no
+wait time occurs.
+
 Results from Figure~\ref{fig:insitu-unopt-bar} show that there is a clear
-scaling problem with the analysis portion (labeled ``Viz'') of the baseline
-\insitu workflow.  It almost appears as if the execution time is more
-dependent on the problem size than the number of cores performing the analysis.
-The refined version dramatically improves the performance.  This
-corroborates our previous work\lcite{Fabian2012}, but we are now able to
-take the scaling out to a larger scale to see that the performance appears
-to be flattening out (although this might be in part due to a small number
-of blocks per core).
+scaling problem with the data analysis portion (labeled ``Viz'') of the
+baseline \insitu workflow.  It almost appears as if the execution time is
+more dependent on the problem size than the number of cores performing the
+data analysis.  The refined version dramatically improves the performance.
+This corroborates our previous work\lcite{Fabian2012}, but we are now able
+to take the scaling out to a larger scale to see that the performance
+appears to be flattening out (although this might be in part due to a small
+number of blocks per core).
 
 Another important issue these timings reveal is that of the initialization
 cost of the \vda.  Although the CTH initialization cost appears to decrease
-as the core count increases, the initialization cost for analysis, ``Viz
-Init,'' increases, accounting for more than 1/3 of the total time for a
-500-cycle run.  For long runs, the initialization cost will get amortized,
-but is still large enough to warrant further study.
+as the core count increases, the initialization cost for data analysis,
+``Viz Init,'' increases, accounting for more than 1/3 of the total time for
+a 500-cycle run.  For long runs, the initialization cost will get
+amortized, but is still large enough to warrant further study.
 
 The \intransit workflow results in
 Figures~\ref{fig:intransit-extra-bar}~and~\ref{fig:intransit-inclusive-bar}
-show that the \intransit approach effectively hides the analysis overhead
-when the clients have sufficient compute resources.  For the 1.5M block
-dataset, Figure~\ref{fig:intransit-extra-bar} shows that \intransit with an
-extra 128 nodes successfully hides most of the cost of analysis at 4K and 8K
-nodes, but the wait time at larger core counts eliminates any benefit of
-\intransit using the baseline algorithm.
+show that the \intransit approach effectively hides the data analysis
+overhead when the clients have sufficient compute resources.  For the 1.5M
+block dataset, Figure~\ref{fig:intransit-extra-bar} shows that \intransit
+with an extra 128 nodes successfully hides most of the cost of data
+analysis at 4K and 8K nodes, but the wait time at larger core counts
+eliminates any benefit of \intransit using the baseline algorithm.
 
 The \intransit workflow, shown in Figure~\ref{fig:intransit-inclusive-bar},
-which carves out a subset of 100 nodes for analysis, has interesting
+which carves out a subset of 100 nodes for data analysis, has interesting
 results as well.  Observe that the number of cores used for CTH is much
 smaller, leading to an increase in the time spent doing CTH computation.
 Even with this increase in computational cost, there is still benefit.  At
-4K and 8K, all of the analysis cost is hidden.  At 8K, the total runtime is
-slightly less than the refined version of \insitu.  This result is a bit
-of a surprise given that they are both using the exact same number of
-resources.
+4K and 8K, all of the data analysis cost is hidden.  At 8K, the total
+runtime is slightly less than the refined version of \insitu.  This result
+is a bit of a surprise given that they are both using the exact same number
+of resources.
 
 %The difference, it appears, is being able to hide the
 %initialization as well as the analysis cost. \fix{Are we confident in
@@ -332,23 +345,23 @@ resources.
 %improved algorithm for initialization could give the advantage back to the
 %refined \insitu application.
 
-An additional test of interest (not performed within the scope of this Milestone) would be to measure
-performance of the \intransit workflows using the refined version of
-the analysis algorithm.  If the the \intransit approach achieved the same
-performance improvement shown by Figure~\ref{fig:insitu-opt-bar}, the
-\intransit approach would be able to hide most of the analysis cost even at
-large scale.  However, using the refined version of the analysis algorithm
-would be different because the mesh decomposition changes when transferred
-from client to server.  For the neighborhood information to remain
-consistent, the I/O framework would have to report how data was
-repartitioned so that the neighborhood information could be mapped to the
-new decomposition.
+An additional test of interest (not performed within the scope of this
+Milestone) would be to measure performance of the \intransit workflows
+using the refined version of the fragment analysis algorithm.  If the the
+\intransit approach achieved the same performance improvement shown by
+Figure~\ref{fig:insitu-opt-bar}, the \intransit approach would be able to
+hide most of the fragment analysis cost even at large scale.  However,
+using the refined version of the fragment analysis algorithm would be
+different because the mesh decomposition changes when transferred from
+client to server.  For the neighborhood information to remain consistent,
+the I/O framework would have to report how data was repartitioned so that
+the neighborhood information could be mapped to the new decomposition.
 
 Another surprising result is the performance of the spyplot file application.
 For the size of datasets we studied, this application performed quite well, showing that
 the Lustre file system on Cielo is quite strong.  The plots include the time
 spent writing the spyplot files during the experiment and the measured time to
-perform the analysis as a post-processing step.
+perform the data analysis as a post-processing step.
 
 \fix{Ron: more analysis.. get file sizes, data rates, ...}
 
@@ -367,7 +380,7 @@ To illustrate how operation performance changes throughout a single run
 of the application, we selected one experiment and tracked the performance of
 each 10-cycle period over a span of a 500 cycle run.  Since the ``Viz''
 operation executes every 10 cycles, what is shown is the sum of 10-cycles worth
-of CTH and the time spent by 1 analysis operation. We chose to evaluate
+of CTH and the time spent by 1 data analysis operation. We chose to evaluate
 the experiments that use 8K processors of the 1.5M block dataset --- the ``sweet
 spot'' mentioned in Section~\ref{sec:TotalExecutionTime} --- because it is one of
 the interesting places where the performance of the refined \insitu application
@@ -397,7 +410,7 @@ number of blocks is constant.
 %In our particular execution, the number of
 %active blocks actually decreases slightly (less than .01\%).
 
-\begin{figure*}[bp]
+\begin{figure*}[tbp]
 \begin{centering}
 \vspace{-24pt}
 \subfloat[\Insitu baseline.]{
@@ -479,18 +492,18 @@ them further in future work.
   \label{fig:cth-overlay}
 }
 
-\subfloat[\Insitu (baseline) analysis]{
+\subfloat[\Insitu (baseline) data analysis]{
   \includegraphics[width=0.48\linewidth]{figures/in-situ-unopt-viz-variance}
   \label{fig:insitu-unopt-variance}
 }
-\subfloat[\Insitu (refined) analysis]{
+\subfloat[\Insitu (refined) data analysis]{
   \includegraphics[width=0.48\linewidth]{figures/in-situ-opt-viz-variance}
   \label{fig:insitu-opt-variance}
 }
-\caption[Runtime variance of \insitu operations.]{Plots (a), (c), and (d) show
- the mean time and standard error for CTH and the \insitu analysis operations.
- Plot (b) shows an overlay of the CTH experiments to show outliers for
- experiment 1.
+\caption[Runtime variance of \insitu operations.]{Plots (a), (c), and (d)
+  show the mean time and standard error for CTH and the \insitu data
+  analysis operations.  Plot (b) shows an overlay of the CTH experiments to
+  show outliers for experiment 1.
 
 \fix{Update baseline plots with latest data for final version.}
 }
@@ -562,12 +575,12 @@ workflows is ongoing.
 
 One way to get a good understanding of the scalability of an operation is
 to look at the throughput or processing rate.  In this case, we look at the
-rate at which the analysis operation processes blocks as we increase the
+rate at which the data analysis operation processes blocks as we increase the
 number of client cores.
 
 \fix{Ron, in talking to Nathan, it seems that the
   blocks/second rate shouldl take into account all of the blocks, not just
-  the active blocks.  This is because the analysis has to run on inactive
+  the active blocks.  This is because the data analysis has to run on inactive
   blocks because they are frequently part of the main mass.  However, I
   suspect these measurements are using ``active blocks'' instead of actual
   blocks.}
@@ -596,15 +609,15 @@ number of client cores.
 }
 
 
-\caption[Processing rate of analysis.]{Processing rate of analysis portions of
-the four different applications.}
+\caption[Processing rate of data analysis.]{Processing rate of data
+  analysis portions of the four different applications.}
 \label{fig:processing-rates}
 \end{centering}
 \end{figure*}
 
 Figure~\ref{fig:processing-rates} shows the processing rates of the
-analysis portion of the \intransit applications and the ``effective''
-processing rate of the analysis portion (transfer time plus wait time) of
+data analysis portion of the \intransit applications and the ``effective''
+processing rate of the data analysis portion (transfer time plus wait time) of
 the \intransit applications.  Note that the effective \intransit rate does
 not include any processing time overlapped with the simulation execution,
 and thus could be much larger than the actual processing rate.  As we
@@ -664,7 +677,7 @@ either waiting for network transfers to complete, or the are waiting for the
 server to finish copying the data to a server buffer, causing the request to
 sit in the server's pending queue. The larger wait time on the 2-core experiment
 tells us that for this size  problem, there is a computational benefit to
-increasing the number of cores  performing the analysis.
+increasing the number of cores  performing the data analysis.
 
 
 
@@ -717,12 +730,13 @@ performance for 2, 4, and 8 cores per server node.}
 \end{figure*}
 
 The plots in Figure~\ref{fig:core-scaling} show differences in the total,
-transfer, and wait times for the 2, 4, and 8 cores/node runs of the \intransit
-(extra) application for the three different data sets.  While the smaller
-datasets show clear benefit of using more cores/node for analysis, the inverse
-seems to be true for the large datasets.   Unfortunately, we did not run enough
-experiments of this type to make definitive claims.   A further
-investigation of the impact of core scaling for the large dataset is required.
+transfer, and wait times for the 2, 4, and 8 cores/node runs of the
+\intransit (extra) application for the three different data sets.  While
+the smaller datasets show clear benefit of using more cores/node for data
+analysis, the inverse seems to be true for the large datasets.
+Unfortunately, we did not run enough experiments of this type to make
+definitive claims.  A further investigation of the impact of core scaling
+for the large dataset is required.
 
 \fix{need more time to
 digest and understand these plots.  May need to run more results.}
@@ -784,10 +798,10 @@ is a reasonable representation of all values.
 \end{figure}
 
 Figure~\ref{fig:MemoryInSituPerNode} gives a summary of the extra memory
-used when using Catalyst for \insitu analysis during our experiments.
+used when using Catalyst for \insitu data analysis during our experiments.
 Likewise, Figure~\ref{fig:MemoryInTransitPerNode} gives the same summary
 for the \intransit memory overhead for the nodes within the simulation
-(memory usage on the separate analysis job is not given).  In all cases the
+(memory usage on the separate data analysis job is not given).  In all cases the
 added overhead is less than 50\% than the memory used by CTH itself, and in
 most cases the additional overhead is significantly smaller than that.
 
@@ -810,7 +824,7 @@ when using \insitu versus \intransit.  As expected, the \intransit approach
 requires a smaller memory overhead than \insitu within the nodes of the
 simulation.  Thus, \intransit could be a better option when the simulation
 requires as much memory per process as possible, but the \intransit
-approach also requires separate nodes to be reserved for the analysis,
+approach also requires separate nodes to be reserved for the data analysis,
 which also may cause the total amount of available simulation memory to be
 reduced if nodes must be taken away from the simulation.
 

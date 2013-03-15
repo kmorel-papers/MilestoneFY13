@@ -90,9 +90,13 @@ candidate for \insitu processing.
 
 A full fragment analysis requires multiple steps.
 \begin{enumerate}
-\item Identify the boundaries of fragments.  This transition over the
-  volume fraction threshold allows us to separate what is and is not a
-  fragment.
+\item Find block neighbors.  This includes determining block neighbors
+  located on different process.
+\item Build a conforming mesh over the AMR boundaries.  AMR has
+  inconsistent interpolation at interfaces between blocks of different
+  refinements.  The conforming mesh resolves the interpolation.
+\item Identify the boundaries of fragments.  We estimate the boundary as
+  the contour at a threshold between high and low volume fraction.
 \item Find the fragment connected components.  A connected components
   analysis brings together all finite elements that belong to a single
   fragment.

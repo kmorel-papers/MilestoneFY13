@@ -30,7 +30,7 @@ paper describes these services in detail~\cite{lofstead:2013:data-staging}.
 
 
 This section includes a brief description of the Nessie architecture and APIs followed
-by a more detailed description of the \intransit service for CTH analysis using 
+by a more detailed description of the \intransit service for CTH data analysis using 
 ParaView.  
 
 
@@ -79,7 +79,7 @@ fixed-sized request).  In contrast, a data message is typically large and
 consists of ``raw'' bytes that, in most cases, do not need to be
 encoded/decoded by the server. For example,
 Figure~\ref{fig:nssi-movement-protocol} shows the transport protocol for an
-\intransit service that performs analysis of simulation data.
+\intransit service that performs analysis on simulation results data.
 
 \begin{figure}
 \begin{centering}
@@ -180,32 +180,32 @@ not run in MPMD mode.
 
 \subsection{CTH \intransit analysis}
 
-In this milestone, we used Nessie to construct an \intransit CTH analysis 
-service.  The analysis service exists as its own parallel job 
-that communicates with a parallel CTH job using the Nessie APIs.  
-The \intransit CTH analysis library is a drop-in replacement
-for the PVSPY library~\cite{moreland:2010:coprocessing-milestone} used for
-\insitu analysis.  This makes comparing \insitu and \intransit approaches
-extremely convenient since it only requires the user to link a different
-library when compiling CTH.  Instead of executing the analysis on the 
-same compute nodes of the CTH application (as the \insitu library does), the
-\intransit library marshals requests, sends data to the analysis service, and
-performs all the analysis on the separate application.
-Figure~\ref{fig:cth-service} illustrates this process for analysis that does
-fragment detection. 
+In this milestone, we used Nessie to construct an \intransit CTH data
+analysis service.  The data analysis service exists as its own parallel job
+that communicates with a parallel CTH job using the Nessie APIs.  The
+\intransit CTH data analysis library is a drop-in replacement for the PVSPY
+library~\cite{moreland:2010:coprocessing-milestone} used for \insitu data
+analysis.  This makes comparing \insitu and \intransit approaches extremely
+convenient since it only requires the user to link a different library when
+compiling CTH.  Instead of executing the data analysis on the same compute
+nodes of the CTH application (as the \insitu library does), the \intransit
+library marshals requests, sends data to the data analysis service, and
+performs all the data analysis on the separate application.
+Figure~\ref{fig:cth-service} illustrates this process for data analysis
+that does fragment detection.
 
 \begin{figure*}
 \begin{centering}
-\subfloat[\Insitu analysis]{
+\subfloat[\Insitu data analysis]{
   \includegraphics[scale=0.55]{figures/cth-in-situ}
   \label{fig:cth-in-situ}
 }
-\subfloat[\Intransit analysis]{
+\subfloat[\Intransit data analysis]{
   \includegraphics[scale=0.55]{figures/cth-in-transit}
   \label{fig:cth-in-transit}
 }
-\caption[\Insitu and \Intransit Analysis]{Comparison of \insitu (a) and \intransit (b)
-fragment detection for the CTH shock physics code.}
+\caption[\Insitu and \intransit data analysis]{Comparison of \insitu (a)
+  and \intransit (b) fragment detection for the CTH shock physics code.}
 \label{fig:cth-service}
 \end{centering}
 \end{figure*}
@@ -247,19 +247,19 @@ the operations that synchronize the metadata and the data between the client
 and the server.  These operations occur just before a \emph{pvspy\_viz} operation
 that initiates the ParaView coProcessing on the remote service. 
 
-The \insitu version of PVSPY has the notion of a ``CTH source'' that allows the
-analysis code to work directly on the memory of the CTH application without
-making any copies.   Since the \intransit service does not have access to the
-physical memory of the CTH application, we created a virtual CTH source on the
-server that emulates the data structures on the CTH application.  That allows
-the service to use use the same PVSPY library that the client uses in the \insitu
-analysis.  
+The \insitu version of PVSPY has the notion of a ``CTH source'' that allows
+the data analysis code to work directly on the memory of the CTH
+application without making any copies.  Since the \intransit service does
+not have access to the physical memory of the CTH application, we created a
+virtual CTH source on the server that emulates the data structures on the
+CTH application.  That allows the service to use use the same PVSPY library
+that the client uses in the \insitu data analysis.
 
-With the exception of the operations to transfer metadata and data to the analysis
-service, all remote operations are asynchronous, allowing the analysis on the 
-service to execute in parallel with computation on the CTH application.  If one
-remote visualization operation is not complete by the time CTH is ready to do another
-visualization operation, CTH has to wait. 
+With the exception of the operations to transfer metadata and data to the
+analysis service, all remote operations are asynchronous, allowing the data
+analysis on the service to execute in parallel with computation on the CTH
+application.  If one remote visualization operation is not complete by the
+time CTH is ready to do another visualization operation, CTH has to wait.
 
 
 \subsection{Related Efforts}
@@ -290,10 +290,10 @@ move data into a staging area and then having a
 different application retrieve data at a later time.
 
 A recent effort called Glean~\cite{vishwanath:2011:glean} from Argonne is a
-start towards both accelerating IO performance and integrating functionality,
-such as analysis routines, at the right place transparently. It is very similar
-to PreDatA, but extends the location of operations to potentially beyond the
-current machine.
+start towards both accelerating IO performance and integrating
+functionality, such as data analysis routines, at the right place
+transparently. It is very similar to PreDatA, but extends the location of
+operations to potentially beyond the current machine.
 
 Most of the related efforts focus primarily on the I/O benefits of data-staging, but
 have not put a tremendous effort into complex analysis. The majority of the analyis

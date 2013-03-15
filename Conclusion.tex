@@ -9,15 +9,15 @@ analyze its transient data before it is written to storage.  Based on this
 analysis, we make the following conclusions.
 
 \paragraph{\Intransit can provide a performance improvement over \insitu in
-  some circumstances, but the window is narrower than we anticipated.}  
-\Intransit analysis has an added overhead above embedded
-\insitu analysis involving transferring data between parallel jobs.  Given
-an analysis with perfect linear scalability, we suspect \intransit
+  some circumstances, but the window is narrower than we anticipated.}
+\Intransit data analysis has an added overhead above embedded \insitu data
+analysis involving transferring data between parallel jobs.  Given a data
+analysis algorithm with perfect linear scalability, we suspect \intransit
 workflows will always have an added cost, and our results support this.
-With an analysis that does not scale perfectly, possibly due to
-communication overhead, it is theoretically possible for \intransit to be
-faster by reducing the size of the analysis job.  This is one of the
-motivations for choosing an analysis task that requires significant
+With a data analysis algorithm that does not scale perfectly, possibly due
+to communication overhead, it is theoretically possible for \intransit to
+be faster by reducing the size of the data analysis job.  This is one of
+the motivations for choosing a data analysis task that requires significant
 communication.  In our results, we do find instances where \intransit is
 faster, but by a smaller margin and for fewer configurations than we
 initially anticipated.  So although \intransit has several other positive
@@ -25,18 +25,18 @@ features, we do not anticipate performance to be the main motivations for
 using it.
 
 \paragraph{The efficiency of \intransit relies on balancing the time spent
-  in simulation and analysis.}
-The significant overhead cost, apart from data transfer, in the \intransit
-workflow is the idle time spent in the simulation waiting for the \vda
-service to become ready or the idle time spent in the \vda service waiting
-for the simulation to send more data.  This idle waiting time is minimized
-when the simulation and analysis spend the same amount of wall clock time
-between transfers.  Although not demonstrated in this work, it is possible
-to ``auto-balance'' the work between simulation and analysis by, at every
-iteration of the simulation, transfer data to the analysis if and only if
-the analysis service is ready to accept more work.  The disadvantage of
-such an approach is that the idle process time could be replaced with
-unnecessary extra analysis or less analysis than necessary.  However, we
+  in simulation and data analysis.}  The significant overhead cost, apart
+from data transfer, in the \intransit workflow is the idle time spent in
+the simulation waiting for the \vda service to become ready or the idle
+time spent in the \vda service waiting for the simulation to send more
+data.  This idle waiting time is minimized when the simulation and data
+analysis spend the same amount of wall clock time between transfers.
+Although not demonstrated in this work, it is possible to ``auto-balance''
+the work between simulation and data analysis by, at every iteration of the
+simulation, transfer data to the data analysis if and only if the data
+analysis service is ready to accept more work.  The disadvantage of such an
+approach is that the idle process time could be replaced with unnecessary
+extra data analysis or less data analysis than necessary.  However, we
 suspect that controlling the amount of \vda performed through job
 allocation sizes fits well with users' rules of thumb about resource
 allocation.
@@ -64,7 +64,7 @@ initialization becomes a significant cost at high process counts.
 \paragraph{Disk-based I/O is not dead\ldots{} yet.} Our initial assumption
 was that it would not be feasible to output full results at a fine enough
 temporal resolution from CTH to disk storage to perform our high fidelity
-analysis.  However, our control workflow shows that although the overall
+data analysis.  However, our control workflow shows that although the overall
 time to write data to disk and then read back again incurs a large cost, it
 is still realistic to do so.  Thus, users may still choose to incur the
 extra overhead to use a traditional offline post-processing \vda workflow.
