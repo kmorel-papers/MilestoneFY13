@@ -357,11 +357,19 @@ client to server.  For the neighborhood information to remain consistent,
 the I/O framework would have to report how data was repartitioned so that
 the neighborhood information could be mapped to the new decomposition.
 
-Another surprising result is the performance of the spyplot file application.
-For the size of datasets we studied, this application performed quite well, showing that
-the Lustre file system on Cielo is quite strong.  The plots include the time
-spent writing the spyplot files during the experiment and the measured time to
-perform the data analysis as a post-processing step.
+Another surprising result is the performance of the spyplot file
+application.  For the size of datasets we studied, this application
+performed quite well, showing that the Lustre file system on Cielo is quite
+strong.  The plots include the time spent writing the spyplot files during
+the experiment and the measured time to perform the data analysis as a
+post-processing step.  One anomaly we notice in
+Figure~\ref{fig:spyplot-file-bar} is that for the largest data set the I/O
+time jumps from around 2 minutes with 8192 cores to 10 minutes on 16,384
+cores.  Looking closer at our log files, we see that we have two
+experiments contributing to this value.  One experiment required about 4.5
+minutes to write whereas the other required about 15.5 minutes.  We
+speculate that this second measurement comes from an anomalous condition on
+Cielo, but we do not have enough data to diagnose further.
 
 \fix{Ron: more analysis.. get file sizes, data rates, ...}
 
