@@ -1,29 +1,28 @@
 \section{Catalyst}
 \label{sec:Catalyst}
 
-Although it is straightforward for a simulation development team to add some
-basic \vda capabilities into simulation code\lcite{CTH, LAMMPS}, our desire is
-to have a general-purpose fully-featured library that leverages existing
-implementations.  The intention is threefold.  First, by leveraging existing
+Catalyst is a general purpose, full-featured library that leverages existing
+implementations of analysis and visualization capabilities.
+The intent in doing this is threefold.  First, by leveraging existing
 \vda libraries we can benefit from the accumulation of over two decades of
 visualization research and development.  Second, by making the library general
 purpose we can quickly apply our \insitu \vda capabilities to many simulations
 as opposed to a single simulation.  Third, by using our existing code we can
-integrate the \insitu tools with our traditional post-processing tools both to
+integrate the \insitu tools with our traditional post-processing tools to
 provide interfaces that users are already familiar and comfortable with and to
-apply scalable algorithms designed for \insitu with our post-processing tools
-and vice versa.
+apply scalable algorithms designed for \insitu with our post-processing tools.
 
-Catalyst is a C++ library with an externally facing API to C, FORTRAN, and
+
+Catalyst is a C++ library with an API available in C, FORTRAN, and
 Python.  It is built atop the Visualization Toolkit (VTK)\lcite{VTK} and
-ParaView\lcite{ParaView}.  By building Catalyst with VTK, it can access a
+ParaView\lcite{ParaView}.  This means that Catalyst takes advantage of a
 large number of algorithms including writers for I/O, rendering algorithms,
 and processing algorithms such as isosurface extraction, slicing, and flow
 particle tracking.  Catalyst uses ParaView to implement and manage the
 \vda, which is defined using a visualization
 pipeline\lcite{Moreland2013:TVCG}.  Although it is possible to construct
-pipelines entirely in C++, the ParaView control structure allows pipelines
-configured through Python scripts.
+pipelines entirely in C++, a more flexible approach is defining pipelines 
+with Python scripts.
 
 \begin{figure}[htb]
   \centering
@@ -49,8 +48,8 @@ hang until Catalyst finishes and returns control to the simulation.
 The AddPipeline call is where a majority of the work is done.  Although there
 is usually only one pipeline added to Catalyst, it is possible to add several.
 It is also common for this pipeline to be written in Python, because this is
-the native scripting language for ParaView; it is also possible for the
-pipeline to be hard coded C++.  While there is some overhead cost to using
+the native scripting language for ParaView.  It is also possible for the
+pipeline to be coded in C++.  While there is overhead cost to using
 Python code in the pipeline here, it is very low due to its nature as a glue
 code combining the C++ filters which are written in VTK.  The advantage to
 using Python is that a scripted pipeline can change alongside the simulation
@@ -66,23 +65,26 @@ Catalyst pipelines for use within a coupled simulation.}
 
 In addition to the advantages of writing Python pipeline scripts by hand, there
 is a well supported plugin for ParaView that will automatically create Catalyst
-Python scripts automatically from within the GUI based on what the user
-does interactively, Figure~\ref{fig:ScriptExport}.  This plugin works by
-replacing a file read in at the top of the pipeline with the same VTK data
-object provided by the adaptor, Section~\ref{sec:Adaptor}.  The rest of the
-pipeline is agnostic as to whether it is operating on data being read from a
-file or whether that data is coming from an in-memory \insitu transfer.  
+Python scripts automatically from within the GUI, based on what the user
+does interactively, as shown in Figure~\ref{fig:ScriptExport}.  This plugin 
+reads in a file and creates the same code 
+object provided by the adaptor (see Section~\ref{sec:Adaptor}).  The rest of the
+pipeline operates identically whether the data has been read in from a file
+or it is coming from an in-memory \insitu transfer.  
 
-To create images, the plugin will examine all views currently open within the
-ParaView window and create equivalent views with independent image sizes in the
-script.  For writing files, it is possible to create place-holder objects
-within the pipeline to act as file write points.  Usually these will be placed
+The plugin creates images for each view open at the time the script is 
+exported. 
+To write files, one can create objects
+within the pipeline that act as file write points.  In general, these are 
+placed
 at the end of a long chain of processing to store the resulting processed data,
-but it is also possible to splice these file writes earler in the pipeline to
-see the effects of different stages of processing.  Each file and image writer
-can write at an independent frequency, allowing for very infrequent writes of
-potentially large files while also very frequently writing images in the same
-simulation run.
+but it is also possible to splice these file writes into in the pipeline at
+any point, so that intermediate data can be preserved. 
+Each file and image writer
+can write at an independent frequency, so that the output can be tuned 
+precisely by the analyst.  For example, images (which tend to be very small) 
+can be written out frequently, while large, detailed data files can be written out 
+infrequently.
 
 \subsection{Simulation Adaptor}\label{sec:Adaptor}
 

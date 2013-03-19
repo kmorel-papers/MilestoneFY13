@@ -38,7 +38,7 @@ five experiments.
   \begin{description}
 
   \item[Baseline:] As described in Section~\ref{sec:UseCase}, the baseline
-    version of the algorithm includes a somewhat unnecessary step of global
+    version of the algorithm includes a redundant step of global
     communication to find AMR block neighbors.  We include results from
     this workflow for two reasons: First, we are not able to apply the same
     optimization to the \intransit and offline post-processing workflows,
@@ -111,9 +111,9 @@ performed by the \insitu and \intransit applications.  The number of nodes
 used is the same as the \intransit application using extra nodes. There
 is no way to directly instruct CTH to output Spyplot data every 10 cycles.
 The resulting data files are then loaded in a separate ParaView data
-analysis job run at a latter time.  This data analysis was also performed
+analysis job run at a later time.  This data analysis was also performed
 on Cielo using ParaView statically compiled from the same code base as the
-\insitu and \intransit runs, but executed by ParaView's pvbatch
+\insitu and \intransit runs, but executed by ParaView's \texttt{pvbatch}
 application.  The time to run the simulation, read and write files, and
 perform the post-processing analysis are all summed together to get a
 processing time for computation equivalent to that done in the \insitu and
@@ -238,7 +238,8 @@ applications for the 1.5M block data set.  The results clearly show a
 using a less scalable algorithm, performs the same as the the refined
 version of \insitu.  At 16K and 32K, none of the codes running data
 analysis show significant improvement, the baseline \insitu and the
-\intransit approaches actually take longer.  Perhaps the biggest reason is
+\intransit approaches actually take longer.  We believe the biggest reason 
+for this is
 that there is not enough work for the compute nodes.  At 32K cores, each
 core is processing around 46 blocks/node, where the same size problem using
 4K nodes requires each core to process 366 blocks.  The key to making the

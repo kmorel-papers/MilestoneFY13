@@ -119,7 +119,7 @@ boundaries between adjacent regions at different levels of refinement.
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=5in]{figures/AMRDual}
+  \includegraphics[width=3in]{figures/AMRDual}
   \caption[A simple 2D AMR example.]{A simple 2D AMR example with 2
     different refinement levels (blue lines) and the conforming dual grid
     we build with it (yellow lines).}
@@ -149,7 +149,7 @@ retrieved only through global communication.  Our initial
 \keyterm{baseline} algorithm starts with this global communication, which
 we find to severely limit the scalability of the algorithm.
 
-However, when running the surface creation algorithm as an embedded \insitu
+When running the surface creation algorithm as an embedded \insitu
 component of CTH, this global communication of finding neighbors is
 wasteful because CTH already has this information.  To take advantage of
 this neighborhood information, we make a small change to CTH to pass this
