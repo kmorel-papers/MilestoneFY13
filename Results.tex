@@ -86,7 +86,7 @@ five experiments.
 
   \end{description}
 
-\item [Spyplot file] A CTH job that writes Spyplot files instead of doing
+\item [Disk-based post-processing:] A CTH job that writes Spyplot files instead of doing
   data analysis.  At some point later a batch data analysis job is run on the saved
   data.  This workflow represents the traditional post-processing approach.
   The number of nodes used matches the number used for data analysis in the Extra
@@ -142,7 +142,7 @@ processing time for computation equivalent to that done in the \insitu and
 }
 
 \vspace{-6pt}
-\subfloat[Spyplot I/O (post-processing analysis)]{
+\subfloat[Disk-based post-processing.]{
   \includegraphics[width=0.48\linewidth]{figures/spyplot-file-line}
   \label{fig:spyplot-file-line}
 }
@@ -278,7 +278,7 @@ well, the compute nodes need sufficient work to hide the analysis cost.
 }
 
 \vspace{-24pt}
-\subfloat[Spyplot I/O (post-processing analysis)]{
+\subfloat[Disk-based post-processing.]{
   \includegraphics[width=0.5\linewidth]{figures/spyplot-file-bar}
   \label{fig:spyplot-file-bar}
 }

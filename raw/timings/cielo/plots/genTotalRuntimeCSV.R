@@ -29,7 +29,7 @@ pvspy_plot_width <- 7
 pvspy_plot_height <- 5
 
 with_title <- FALSE
-write_pdf <- TRUE
+write_pdf <- FALSE
 
 #################################################
 # Extract Data From Result Files (only the results up to 32K)
@@ -164,34 +164,5 @@ if (with_title==TRUE) {
 
 if (write_pdf == TRUE) {
    pdf(file="total-runtime-all.pdf", height=pvspy_plot_height, width=pvspy_plot_width)
-}
-plot
-
-##########   PLOT WITHOUT Optimized  #####################
-
-data <- rbind.data.frame(d1, d3, d4, d5)
-names(data)[4] <- "Experiments"
-
-
-
-# Compare untuned experiments
-plot <- ggplot(data, aes(x=cores, y=complete/60, ymax=200, ymin=0)) +
-	geom_line(size=pvspy_line_size, aes(linetype=Experiments, colour=Experiments))  +
-	geom_errorbar(aes(ymin=(complete-complete_err)/60, ymax=(complete+complete_err)/60, colour=Experiments), width=pvspy_error_width) +
-	geom_point(size=pvspy_point_size, fill="white", aes(shape=Experiments, colour=Experiments)) +
-	scale_x_continuous(breaks=2^(2:16), trans='log2') +
-	scale_color_manual(values=pvspy_colors[c(1,3,4,5)]) +
-	scale_shape_manual(values=pvspy_shapes[c(1,3,4,5)]) +
-	scale_linetype_manual(values=pvspy_lines[c(1,3,4,5)]) +
-	xlab("Client Ranks") + ylab("Time (min)") +
-	theme_bw() +
-	theme(legend.position=c(0.8, 0.8),legend.key=element_rect(color="white"),legend.background=element_rect(color="black"))
-
-if (with_title == TRUE) {
-   plot <- plot + ggtitle("Total Execution Time for 500 Cycles (1.5m blocks)")
-}
-
-if (write_pdf == TRUE) {
-   pdf(file="total-runtime-noopt.pdf", height=pvspy_plot_height, width=pvspy_plot_width)
 }
 plot

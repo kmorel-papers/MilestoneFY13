@@ -556,7 +556,7 @@ plot <- plot + theme(legend.position=c(0.15, 0.83),legend.key=element_rect(color
 plot <- plot + xlab("Client Ranks") + ylab("Time (min)")
 
 if (with_title == TRUE) {
-   plot <- plot + ggtitle("Spyplot File: Total Execution Time for 500 Cycles")
+   plot <- plot + ggtitle("Disk-based post processing: Total Execution Time for 500 Cycles")
 }
 
 if (write_pdf == TRUE) {
@@ -620,7 +620,7 @@ barplot(t(counts),
         ylab="Time (min)")
 
 if (with_title == TRUE) {
-   title(main="Spyplot File Total Time\n(500 cycles)")
+   title(main="Disk-based post processing Total Time\n(500 cycles)")
 }
 
 
