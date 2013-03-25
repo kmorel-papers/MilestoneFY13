@@ -7,6 +7,7 @@ include(UseLATEX.cmake)
 set(tex_sources
   Abstract.tex
   ExecutiveSummary.tex
+  Acknowledgements.tex
   Background.tex
   OfficialMilestone.tex
   MilestoneScope.tex

@@ -27,11 +27,33 @@ service connected to the simulation via a network.  Each workflow has its
 own characteristics, and our study details empirical evidence on their
 respective performances.
 
-For milestone 4745 we employ two critical software technologies developed
-with significant contributions from Sandia National Laboratories.  First,
-we use the Catalyst library to provide \insitu \vda directly to a running
-simulation.  Second, we use the Nessie framework to establish an \intransit
-\vda service connected to a running simulation.
+As we look ahead to the extreme architectures planned by ASC, it is critical to
+understand the strengths and weaknesses of these proposed analysis approaches,
+and to design experiments that will help us understand how to enhance
+scientific discovery on these new architectures.  Milestones such as this one
+provide important foundations for evaluating our current technical approaches,
+and for strategic development of analysis capabilities for future
+architectures.
+
+For this Milestone, we explored the performance characteristics of two proposed
+technologies developed with significant contributions from Sandia National
+Laboratories.  These technologies leverage existing investments in data
+analysis, visualization and I/O research, and are part of a long term strategic
+plan for addressing ASC analysis needs across a spectrum of scales, codes, and
+science domains.  We employ two critical software technologies developed with
+significant contributions from Sandia National Laboratories.  First, we use the
+Catalyst library to provide \insitu \vda directly to a running simulation.
+Second, we use the Nessie framework to establish an \intransit \vda service
+connected to a running simulation.
+
+Our primary motivation for this use case was to use a highly scalable code that
+provided an example of real physics, so that we could determine performance
+characteristics when applied against real data.  There is significant community
+development in min-apps available in the community that scale well across large
+architectures, but whose output is not representative of a real science code.
+CTH is utilized as a test code for ASC platforms, and has been used in several
+exploratory in-situ tests in the past.  Because of this, the team opted to use
+CTH as a driver for this large scale experiment. 
 
 Our empirical study comprises over 10 million core hours of running an
 instrumented simulation and data analysis use case.  This use case, involving
@@ -47,3 +69,4 @@ scheduling.
 
 This SAND report presents the full results of our milestone work and is
 available to anyone.
+
